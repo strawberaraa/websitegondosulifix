@@ -1033,6 +1033,7 @@
       const lightboxImg = document.getElementById('gs-lightbox-img');
       const lightboxClose = document.getElementById('gs-lightbox-close');
       function openLightbox(url, alt) {
+        document.body.appendChild(lightbox);
         lightboxImg.src = url;
         lightboxImg.alt = alt || '';
         lightbox.classList.add('open');
