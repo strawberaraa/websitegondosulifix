@@ -906,11 +906,22 @@
       }
 
       // ── Tombol "Perbesar Peta" — peta jadi layar penuh, lebih gampang di-tap di HP ──
+      // Catatan: elemen peta dipindah (di-"portal") langsung ke <body> saat fullscreen,
+      // karena ".peta-frame-wrap" adalah anak dari elemen ber-class "fade-in" yang punya
+      // CSS transform — dan transform pada elemen induk membuat "position: fixed" di
+      // dalamnya jadi terjebak di kotak induk itu, bukan benar-benar penuh ke layar.
       const expandBtn = document.getElementById('map-expand-btn');
       const petaFrame = document.querySelector('.peta-frame');
+      const petaFramePlaceholder = document.createComment('peta-frame-slot');
+      petaFrame.parentNode.insertBefore(petaFramePlaceholder, petaFrame);
       let isFullscreen = false;
       function setFullscreen(on) {
         isFullscreen = on;
+        if (on) {
+          document.body.appendChild(petaFrame);
+        } else {
+          petaFramePlaceholder.parentNode.insertBefore(petaFrame, petaFramePlaceholder.nextSibling);
+        }
         petaFrame.classList.toggle('map-fullscreen', on);
         document.body.style.overflow = on ? 'hidden' : '';
         expandBtn.setAttribute('aria-label', on ? 'Tutup peta layar penuh' : 'Perbesar peta ke layar penuh');
