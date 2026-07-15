@@ -574,6 +574,10 @@
   background: #25d366; margin-right: 6px; margin-bottom: 8px;
 }
 .gs-popup-btn-wa:hover { background: #1ebe5a; }
+.gs-popup-btn-gmaps {
+  background: #4285f4; margin-right: 6px; margin-bottom: 8px;
+}
+.gs-popup-btn-gmaps:hover { background: #3367d6; }
 
 /* Map category filter bar */
 .map-filter-bar {
