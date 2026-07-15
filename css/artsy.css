@@ -651,7 +651,8 @@
   gap: 6px;
 }
 .map-filter-btn .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.map-filter-btn .map-filter-icon { font-size: 19px; line-height: 1; display: inline-flex; }
+.map-filter-btn .map-filter-icon { font-size: 16px; line-height: 1; display: inline-flex; }
+.map-filter-btn .map-filter-icon-dusun-all { font-size: 24px; line-height: 1; display: inline-flex; }
 .map-filter-btn:hover,
 .map-filter-btn.active {
   background: var(--green-700);
