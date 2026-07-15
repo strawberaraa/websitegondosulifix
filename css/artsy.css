@@ -578,6 +578,13 @@
   background-size: cover; background-position: center;
 }
 .gs-popup-body { padding: 14px 16px 16px; }
+.gs-popup-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
 .gs-popup-badge {
   display: inline-block;
   background: var(--green-50);
@@ -586,7 +593,6 @@
   font-size: 10px; font-weight: 700;
   letter-spacing: .04em; text-transform: uppercase;
   padding: 3px 10px; border-radius: 100px;
-  margin-bottom: 8px;
 }
 .gs-popup-body h4 {
   font-family: var(--font-display);
@@ -630,7 +636,7 @@
   flex-wrap: wrap;
 }
 .map-filter-btn {
-  padding: 7px 16px;
+  padding: 8px 16px;
   border-radius: 100px;
   border: 1px solid var(--green-200);
   background: white;
@@ -645,7 +651,7 @@
   gap: 6px;
 }
 .map-filter-btn .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.map-filter-btn .map-filter-icon { font-size: 17px; line-height: 1; display: inline-flex; }
+.map-filter-btn .map-filter-icon { font-size: 19px; line-height: 1; display: inline-flex; }
 .map-filter-btn:hover,
 .map-filter-btn.active {
   background: var(--green-700);
@@ -730,7 +736,6 @@
   background: #fff7e6;
   color: #92660f;
   border-color: #f0d59a;
-  margin-left: 6px;
 }
 
 /* ── Lightbox foto POI ── */
