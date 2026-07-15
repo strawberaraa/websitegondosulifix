@@ -876,6 +876,26 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
+      // ── Perbaikan akurasi klik di HP: paksa peta hitung ulang ukurannya ──
+      // (kontainer peta ada di dalam elemen ".fade-in" yang punya animasi transform;
+      // kalau Leaflet sempat menghitung ukuran sebelum animasi itu selesai, titik
+      // klik di peta jadi meleset dari lokasi aslinya — terutama di HP.)
+      const fixMapSize = () => map.invalidateSize();
+      setTimeout(fixMapSize, 300);
+      setTimeout(fixMapSize, 800);
+      window.addEventListener('load', fixMapSize);
+      window.addEventListener('resize', fixMapSize);
+      window.addEventListener('orientationchange', () => setTimeout(fixMapSize, 300));
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(fixMapSize).observe(mapEl);
+      }
+      // Saat kartu peta selesai fade-in, ukurannya pasti sudah final — invalidate sekali lagi
+      const petaWrap = document.querySelector('.peta-frame-wrap');
+      if (petaWrap) {
+        const wrapObserver = new MutationObserver(() => fixMapSize());
+        wrapObserver.observe(petaWrap, { attributes: true, attributeFilter: ['class'] });
+      }
+
       // ── Zoom peta hanya dengan Ctrl/Cmd + scroll — scroll halaman biasa tetap mulus ──
       map.scrollWheelZoom.disable();
       const scrollHint = document.createElement('div');
@@ -959,6 +979,7 @@
               <p>±${Math.round(poi.elev)} mdpl · ${poi.lat.toFixed(5)}, ${poi.lng.toFixed(5)}</p>
               ${poi.deskripsi ? `<p class="gs-popup-desc">${poi.deskripsi}</p>` : ''}
               ${teleponHtml}
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${poi.lat},${poi.lng}" target="_blank" rel="noopener" class="gs-popup-btn gs-popup-btn-gmaps">🧭 Rute Google Maps</a>
               <a href="https://www.openstreetmap.org/?mlat=${poi.lat}&mlon=${poi.lng}#map=18/${poi.lat}/${poi.lng}" target="_blank" rel="noopener" class="gs-popup-btn">Buka di OpenStreetMap →</a>
             </div>
           </div>`;
