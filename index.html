@@ -418,6 +418,10 @@
         <div class="map-filter-bar map-filter-bar-dusun" id="map-filter-bar-dusun"></div>
         <div class="peta-frame">
           <div id="gondosuli-map" aria-label="Peta interaktif Desa Gondosuli"></div>
+          <button type="button" id="map-expand-btn" class="map-expand-btn" aria-label="Perbesar peta ke layar penuh">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span>Perbesar Peta</span>
+          </button>
         </div>
       </div>
       <div class="peta-info fade-in">
@@ -900,6 +904,24 @@
         const wrapObserver = new MutationObserver(() => fixMapSize());
         wrapObserver.observe(petaWrap, { attributes: true, attributeFilter: ['class'] });
       }
+
+      // ── Tombol "Perbesar Peta" — peta jadi layar penuh, lebih gampang di-tap di HP ──
+      const expandBtn = document.getElementById('map-expand-btn');
+      const petaFrame = document.querySelector('.peta-frame');
+      let isFullscreen = false;
+      function setFullscreen(on) {
+        isFullscreen = on;
+        petaFrame.classList.toggle('map-fullscreen', on);
+        document.body.style.overflow = on ? 'hidden' : '';
+        expandBtn.setAttribute('aria-label', on ? 'Tutup peta layar penuh' : 'Perbesar peta ke layar penuh');
+        expandBtn.querySelector('span').textContent = on ? 'Tutup' : 'Perbesar Peta';
+        expandBtn.classList.toggle('is-close', on);
+        setTimeout(fixMapSize, 260);
+      }
+      expandBtn?.addEventListener('click', () => setFullscreen(!isFullscreen));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isFullscreen) setFullscreen(false);
+      });
 
       // ── Zoom peta hanya dengan Ctrl/Cmd + scroll — scroll halaman biasa tetap mulus ──
       map.scrollWheelZoom.disable();
