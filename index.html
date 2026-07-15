@@ -868,7 +868,12 @@
 
       const map = L.map('gondosuli-map', {
         scrollWheelZoom: false,
-        zoomControl: true
+        zoomControl: true,
+        // Leaflet punya bug lama di HP: handler "tap" bawaannya kadang membaca
+        // koordinat sentuhan terakhir dari gesture SCROLL sebelumnya, bukan posisi
+        // jari saat tap pin — makanya peta "lompat" ke tempat lain saat pin di-tap.
+        // Browser modern sudah tidak butuh workaround ini, jadi aman dimatikan.
+        tap: false
       }).setView(CENTER, 14);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
