@@ -956,7 +956,7 @@
       }, { passive: false });
 
       // Dusun: id → { label, icon } — urutan sama seperti kartu "6 Dusun di Gondosuli"
-      const dusunIconImg = (file, label) => `<img src="images/${file}" alt="${label}" style="display:inline-block;width:26px;height:26px;object-fit:contain;vertical-align:-7px;margin-right:5px;">`;
+      const dusunIconImg = (file, label) => `<img src="images/${file}" alt="${label}" style="display:inline-block;width:34px;height:34px;object-fit:contain;vertical-align:-11px;margin-right:6px;">`;
       const DUSUNS = {
         Kletek:      { label: 'Kletek',      icon: dusunIconImg('KLETEK.png', 'Kletek') },
         Pakes:       { label: 'Pakes',       icon: dusunIconImg('PAKES.png', 'Pakes') },
@@ -1075,7 +1075,7 @@
       renderFilterBar();
 
       function renderDusunFilterBar() {
-        let html = `<button class="map-filter-btn map-filter-btn-dusun active" data-dusun="semua"><span class="map-filter-icon">🗺️</span> Semua Dusun</button>`;
+        let html = `<button class="map-filter-btn map-filter-btn-dusun active" data-dusun="semua"><span class="map-filter-icon-dusun-all">🗺️</span> Semua Dusun</button>`;
         Object.keys(DUSUNS).forEach(dusunId => {
           const count = POI_DATA.filter(p => p.dusun === dusunId).length;
           html += `<button class="map-filter-btn map-filter-btn-dusun" data-dusun="${dusunId}">${DUSUNS[dusunId].icon} ${DUSUNS[dusunId].label} (${count})</button>`;
