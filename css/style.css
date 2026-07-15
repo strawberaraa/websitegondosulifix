@@ -55,6 +55,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
+p { text-align: justify; text-justify: inter-word; }
 
 /* ============================================
    NAVBAR
@@ -943,6 +944,17 @@ section { padding: 100px 5%; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .highlight-strip .strip-divider { display: none; }
+  .highlight-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .highlight-strip .strip-item {
+    width: 100%;
+    padding: 14px 2px;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+  }
+  .highlight-strip .strip-item:last-child { border-bottom: none; }
 }
 @media (max-width: 480px) {
   section { padding: 60px 5%; }
