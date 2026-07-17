@@ -46,7 +46,7 @@
     @keyframes dotPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
 
     .hero h1 { font-family:'Fraunces',Georgia,serif; font-size:clamp(3rem,7vw,5.5rem); font-weight:700; color:white; line-height:1.05; letter-spacing:-0.03em; margin-bottom:14px; }
-    .hero h1 .accent { color:#8fd6ac; font-family: var(--font-hand); font-weight: 700; font-size: 1.05em; }
+    .hero h1 .accent { color:#8fd6ac; font-style: italic; font-weight: 700; }
     .hero-desc { font-size:17px; color:rgba(255,255,255,.72); max-width:560px; margin:0 0 36px; line-height:1.75; font-weight:400; text-align:center; }
     .hero-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
     .btn-primary { display:inline-flex; align-items:center; gap:8px; background:white; color:var(--green-800); font-weight:700; font-size:15px; padding:14px 28px; border-radius:50px; transition:all .3s; border:none; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,.2); }
@@ -205,7 +205,7 @@
     </div>
     <div class="profil-grid">
       <div class="profil-visual fade-in" style="border-radius:24px;overflow:hidden;aspect-ratio:4/3;cursor:zoom-in;">
-        <img src=images/Tembakau.jpg alt="Pemandangan terasering sawah pegunungan" style="width:100%;height:100%;object-fit:cover;border-radius:24px;">
+        <img src=images/Titlegondosuli.jpg style="width:100%;height:100%;object-fit:cover;border-radius:24px;">
       </div>
       <div class="profil-info">
         <div class="profil-text fade-in">
@@ -320,49 +320,52 @@
   <!-- ══ INFORMASI DESA (Segera Hadir) ══ -->
   <section id="informasi">
     <div class="section-header">
-      <div class="section-label">Informasi Desa</div>
-      <h2 class="section-title">Informasi & Layanan Desa</h2>
+      <div class="section-label">Situs Informasi</div>
+      <h2 class="section-title">Informasi Seputar Desa</h2>
       <p class="section-subtitle">Sekilas informasi seputar kehidupan warga Desa Gondosuli dari berbagai bidang.</p>
     </div>
-    <div class="dusun-overview-grid">
+    <div class="info-sector-grid">
 
-      <a href="pages/informasi.html" class="dov-card fade-in">
-        <div class="dov-map-wrap" style="background:linear-gradient(135deg,#133d24,#2d8a52);display:flex;align-items:center;justify-content:center;">
-          <div class="dov-particles"></div>
-          <div class="dov-map-icon" style="position:static;transform:none;width:104px;height:104px;padding:16px;font-size:44px;">🌾</div>
-        </div>
-        <div class="dov-body">
-          <h3>Pertanian</h3>
-          <p>Pertanian menjadi salah satu penopang utama perekonomian Desa Gondosuli, mulai dari tembakau, padi, jagung, kopi, hingga gula aren yang tersebar di berbagai dusun mengikuti kondisi tanah dan ketinggian wilayah masing-masing.</p>
-          <div class="dov-tags"><span class="dov-tag">🌾 Pertanian</span></div>
-        </div>
-        <div class="dov-footer"><span>Lihat Selengkapnya</span><span>→</span></div>
+      <a href="pages/informasi.html#pertanian" class="info-sector-card fade-in" style="--accent:#2d8a52;--accent-bg:#eaf6ee;">
+        <div class="info-sector-icon">🌾</div>
+        <h3>Pertanian</h3>
+        <p>Pertanian menjadi salah satu penopang utama perekonomian Desa Gondosuli, mulai dari tembakau, padi, jagung, kopi, hingga gula aren yang tersebar di berbagai dusun.</p>
+        <span class="info-sector-link">Selengkapnya <span>→</span></span>
       </a>
 
-      <a href="pages/informasi.html" class="dov-card fade-in">
-        <div class="dov-map-wrap" style="background:linear-gradient(135deg,#4a2e6b,#9b59b6);display:flex;align-items:center;justify-content:center;">
-          <div class="dov-particles"></div>
-          <div class="dov-map-icon" style="position:static;transform:none;width:104px;height:104px;padding:16px;font-size:44px;">🕌</div>
-        </div>
-        <div class="dov-body">
-          <h3>Keagamaan</h3>
-          <p>Kehidupan keagamaan warga berjalan aktif lewat kegiatan rutin seperti pengajian, majelis, dan sholawatan di masjid maupun musala di tiap dusun, menjadi bagian penting dari kehidupan sosial masyarakat Gondosuli.</p>
-          <div class="dov-tags"><span class="dov-tag">🕌 Keagamaan</span></div>
-        </div>
-        <div class="dov-footer"><span>Lihat Selengkapnya</span><span>→</span></div>
+      <a href="pages/informasi.html#pendidikan" class="info-sector-card fade-in" style="--accent:#3b82f6;--accent-bg:#eaf2fe;">
+        <div class="info-sector-icon">📚</div>
+        <h3>Pendidikan</h3>
+        <p>Akses pendidikan warga didukung sejumlah lembaga mulai dari PAUD, TK, sekolah dasar, hingga madrasah dan pesantren yang tersebar di beberapa dusun.</p>
+        <span class="info-sector-link">Selengkapnya <span>→</span></span>
       </a>
 
-      <a href="pages/informasi.html" class="dov-card fade-in">
-        <div class="dov-map-wrap" style="background:linear-gradient(135deg,#1e3a6b,#3b82f6);display:flex;align-items:center;justify-content:center;">
-          <div class="dov-particles"></div>
-          <div class="dov-map-icon" style="position:static;transform:none;width:104px;height:104px;padding:16px;font-size:44px;">📚</div>
-        </div>
-        <div class="dov-body">
-          <h3>Pendidikan</h3>
-          <p>Akses pendidikan warga didukung oleh sejumlah lembaga mulai dari PAUD, TK, sekolah dasar, hingga madrasah dan pesantren yang tersebar di beberapa dusun untuk generasi muda Gondosuli.</p>
-          <div class="dov-tags"><span class="dov-tag">📚 Pendidikan</span></div>
-        </div>
-        <div class="dov-footer"><span>Lihat Selengkapnya</span><span>→</span></div>
+      <a href="pages/informasi.html#keagamaan" class="info-sector-card fade-in" style="--accent:#9b59b6;--accent-bg:#f5edf9;">
+        <div class="info-sector-icon">🕌</div>
+        <h3>Keagamaan</h3>
+        <p>Kehidupan keagamaan warga berjalan aktif lewat pengajian, majelis, dan sholawatan rutin di masjid maupun musala di tiap dusun.</p>
+        <span class="info-sector-link">Selengkapnya <span>→</span></span>
+      </a>
+
+      <a href="pages/informasi.html#kesehatan" class="info-sector-card fade-in" style="--accent:#ef4444;--accent-bg:#fdeceb;">
+        <div class="info-sector-icon">🏥</div>
+        <h3>Kesehatan</h3>
+        <p>Layanan kesehatan warga didukung oleh klinik, praktik bidan, dan kegiatan posyandu rutin di berbagai dusun untuk ibu, balita, hingga lansia.</p>
+        <span class="info-sector-link">Selengkapnya <span>→</span></span>
+      </a>
+
+      <a href="pages/informasi.html#umkm" class="info-sector-card fade-in" style="--accent:#d97706;--accent-bg:#fdf3e7;">
+        <div class="info-sector-icon">🏪</div>
+        <h3>UMKM & Ekonomi</h3>
+        <p>Roda perekonomian warga digerakkan beragam UMKM — pengrajin mebel, produksi minyak kelapa, kuliner khas, hingga toko kelontong di tiap dusun.</p>
+        <span class="info-sector-link">Selengkapnya <span>→</span></span>
+      </a>
+
+      <a href="pages/informasi.html#pemerintahan" class="info-sector-card fade-in" style="--accent:#b8862f;--accent-bg:#faf3e2;">
+        <div class="info-sector-icon">🏛️</div>
+        <h3>Pemerintahan</h3>
+        <p>Kantor Desa Gondosuli di Dusun Krajan menjadi pusat pelayanan administrasi dan pemerintahan bagi seluruh warga dari enam dusun.</p>
+        <span class="info-sector-link">Selengkapnya <span>→</span></span>
       </a>
 
     </div>
@@ -375,21 +378,26 @@
       <h2 class="section-title">Letak Geografis</h2>
       <p class="section-subtitle">Gondosuli berada di posisi strategis, dilewati jalur kecamatan Kotaanyar–Pakuniran.</p>
     </div>
+    <div class="peta-search-filters fade-in">
+      <div class="map-search-bar">
+        <span class="map-search-icon">🔍</span>
+        <input type="text" id="map-search-input" placeholder="Cari nama tempat… misal: masjid, toko, ladang" autocomplete="off" />
+        <button type="button" id="map-search-clear" class="map-search-clear" aria-label="Hapus pencarian" hidden>✕</button>
+      </div>
+      <p class="map-search-result" id="map-search-result"></p>
+      <div class="map-filter-bar" id="map-filter-bar"></div>
+      <div class="map-filter-bar map-filter-bar-dusun" id="map-filter-bar-dusun"></div>
+    </div>
     <div class="peta-container">
       <div class="peta-frame-wrap fade-in" style="grid-column:1;">
-        <div class="map-search-bar">
-          <span class="map-search-icon">🔍</span>
-          <input type="text" id="map-search-input" placeholder="Cari nama tempat… misal: masjid, toko, ladang" autocomplete="off" />
-          <button type="button" id="map-search-clear" class="map-search-clear" aria-label="Hapus pencarian" hidden>✕</button>
-        </div>
-        <p class="map-search-result" id="map-search-result"></p>
-        <div class="map-filter-bar" id="map-filter-bar"></div>
-        <div class="map-filter-bar map-filter-bar-dusun" id="map-filter-bar-dusun"></div>
         <div class="peta-frame">
           <div id="gondosuli-map" aria-label="Peta interaktif Desa Gondosuli"></div>
           <button type="button" id="map-expand-btn" class="map-expand-btn" aria-label="Perbesar peta ke layar penuh">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             <span>Perbesar Peta</span>
+          </button>
+          <button type="button" id="map-reset-btn" class="map-reset-btn" aria-label="Kembalikan ke tampilan awal peta" title="Kembalikan ke tampilan awal">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 16v-4h4"/></svg>
           </button>
         </div>
       </div>
@@ -411,7 +419,6 @@
           <div class="dusun-pill">Dusun Krajan</div>
         </div>
         <div class="info-card" style="margin-top:20px;"><h4>Koordinat</h4><p>7°54′S 113°36′E · Ketinggian ±400 mdpl</p></div>
-        <div class="info-card" style="margin-top:12px;"><h4>Akses Transportasi</h4><p>Angkutan Pakuniran–Kotaanyar · Ojek Motor</p></div>
       </div>
     </div>
   </section>
@@ -424,44 +431,44 @@
       <p class="section-subtitle">Sekilas potret alam, kehidupan, dan budaya desa yang memikat.</p>
     </div>
     <div class="galeri-grid" id="galeri-grid">
-      <div class="galeri-item large fade-in" data-caption="Pegunungan Rengganis" data-desc="Hamparan Pegunungan Rengganis yang menjadi latar belakang megah Desa Gondosuli, terlihat sejuk dan masih sangat alami.">
-        <img src="images/Cita Mulya.jpg" alt="Pegunungan Rengganis">
-        <div class="galeri-overlay">Pegunungan Rengganis</div>
+      <div class="galeri-item large fade-in">
+        <img src="images/Pemandanganvertical.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Panen Durian" data-desc="Musim panen durian menjadi kebanggaan warga, menjadikan Gondosuli dikenal luas sebagai 'Desa Durian'.">
-        <img src="images/Akmals Shop.jpg" alt="Panen Durian">
-        <div class="galeri-overlay">Panen Durian</div>
+      <div class="galeri-item fade-in">
+        <img src="images/Pemandangan 1.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Ladang Padi" data-desc="Hamparan sawah hijau yang diairi tiga aliran sungai sepanjang tahun, menjadi sumber pangan utama warga.">
-        <img src="images/Hidroponik Selada.jpg" alt="Ladang Padi">
-        <div class="galeri-overlay">Ladang Padi</div>
+      <div class="galeri-item fade-in">
+        <img src="images/pemandangan2.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Jembatan Ranon" data-desc="Jembatan ikonik di Dusun Ranon yang membelah sungai, dikenal sebagai salah satu spot terindah di Gondosuli.">
-        <img src="images/Budidaya Jamur Tiram.jpg" alt="Jembatan Ranon">
-        <div class="galeri-overlay">Jembatan Ranon</div>
+      <div class="galeri-item fade-in">
+        <img src="images/pemandangan3.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Pasar Tradisional" data-desc="Pasar ikan dan durian yang telah direnovasi, menjadi jantung perekonomian masyarakat Gondosuli.">
-        <img src="images/gula aren.jpg" alt="Pasar Tradisional">
-        <div class="galeri-overlay">Pasar Tradisional</div>
+      <div class="galeri-item fade-in">
+        <img src="images/pemandangansungai.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Kerajinan Kayu" data-desc="Produk mebel dan olahan kayu hasil karya pengrajin Dusun Karangduwek dan Durin.">
-        <img src="images/Majelis Al araf Riyadhul Jinan (1).jpg" alt="Kerajinan Kayu">
-        <div class="galeri-overlay">Kerajinan Kayu</div>
+      <div class="galeri-item fade-in">
+        <img src="images/pemandangansungai2.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Hasil Bumi Desa" data-desc="Beragam hasil bumi dari ladang dan sawah warga, kekayaan alam yang menopang kehidupan sehari-hari.">
-        <img src="images/Masjid.jpg" alt="Hasil Bumi Desa">
-        <div class="galeri-overlay">Hasil Bumi Desa</div>
+      <div class="galeri-item fade-in">
+        <img src="images/pemandanganbalai.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
-      <div class="galeri-item fade-in" data-caption="Kebun Buncis" data-desc="Kebun buncis warga yang ditanam merambat menggunakan ajir bambu dan tali rafia, salah satu komoditas sayur andalan Desa Gondosuli.">
-        <img src="images/Buncis_ucet.jpg" alt="Kebun Buncis">
-        <div class="galeri-overlay">Kebun Buncis</div>
+      <div class="galeri-item fade-in">
+        <img src="images/pemandanganhutan.jpg">
+        <div class="galeri-overlay"></div>
         <span class="galeri-zoom-hint">🔍</span>
       </div>
     </div>
@@ -487,15 +494,12 @@
     <div class="section-header" style="position:relative;z-index:2;">
       <div class="section-label">Kontak</div>
       <h2 class="section-title">Informasi Kontak</h2>
-      <p class="section-subtitle">Temukan kami di Kecamatan Pakuniran atau hubungi langsung melalui saluran di bawah ini.</p>
+      <p class="section-subtitle">Hubungi kami langsung melalui saluran di bawah ini.</p>
     </div>
     <div class="kontak-grid" style="position:relative;z-index:2;">
       <div class="kontak-items">
         <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📍</div><div><h4>Alamat</h4><p>Desa Gondosuli, Kecamatan Pakuniran,<br>Kabupaten Probolinggo, Jawa Timur 67292</p></div></div>
-        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">🏛️</div><div><h4>Kantor Desa</h4><p>Pendopo Kepala Desa Gondosuli<br>Pusat Administrasi Pemerintahan Desa</p></div></div>
-        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📞</div><div><h4>Telepon / WhatsApp</h4><p>+62 xxx-xxxx-xxxx<br>Tersedia pada jam pelayanan</p></div></div>
-        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">⏰</div><div><h4>Jam Pelayanan</h4><p>Senin–Jumat: 08.00 – 15.00 WIB<br>Sabtu: 08.00 – 12.00 WIB</p></div></div>
-        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">🌐</div><div><h4>Media Sosial</h4><p>@desagondosuli<br>Instagram · Facebook</p></div></div>
+        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📞</div><div><h4>Telepon / WhatsApp</h4><p>Sekretaris Desa<br>082235460657</p></div></div>
         <div class="kontak-item fade-in"><div class="kontak-icon-wrap">✉️</div><div><h4>Email</h4><p>desa.gondosuli@probolinggokab.go.id</p></div></div>
       </div>
     </div>
@@ -530,6 +534,7 @@
           <ul>
             <li><a href="#peta">Peta Wilayah</a></li>
             <li><a href="#galeri">Galeri Foto</a></li>
+            <li><a href="#informasi">Informasi Desa</a></li>
             <li><a href="#kontak">Kontak</a></li>
             <li><a href="pages/dusun.html">Profil Dusun</a></li>
           </ul>
@@ -537,7 +542,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Pemerintah Desa Gondosuli · Kabupaten Probolinggo</p>
+      <p>© Copyright 2026. Pemerintah Desa Gondosuli · Kabupaten Probolinggo</p>
     </div>
   </footer>
 
@@ -907,6 +912,11 @@
       expandBtn?.addEventListener('click', () => setFullscreen(!isFullscreen));
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isFullscreen) setFullscreen(false);
+      });
+
+      // ── Tombol "kembalikan tampilan awal" — biar gak perlu zoom/geser manual kalau kesasar ──
+      document.getElementById('map-reset-btn')?.addEventListener('click', () => {
+        map.setView(CENTER, 14, { animate: true });
       });
 
       // ── Zoom peta hanya dengan Ctrl/Cmd + scroll — scroll halaman biasa tetap mulus ──
