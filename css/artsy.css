@@ -547,6 +547,7 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  flex-shrink: 0;
   background: transparent;
   border: none;
   padding: 12px 18px;
