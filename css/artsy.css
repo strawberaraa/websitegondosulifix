@@ -545,13 +545,13 @@
 .info-tab-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   white-space: nowrap;
   flex-shrink: 0;
   background: transparent;
   border: none;
-  padding: 12px 18px;
-  font-size: 14px;
+  padding: 10px 13px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--gray-500);
   cursor: pointer;
@@ -559,7 +559,7 @@
   transition: var(--transition);
   font-family: var(--font-body);
 }
-.info-tab-btn span { font-size: 18px; }
+.info-tab-btn span { font-size: 16px; }
 .info-tab-btn:hover { color: var(--accent); }
 .info-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 .info-tab-panel { display: none; }
@@ -644,6 +644,118 @@
 }
 @media (max-width: 560px) {
   .info-tab-intro { flex-direction: column; }
+}
+
+/* ── Baris kontrol: pencarian + tab sektor (satu baris memanjang, tanpa wrap) ── */
+.info-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--green-100);
+}
+.info-controls .info-tabs-bar {
+  flex-wrap: nowrap;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.info-search { flex-shrink: 0; align-self: flex-start; }
+.info-search input { width: 260px; }
+.info-search input:focus { width: 300px; }
+@media (max-width: 560px) {
+  .info-search { width: 100%; align-self: stretch; }
+  .info-search input, .info-search input:focus { width: 100%; }
+}
+
+/* ── Grid kartu informasi per sektor (memakai data yang sama dengan Peta Wilayah) ── */
+.info-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+.info-poi-card { cursor: pointer; }
+.info-poi-card .news-card-body p { min-height: 34px; }
+.info-poi-card:focus-visible { outline: 2px solid var(--green-500); outline-offset: 2px; }
+@media (max-width: 900px) {
+  .info-cards-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .info-cards-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Halaman detail informasi (informasi-detail.html) — pakai .page-hero standar ── */
+.info-detail-badge {
+  display: inline-flex;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: white;
+  margin-bottom: 14px;
+}
+.page-hero-inner .info-detail-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.info-detail-share span.label { font-size: 12px; color: rgba(255,255,255,.6); }
+.info-detail-share button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: white;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+}
+.info-detail-share button:hover { background: rgba(255,255,255,.18); }
+
+.info-detail-section { background: var(--off-white); padding: 48px 5% 90px; }
+.info-detail-layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+  align-items: start;
+}
+.info-detail-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 28px;
+  background: white;
+  border: 1px solid var(--green-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  transition: var(--transition);
+}
+.info-detail-image:hover { box-shadow: var(--shadow-md); }
+.info-detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.info-detail-body p {
+  color: var(--gray-700);
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+@media (max-width: 900px) {
+  .info-detail-layout { grid-template-columns: 1fr; }
 }
 
 
