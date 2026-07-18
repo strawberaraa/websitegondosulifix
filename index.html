@@ -154,9 +154,27 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#beranda" class="active">Beranda</a></li>
       <li><a href="#profil">Profil Desa</a></li>
-      <li><a href="#dusun">Dusun</a></li>
-      <li><a href="pages/informasi.html">Informasi</a></li>
-      <li><a href="#peta">Peta</a></li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger">Dusun <svg class="nav-caret" viewBox="0 0 12 8" width="10" height="7"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu">
+          <a href="#dusun">🏠 Lihat di Beranda</a>
+          <a href="pages/dusun.html">📄 Buka Halaman Dusun</a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger">Informasi <svg class="nav-caret" viewBox="0 0 12 8" width="10" height="7"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu">
+          <a href="#informasi">🏠 Lihat di Beranda</a>
+          <a href="pages/informasi.html">📄 Buka Halaman Informasi</a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger">Peta <svg class="nav-caret" viewBox="0 0 12 8" width="10" height="7"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu">
+          <a href="#peta">🏠 Lihat di Beranda</a>
+          <a href="pages/peta.html">📄 Buka Halaman Peta</a>
+        </div>
+      </li>
       <li><a href="#galeri">Galeri</a></li>
       <li><a href="#kontak" class="nav-cta">Kontak</a></li>
     </ul>
@@ -399,6 +417,9 @@
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 16v-4h4"/></svg>
           </button>
         </div>
+        <div style="text-align:center;margin-top:16px;">
+          <a href="pages/peta.html" style="font-size:13px;font-weight:600;color:var(--green-700);">🗺️ Buka Peta di Halaman Penuh →</a>
+        </div>
       </div>
       <div class="peta-info fade-in">
         <h3>Batas Wilayah</h3>
@@ -531,7 +552,7 @@
         <div class="footer-col">
           <h4>Informasi</h4>
           <ul>
-            <li><a href="#peta">Peta Wilayah</a></li>
+            <li><a href="pages/peta.html">Peta Wilayah</a></li>
             <li><a href="#galeri">Galeri Foto</a></li>
             <li><a href="#informasi">Informasi Desa</a></li>
             <li><a href="#kontak">Kontak</a></li>
@@ -726,6 +747,8 @@
         }
       });
     })();
+  </script>
+  <script>
     // ── Peta Interaktif Leaflet + OpenStreetMap ──
     // Data titik hasil survei lapangan tim UM-BBM (ekspor Avenza Maps, Juli 2026)
     (function () {
