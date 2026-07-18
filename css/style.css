@@ -1183,7 +1183,15 @@ section { padding: 100px 5%; }
   .nav-links.open { transform: translateY(0); opacity: 1; }
   .nav-links li { width: 100%; }
   .nav-links a { display: block; width: 100%; }
-  .nav-dropdown-trigger { width: 100%; justify-content: space-between; text-align: left; }
+  .nav-dropdown-trigger {
+    width: 100%;
+    justify-content: space-between;
+    text-align: left;
+    pointer-events: none;
+    color: var(--green-900);
+    font-weight: 700;
+  }
+  .nav-caret { display: none; }
   .nav-dropdown-menu {
     position: static;
     opacity: 1;
@@ -1191,14 +1199,14 @@ section { padding: 100px 5%; }
     transform: none;
     box-shadow: none;
     border: none;
-    padding: 0 0 0 14px;
+    padding: 2px 0 10px 14px;
     min-width: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: var(--transition);
+    max-height: none;
+    overflow: visible;
+    border-left: 2px solid var(--green-100);
+    margin: 2px 0 6px 4px;
   }
-  .nav-dropdown.open .nav-dropdown-menu { max-height: 120px; margin-top: 4px; }
-  .nav-caret { margin-left: auto; }
+  .nav-dropdown-menu a { padding: 8px 12px; }
 
   .hero-stats { position: static; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
   .profil-grid  { grid-template-columns: 1fr; }
