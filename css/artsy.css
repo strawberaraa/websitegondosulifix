@@ -410,6 +410,18 @@
 .kontak-section .kontak-item {
   position: relative;
 }
+.kontak-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.kontak-hours-badge { flex-shrink: 0; }
+@media (max-width: 640px) {
+  .kontak-header-row { margin-bottom: 32px; }
+}
 .navbar { background: rgba(255,255,255,0.85) !important; }
 .nav-links a { position: relative; }
 .nav-links a:not(.nav-cta)::after {
@@ -770,7 +782,8 @@
   border-radius: 0;
   border: none;
 }
-.peta-frame.map-fullscreen #gondosuli-map { width: 100%; height: 100%; }
+.peta-frame.map-fullscreen #gondosuli-map,
+.peta-frame.map-fullscreen #gondosuli-map-3d { width: 100%; height: 100%; }
 .leaflet-container {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   width: 100%;
@@ -878,6 +891,53 @@
   background: #4285f4; margin-right: 6px; margin-bottom: 8px;
 }
 .gs-popup-btn-gmaps:hover { background: #3367d6; }
+
+/* Kartu popup yang sama juga dipakai di peta 3D (MapLibre) — reset chrome bawaannya */
+.gs-maplibre-popup .maplibregl-popup-content {
+  padding: 0;
+  border-radius: var(--radius-lg, 18px);
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(10,46,26,.28);
+  border: 1px solid var(--green-100);
+}
+.gs-maplibre-popup .maplibregl-popup-close-button {
+  color: white;
+  top: 8px; right: 8px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(0,0,0,.35); font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.gs-maplibre-popup .maplibregl-popup-close-button:hover { background: var(--green-600); color: white; }
+.gs-maplibre-popup .maplibregl-popup-tip { border-top-color: white; }
+.gs-maplibre-popup .maplibregl-popup-content { max-height: 70vh; overflow-y: auto; }
+
+/* Pin peta 3D — dipisah jadi wrapper (tidak dirotasi, dipakai MapLibre buat
+   nentuin posisi anchor) + bentuk teardrop di dalamnya (yang dirotasi).
+   Kalau rotasinya ditaruh langsung di elemen anchor, titiknya jadi kelihatan
+   miring/geser dari koordinat aslinya — makanya dipisah kayak pin di peta 2D. */
+.gs-3d-pin-wrap {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+.gs-3d-pin {
+  width: 28px;
+  height: 28px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gs-3d-pin-icon {
+  display: inline-block;
+  transform: rotate(45deg);
+  font-size: 13px;
+  line-height: 1;
+}
 
 /* Map category filter bar */
 .map-filter-bar {
@@ -1029,3 +1089,217 @@
 .gs-lightbox-close:hover { background: rgba(255,255,255,.25); }
 
 .gs-popup-photo { cursor: pointer; }
+/* ── Peta: baris jam layanan & pemilih gaya peta ── */
+.peta-top-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+.map-service-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--green-100);
+  border-radius: 100px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  box-shadow: var(--shadow-sm);
+}
+.map-service-hours .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-500); flex-shrink: 0; }
+@media (max-width: 640px) {
+  .peta-top-bar { justify-content: flex-start; }
+  .map-service-hours { font-size: 12px; padding: 8px 14px; }
+}
+
+.map-layer-switcher {
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 900;
+}
+.map-3d-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.map-3d-view.active { display: block; }
+.map-3d-view .maplibregl-map { width: 100%; height: 100%; }
+.map-3d-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  z-index: 900;
+  background: rgba(19,61,36,.92);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+.map-3d-hint.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (max-width: 640px) {
+  .map-3d-hint { font-size: 11px; padding: 7px 12px; max-width: 88%; white-space: normal; text-align: center; }
+}
+.map-layer-switcher select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255,255,255,.97);
+  color: var(--green-800);
+  border: none;
+  border-radius: 10px;
+  padding: 9px 32px 9px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.18);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23133d24' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: var(--transition);
+}
+.map-layer-switcher select:hover { background-color: white; }
+@media (max-width: 480px) {
+  .map-layer-switcher select { font-size: 11.5px; padding: 8px 28px 8px 12px; }
+}
+/* ── Kabar Desa: preview berita 3 kolom di landing page ── */
+.info-preview-section { position: relative; }
+.info-see-all {
+  position: absolute;
+  top: 100px; right: 5%;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green-600);
+  transition: var(--transition);
+}
+.info-see-all:hover { color: var(--green-800); gap: 10px; }
+@media (max-width: 640px) {
+  .info-see-all { position: static; margin-top: 12px; }
+}
+
+.info-preview-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 40px;
+}
+@media (max-width: 1100px) {
+  .info-preview-layout { grid-template-columns: 1fr; }
+}
+
+.info-list-widget {
+  background: var(--green-900);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  max-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+.info-list-widget h4 {
+  color: var(--green-300);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+.info-list-scroll {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 4px;
+}
+.info-list-scroll::-webkit-scrollbar { width: 4px; }
+.info-list-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 4px; }
+.info-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 6px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  text-decoration: none;
+  transition: var(--transition);
+  border-radius: var(--radius-sm);
+}
+.info-list-item:last-child { border-bottom: none; }
+.info-list-item:hover { background: rgba(255,255,255,.06); }
+.info-list-icon {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.08);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.info-list-item h5 {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: white;
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+.info-list-item span { font-size: 10.5px; color: rgba(255,255,255,.45); }
+@media (max-width: 1100px) {
+  .info-list-widget { max-height: 280px; }
+}
+
+/* ── Carousel "Info Utama" per kategori (beranda) ── */
+.info-featured-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  gap: 12px;
+}
+.info-featured-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.info-featured-arrows button {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--green-200);
+  background: white;
+  color: var(--green-700);
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+}
+.info-featured-arrows button:hover { background: var(--green-600); color: white; border-color: var(--green-600); }
+.info-featured-dots { display: flex; align-items: center; gap: 6px; }
+.info-featured-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: var(--green-100);
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+}
+.info-featured-dot:hover { background: var(--green-300); }
+.info-featured-dot.active { background: var(--green-600); width: 18px; border-radius: 4px; }
