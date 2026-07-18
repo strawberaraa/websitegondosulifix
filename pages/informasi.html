@@ -76,15 +76,36 @@
   </div>
 
   <section class="info-tabs-section">
-    <div class="info-tabs-bar" id="info-tabs-bar">
-          <button type="button" class="info-tab-btn active" data-tab="pertanian" style="--accent:#2d8a52;--accent-bg:#eaf6ee;"><span>🌾</span> Pertanian</button>
-          <button type="button" class="info-tab-btn" data-tab="pendidikan" style="--accent:#3b82f6;--accent-bg:#eaf2fe;"><span>📚</span> Pendidikan</button>
-          <button type="button" class="info-tab-btn" data-tab="keagamaan" style="--accent:#9b59b6;--accent-bg:#f5edf9;"><span>🕌</span> Keagamaan</button>
-          <button type="button" class="info-tab-btn" data-tab="kesehatan" style="--accent:#ef4444;--accent-bg:#fdeceb;"><span>🏥</span> Kesehatan</button>
-          <button type="button" class="info-tab-btn" data-tab="umkm" style="--accent:#d97706;--accent-bg:#fdf3e7;"><span>🏪</span> UMKM & Ekonomi</button>
+
+    <div class="info-controls fade-in">
+      <div class="filter-search info-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="info-search-input" placeholder="Cari informasi...">
+      </div>
+      <div class="info-tabs-bar" id="info-tabs-bar">
+        <button type="button" class="info-tab-btn active" data-tab="semua" style="--accent:#166534;--accent-bg:#eaf6ee;"><span>🗂️</span> Semua</button>
+        <button type="button" class="info-tab-btn" data-tab="pertanian" style="--accent:#2d8a52;--accent-bg:#eaf6ee;"><span>🌾</span> Pertanian</button>
+        <button type="button" class="info-tab-btn" data-tab="pendidikan" style="--accent:#3b82f6;--accent-bg:#eaf2fe;"><span>📚</span> Pendidikan</button>
+        <button type="button" class="info-tab-btn" data-tab="umkm" style="--accent:#d97706;--accent-bg:#fdf3e7;"><span>🏪</span> UMKM & Ekonomi</button>
+        <button type="button" class="info-tab-btn" data-tab="keagamaan" style="--accent:#9b59b6;--accent-bg:#f5edf9;"><span>🕌</span> Keagamaan</button>
+        <button type="button" class="info-tab-btn" data-tab="kesehatan" style="--accent:#ef4444;--accent-bg:#fdeceb;"><span>🏥</span> Kesehatan</button>
+        <button type="button" class="info-tab-btn" data-tab="lainnya" style="--accent:#64748b;--accent-bg:#f1f5f9;"><span>✨</span> Lainnya</button>
+      </div>
     </div>
 
-        <div class="info-tab-panel active" id="tab-pertanian" style="--accent:#2d8a52;--accent-bg:#eaf6ee;">
+        <div class="info-tab-panel active" id="tab-semua" style="--accent:#166534;--accent-bg:#eaf6ee;">
+          <div class="info-tab-intro">
+            <div class="info-tab-intro-icon">🗂️</div>
+            <div>
+              <h2>Semua Informasi</h2>
+              <p>Kumpulan seluruh titik dan informasi seputar kehidupan warga Desa Gondosuli — pertanian, pendidikan, UMKM, keagamaan, kesehatan, hingga hal-hal lainnya — dari enam dusun.</p>
+            </div>
+          </div>
+          <div class="info-cards-grid" data-grid="semua"></div>
+          <p class="info-empty-state" data-empty="semua" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
+        </div>
+
+        <div class="info-tab-panel" id="tab-pertanian" style="--accent:#2d8a52;--accent-bg:#eaf6ee;">
           <div class="info-tab-intro">
             <div class="info-tab-intro-icon">🌾</div>
             <div>
@@ -92,40 +113,8 @@
               <p>Sektor pertanian menjadi tulang punggung perekonomian Desa Gondosuli. Komoditas utamanya beragam mengikuti kondisi geografis tiap dusun, mulai dari tembakau, padi, jagung, kopi, hingga gula aren.</p>
             </div>
           </div>
-          <div class="info-dusun-picker">
-            <button type="button" class="info-dusun-pill active" data-dusun="kletek">Kletek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="pakes">Pakes</button>
-            <button type="button" class="info-dusun-pill" data-dusun="karangduwek">Karangduwek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="durin">Durin</button>
-            <button type="button" class="info-dusun-pill" data-dusun="ranon">Ranon</button>
-            <button type="button" class="info-dusun-pill" data-dusun="krajan">Krajan</button>
-          </div>
-          <div class="info-dusun-detail">
-            <div class="info-dusun-content active" data-dusun="kletek">
-              <h4>Dusun Kletek</h4>
-              <p>Gula aren dan tembakau jadi tanaman utama, dengan kopi sebagai sektor pendamping di wilayah berlereng perbukitan.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="pakes">
-              <h4>Dusun Pakes</h4>
-              <p>Tembakau jadi komoditas andalan musim kemarau, bergantian dengan padi di lahan sawah yang sama saat musim hujan.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="karangduwek">
-              <h4>Dusun Karangduwek</h4>
-              <p>Tembakau dibudidayakan saat kemarau, sedangkan padi dan jagung mendominasi musim hujan di dataran tinggi ujung barat desa.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="durin">
-              <h4>Dusun Durin</h4>
-              <p>Tanah subur di kaki Gunung Rengganis membuat pertanian jadi mata pencaharian utama, terbagi di wilayah Durin Barat dan Timur.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="ranon">
-              <h4>Dusun Ranon</h4>
-              <p>Singkong, jagung, padi, tembakau, hingga kopi tumbuh di kawasan perbukitan yang didominasi lahan pertanian.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="krajan">
-              <h4>Dusun Krajan</h4>
-              <p>Sebagai pusat desa, lahan pertanian di Krajan turut menopang kebutuhan pangan warga di sekitar kawasan pemerintahan.</p>
-            </div>
-          </div>
+          <div class="info-cards-grid" data-grid="pertanian"></div>
+          <p class="info-empty-state" data-empty="pertanian" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
         </div>
 
         <div class="info-tab-panel" id="tab-pendidikan" style="--accent:#3b82f6;--accent-bg:#eaf2fe;">
@@ -136,128 +125,8 @@
               <p>Akses pendidikan di Gondosuli tersedia mulai dari jenjang PAUD hingga sekolah menengah, tersebar di beberapa dusun dan didukung lembaga pendidikan formal maupun non-formal.</p>
             </div>
           </div>
-          <div class="info-dusun-picker">
-            <button type="button" class="info-dusun-pill active" data-dusun="kletek">Kletek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="pakes">Pakes</button>
-            <button type="button" class="info-dusun-pill" data-dusun="karangduwek">Karangduwek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="durin">Durin</button>
-            <button type="button" class="info-dusun-pill" data-dusun="ranon">Ranon</button>
-            <button type="button" class="info-dusun-pill" data-dusun="krajan">Krajan</button>
-          </div>
-          <div class="info-dusun-detail">
-            <div class="info-dusun-content active" data-dusun="kletek">
-              <h4>Dusun Kletek</h4>
-              <p>Akses pendidikan formal warga umumnya ditempuh di dusun tetangga, mengikuti pola permukiman yang mengikuti kontur perbukitan.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="pakes">
-              <h4>Dusun Pakes</h4>
-              <p>Tingkat pendidikan warga tergolong tinggi, banyak yang menempuh pendidikan hingga jenjang SMA bahkan S1.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="karangduwek">
-              <h4>Dusun Karangduwek</h4>
-              <p>Pondok Pesantren Nurul Yaqien menaungi TK, SD Islam, dan SMP, ditambah Madrasah Diniyah untuk pendidikan non-formal sore hari.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="durin">
-              <h4>Dusun Durin</h4>
-              <p>Anak-anak dusun umumnya menempuh pendidikan dasar di fasilitas terdekat di kawasan pusat desa.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="ranon">
-              <h4>Dusun Ranon</h4>
-              <p>Pendidikan formal warga turut didukung kegiatan majelis ta'lim sebagai sarana pendidikan agama non-formal.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="krajan">
-              <h4>Dusun Krajan</h4>
-              <p>Pusat pendidikan desa dengan PAUD KB Mihas, TK PGRI Gondosuli, SD Negeri 1, YPI Miftahul Hasanah, dan Madrasah Diniyah Takmiliyah.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-tab-panel" id="tab-keagamaan" style="--accent:#9b59b6;--accent-bg:#f5edf9;">
-          <div class="info-tab-intro">
-            <div class="info-tab-intro-icon">🕌</div>
-            <div>
-              <h2>Keagamaan</h2>
-              <p>Kehidupan keagamaan warga Gondosuli berjalan aktif dan menjadi bagian penting dari kehidupan sosial masyarakat di setiap dusun.</p>
-            </div>
-          </div>
-          <div class="info-dusun-picker">
-            <button type="button" class="info-dusun-pill active" data-dusun="kletek">Kletek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="pakes">Pakes</button>
-            <button type="button" class="info-dusun-pill" data-dusun="karangduwek">Karangduwek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="durin">Durin</button>
-            <button type="button" class="info-dusun-pill" data-dusun="ranon">Ranon</button>
-            <button type="button" class="info-dusun-pill" data-dusun="krajan">Krajan</button>
-          </div>
-          <div class="info-dusun-detail">
-            <div class="info-dusun-content active" data-dusun="kletek">
-              <h4>Dusun Kletek</h4>
-              <p>Terdapat peninggalan Majapahit berupa makam dan guci yang dianggap sakral, dihormati dan dijaga warga setempat.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="pakes">
-              <h4>Dusun Pakes</h4>
-              <p>Banyak petani yang juga berperan sebagai kyai atau tokoh agama, menjadikan nilai keagamaan erat dengan keseharian warga.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="karangduwek">
-              <h4>Dusun Karangduwek</h4>
-              <p>Kegiatan majelis, tahlil, dan sarweh berjalan rutin sebagai bagian dari kehidupan sosial warga.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="durin">
-              <h4>Dusun Durin</h4>
-              <p>Kegiatan keagamaan warga berjalan mengikuti ritme kehidupan pertanian di dua wilayah, Durin Barat dan Timur.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="ranon">
-              <h4>Dusun Ranon</h4>
-              <p>Majelis ta'lim, pengajian, dan sholawatan dilaksanakan secara rutin setiap minggunya.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="krajan">
-              <h4>Dusun Krajan</h4>
-              <p>Masjid Al-Karomah menjadi pusat kegiatan keagamaan bagi warga di sekitar kawasan pusat desa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-tab-panel" id="tab-kesehatan" style="--accent:#ef4444;--accent-bg:#fdeceb;">
-          <div class="info-tab-intro">
-            <div class="info-tab-intro-icon">🏥</div>
-            <div>
-              <h2>Kesehatan</h2>
-              <p>Layanan kesehatan warga didukung oleh klinik, praktik bidan, dan kegiatan posyandu rutin yang tersebar di berbagai dusun.</p>
-            </div>
-          </div>
-          <div class="info-dusun-picker">
-            <button type="button" class="info-dusun-pill active" data-dusun="kletek">Kletek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="pakes">Pakes</button>
-            <button type="button" class="info-dusun-pill" data-dusun="karangduwek">Karangduwek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="durin">Durin</button>
-            <button type="button" class="info-dusun-pill" data-dusun="ranon">Ranon</button>
-            <button type="button" class="info-dusun-pill" data-dusun="krajan">Krajan</button>
-          </div>
-          <div class="info-dusun-detail">
-            <div class="info-dusun-content active" data-dusun="kletek">
-              <h4>Dusun Kletek</h4>
-              <p>Warga umumnya mengakses layanan kesehatan di fasilitas terdekat di kawasan pusat desa.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="pakes">
-              <h4>Dusun Pakes</h4>
-              <p>Layanan kesehatan dasar dijangkau warga melalui posyandu dan fasilitas di dusun tetangga.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="karangduwek">
-              <h4>Dusun Karangduwek</h4>
-              <p>Praktik bidan dan kegiatan posyandu rutin tersedia untuk kebutuhan kesehatan ibu dan anak.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="durin">
-              <h4>Dusun Durin</h4>
-              <p>Posyandu terbagi dua zona, Durin Barat dan Timur, agar layanan lebih dekat dengan warga.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="ranon">
-              <h4>Dusun Ranon</h4>
-              <p>Warga memanfaatkan sumber mata air alami yang dijaga kelestariannya untuk kebutuhan sehari-hari.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="krajan">
-              <h4>Dusun Krajan</h4>
-              <p>Klinik Annajiyah dan Puskesmas Pembantu di Balai Desa Gondosuli melayani kebutuhan kesehatan seluruh warga desa.</p>
-            </div>
-          </div>
+          <div class="info-cards-grid" data-grid="pendidikan"></div>
+          <p class="info-empty-state" data-empty="pendidikan" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
         </div>
 
         <div class="info-tab-panel" id="tab-umkm" style="--accent:#d97706;--accent-bg:#fdf3e7;">
@@ -268,40 +137,44 @@
               <p>Roda perekonomian warga Gondosuli digerakkan oleh beragam usaha mikro, kecil, dan menengah (UMKM) yang tersebar di enam dusun.</p>
             </div>
           </div>
-          <div class="info-dusun-picker">
-            <button type="button" class="info-dusun-pill active" data-dusun="kletek">Kletek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="pakes">Pakes</button>
-            <button type="button" class="info-dusun-pill" data-dusun="karangduwek">Karangduwek</button>
-            <button type="button" class="info-dusun-pill" data-dusun="durin">Durin</button>
-            <button type="button" class="info-dusun-pill" data-dusun="ranon">Ranon</button>
-            <button type="button" class="info-dusun-pill" data-dusun="krajan">Krajan</button>
-          </div>
-          <div class="info-dusun-detail">
-            <div class="info-dusun-content active" data-dusun="kletek">
-              <h4>Dusun Kletek</h4>
-              <p>Produksi gula aren dan kopi olahan jadi andalan UMKM warga di wilayah perbukitan.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="pakes">
-              <h4>Dusun Pakes</h4>
-              <p>Produksi kerupuk singkong menjadi UMKM andalan yang berkembang di tengah dominasi sektor pertanian.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="karangduwek">
-              <h4>Dusun Karangduwek</h4>
-              <p>Pengrajin mebel, produksi minyak kelapa, rengginang, dan kepeng jadi andalan UMKM warga.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="durin">
-              <h4>Dusun Durin</h4>
-              <p>Warga mengembangkan usaha rumahan mengikuti hasil pertanian yang melimpah di wilayah subur ini.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="ranon">
-              <h4>Dusun Ranon</h4>
-              <p>Peternakan sapi dan olahan keripik singkong jadi usaha sampingan warga di luar sektor pertanian.</p>
-            </div>
-            <div class="info-dusun-content" data-dusun="krajan">
-              <h4>Dusun Krajan</h4>
-              <p>Beragam UMKM di sektor jasa, perdagangan, dan budidaya berkembang di pusat aktivitas ekonomi desa.</p>
+          <div class="info-cards-grid" data-grid="umkm"></div>
+          <p class="info-empty-state" data-empty="umkm" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
+        </div>
+
+        <div class="info-tab-panel" id="tab-keagamaan" style="--accent:#9b59b6;--accent-bg:#f5edf9;">
+          <div class="info-tab-intro">
+            <div class="info-tab-intro-icon">🕌</div>
+            <div>
+              <h2>Keagamaan</h2>
+              <p>Kehidupan keagamaan warga Gondosuli berjalan aktif dan menjadi bagian penting dari kehidupan sosial masyarakat di setiap dusun.</p>
             </div>
           </div>
+          <div class="info-cards-grid" data-grid="keagamaan"></div>
+          <p class="info-empty-state" data-empty="keagamaan" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
+        </div>
+
+        <div class="info-tab-panel" id="tab-kesehatan" style="--accent:#ef4444;--accent-bg:#fdeceb;">
+          <div class="info-tab-intro">
+            <div class="info-tab-intro-icon">🏥</div>
+            <div>
+              <h2>Kesehatan</h2>
+              <p>Layanan kesehatan warga didukung oleh klinik, praktik bidan, dan kegiatan posyandu rutin yang tersebar di berbagai dusun.</p>
+            </div>
+          </div>
+          <div class="info-cards-grid" data-grid="kesehatan"></div>
+          <p class="info-empty-state" data-empty="kesehatan" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
+        </div>
+
+        <div class="info-tab-panel" id="tab-lainnya" style="--accent:#64748b;--accent-bg:#f1f5f9;">
+          <div class="info-tab-intro">
+            <div class="info-tab-intro-icon">✨</div>
+            <div>
+              <h2>Lainnya</h2>
+              <p>Informasi lain seputar Desa Gondosuli di luar lima sektor utama — mulai dari kuliner khas warga hingga fasilitas pemerintahan desa.</p>
+            </div>
+          </div>
+          <div class="info-cards-grid" data-grid="lainnya"></div>
+          <p class="info-empty-state" data-empty="lainnya" style="display:none;text-align:center;color:var(--gray-500);font-size:14px;margin-top:24px;">Tidak ada informasi yang cocok dengan pencarianmu.</p>
         </div>
   </section>
 
@@ -371,19 +244,258 @@
       if (hash && document.getElementById('tab-' + hash)) {
         activateTab(hash);
       }
+    })();
+  </script>
 
-      // Pemilih dusun di dalam tiap tab — cuma nampilin 1 dusun sekaligus biar gak kepanjangan
-      panels.forEach(panel => {
-        const pills = panel.querySelectorAll('.info-dusun-pill');
-        const contents = panel.querySelectorAll('.info-dusun-content');
-        pills.forEach(pill => {
-          pill.addEventListener('click', () => {
-            const target = pill.dataset.dusun;
-            pills.forEach(p => p.classList.toggle('active', p === pill));
-            contents.forEach(c => c.classList.toggle('active', c.dataset.dusun === target));
-          });
-        });
+  <script>
+    // Data informasi terkurasi — dipakai bareng oleh kartu (informasi.html) dan halaman detail (informasi-detail.html)
+    // Isi paragraf masih ditulis sementara, akan disesuaikan lagi oleh tim copywriting.
+    window.CURATED_DATA = [
+      { id: 'pertanian-tembakau-kletek', nama: 'Lahan Pertanian Tembakau — Kletek', cat: 'pertanian', dusun: 'Kletek', foto: 'images/Tembakau.jpg',
+        ringkas: 'Salah satu lahan tembakau warga yang digarap saat musim kemarau tiba, mengikuti pola tanam khas Dusun Kletek.',
+        paragraf: [
+          'Saat musim kemarau tiba, sebagian besar warga Dusun Kletek beralih menanam tembakau di lahan-lahan seperti ini. Tanahnya yang berada di lereng perbukitan dengan udara sejuk dinilai cukup mendukung untuk pertumbuhan daun tembakau berkualitas.',
+          'Proses tanam hingga panen biasanya melibatkan hampir seluruh anggota keluarga, mulai dari menyiangi lahan, merawat tanaman, hingga memetik dan menjemur daun. Hasil panen dari lahan ini biasanya dijual ke pengepul yang datang langsung ke dusun.'
+        ] },
+      { id: 'pertanian-gula-aren-kletek', nama: 'Perkebunan Gula Aren — Kletek', cat: 'pertanian', dusun: 'Kletek', foto: 'images/gula aren.jpg',
+        ringkas: 'Kebun aren yang niranya diolah warga menjadi gula aren, salah satu produk khas Dusun Kletek.',
+        paragraf: [
+          'Pohon-pohon aren di kawasan ini menjadi sumber penghasilan tambahan bagi sejumlah warga Dusun Kletek. Setiap pagi dan sore, petani menyadap nira dari tandan bunga aren untuk kemudian diolah menjadi gula aren.',
+          'Proses pembuatan gula aren masih dilakukan secara tradisional dengan cara memasak nira di atas tungku kayu bakar hingga mengental dan mengeras. Gula aren hasil olahan ini biasa dijual di pasar terdekat maupun dititipkan ke warung-warung sekitar dusun.'
+        ] },
+      { id: 'pertanian-tembakau-pakes', nama: 'Lahan Pertanian Tembakau — Pakes', cat: 'pertanian', dusun: 'Pakes', foto: 'images/Perkebunan Tembakau.jpg',
+        ringkas: 'Lahan tembakau di dataran tinggi Dusun Pakes yang jadi andalan warga saat musim kemarau.',
+        paragraf: [
+          'Dusun Pakes dikenal sebagai salah satu penghasil tembakau dengan kualitas cukup baik di Desa Gondosuli. Lahan seperti ini biasanya mulai ditanami tembakau begitu musim hujan berakhir.',
+          'Selain sebagai sumber penghasilan utama, banyak petani tembakau di Pakes yang juga berperan sebagai tokoh agama di lingkungannya, sehingga kegiatan bertani di sini kerap diselingi dengan obrolan seputar kegiatan keagamaan warga.'
+        ] },
+      { id: 'pertanian-kebun-terong-karangduwek', nama: 'Kebun Terong — Karangduwek', cat: 'pertanian', dusun: 'Karangduwek', foto: 'images/kebun Terong.jpg',
+        ringkas: 'Kebun sayur warga Karangduwek yang jadi selingan tanam di luar musim tembakau dan jagung.',
+        paragraf: [
+          'Selain tembakau, padi, dan jagung, sebagian warga Dusun Karangduwek juga memanfaatkan lahan mereka untuk menanam sayuran seperti terong. Biasanya ini dilakukan sebagai selingan di sela masa tanam komoditas utama.',
+          'Hasil kebun terong ini umumnya dikonsumsi sendiri oleh keluarga petani atau dijual dalam jumlah kecil ke tetangga dan warung setempat, menjadi tambahan penghasilan harian yang cukup membantu.'
+        ] },
+      { id: 'pertanian-perkebunan-jati-durin', nama: 'Perkebunan Jati — Durin', cat: 'pertanian', dusun: 'Durin', foto: 'images/Lahan Perkebunan Jati.jpg',
+        ringkas: 'Kebun pohon jati di kaki Gunung Rengganis yang jadi investasi jangka panjang warga Durin.',
+        paragraf: [
+          'Berbeda dari tanaman musiman seperti tembakau atau jagung, sebagian warga Dusun Durin memilih menanam pohon jati sebagai bentuk investasi jangka panjang. Pohon-pohon ini biasanya baru dipanen setelah bertahun-tahun ditanam.',
+          'Lokasinya yang berada di area kaki gunung dengan tanah subur membuat pohon jati di sini tumbuh cukup baik. Kayu jati hasil panen biasanya dijual untuk kebutuhan bahan bangunan maupun mebel.'
+        ] },
+
+      { id: 'pendidikan-mi-hidayatul-amin-kletek', nama: 'Lembaga Madrasah Ibtidaiyah Hidayatul Amin', cat: 'pendidikan', dusun: 'Kletek', foto: 'images/SMP Hidayatul Amin.jpg',
+        ringkas: 'Lembaga pendidikan berbasis madrasah yang melayani anak-anak usia sekolah dasar di Dusun Kletek.',
+        paragraf: [
+          'Madrasah Ibtidaiyah Hidayatul Amin menjadi salah satu pilihan pendidikan formal berbasis agama bagi anak-anak di Dusun Kletek. Selain pelajaran umum, siswa juga dibekali dengan pendidikan agama sejak dini.',
+          'Letaknya yang berada di kawasan perbukitan membuat sebagian siswa perlu menempuh jalan menanjak untuk sampai ke sekolah setiap harinya, namun hal ini tak menyurutkan semangat belajar anak-anak di dusun ini.'
+        ] },
+      { id: 'pendidikan-madin-darussalam-pakes', nama: 'Madrasah Diniyah Darussalam', cat: 'pendidikan', dusun: 'Pakes', foto: 'images/Madin Darussalam.jpg',
+        ringkas: 'Madrasah diniyah sore hari tempat anak-anak Dusun Pakes belajar mengaji dan ilmu agama.',
+        paragraf: [
+          'Madrasah Diniyah Darussalam menjadi tempat belajar tambahan bagi anak-anak Dusun Pakes di luar jam sekolah formal, biasanya berlangsung pada sore hari setelah anak-anak pulang dari sekolah umum.',
+          'Kegiatan di madrasah ini meliputi belajar membaca Al-Qur\'an, ilmu tajwid, hingga dasar-dasar fiqih, sejalan dengan karakter Dusun Pakes yang dikenal memiliki kehidupan keagamaan yang cukup kental.'
+        ] },
+      { id: 'pendidikan-nurul-yaqien-karangduwek', nama: 'Madrasah Nurul Yaqien', cat: 'pendidikan', dusun: 'Karangduwek', foto: 'images/Madrasah Nurul Yaqien.jpg',
+        ringkas: 'Yayasan pendidikan yang menaungi TK, SD Islam, SMP, hingga Madrasah Diniyah di Dusun Karangduwek.',
+        paragraf: [
+          'Yayasan Nurul Yaqien menaungi beberapa jenjang pendidikan: TK, SD Islam, SMP, serta Madin (Madrasah Diniyah/non-formal).',
+          'Keberadaan yayasan ini menjadikan Dusun Karangduwek memiliki akses pendidikan yang cukup lengkap tanpa harus keluar dusun, mulai dari jenjang taman kanak-kanak hingga sekolah menengah pertama.'
+        ] },
+      { id: 'pendidikan-bahrul-ulum-durin', nama: 'Madrasah Yayasan Bahrul Ulum', cat: 'pendidikan', dusun: 'Durin', foto: 'images/MI Bahrul Ulum.jpg',
+        ringkas: 'Lembaga pendidikan berbasis pesantren di Dusun Durin yang berdampingan dengan Masjid Bahrul Ulum.',
+        paragraf: [
+          'Yayasan Bahrul Ulum menjadi pusat pendidikan agama sekaligus pendidikan formal bagi anak-anak Dusun Durin. Lokasinya yang berdampingan dengan masjid membuat kegiatan belajar mengajar dan ibadah berjalan beriringan.',
+          'Banyak warga Durin yang menitipkan anak-anaknya untuk belajar di sini sejak usia dini, karena selain dekat dengan rumah, kualitas pendidikan agamanya juga dipercaya oleh masyarakat setempat.'
+        ] },
+      { id: 'pendidikan-sdn-gondosuli-1-krajan', nama: 'SDN Gondosuli 1', cat: 'pendidikan', dusun: 'Krajan', foto: 'images/SDN Gondosuli 1.jpeg',
+        ringkas: 'Sekolah dasar negeri yang berlokasi di pusat pemerintahan Desa Gondosuli, Dusun Krajan.',
+        paragraf: [
+          'SDN Gondosuli 1 merupakan salah satu sekolah dasar negeri yang melayani anak-anak dari Dusun Krajan dan sekitarnya. Lokasinya yang berada di pusat desa membuat akses menuju sekolah ini relatif mudah dijangkau.',
+          'Sebagai bagian dari kawasan pusat pemerintahan desa, keberadaan SDN Gondosuli 1 turut mendukung upaya pemerataan akses pendidikan formal bagi warga di dusun-dusun sekitar Krajan.'
+        ] },
+
+      { id: 'umkm-biji-kopi-kletek', nama: 'Produksi Biji Kopi — Kletek', cat: 'umkm', dusun: 'Kletek', foto: 'images/Produksi biji Kopi.jpg',
+        ringkas: 'Usaha rumahan pengolahan biji kopi warga Dusun Kletek, dari petik hingga siap giling.',
+        paragraf: [
+          'Selain gula aren, kopi juga menjadi salah satu komoditas andalan Dusun Kletek. Warga memetik biji kopi dari kebun sendiri, lalu mengolahnya secara sederhana mulai dari penjemuran hingga penyangraian.',
+          'Skala produksinya memang masih rumahan, namun kopi hasil olahan warga Kletek mulai dikenal karena cita rasanya yang khas berkat kondisi tanah pegunungan yang mendukung.'
+        ] },
+      { id: 'umkm-bengkel-ardhana-motor-pakes', nama: 'Bengkel Ardhana Motor', cat: 'umkm', dusun: 'Pakes', foto: 'images/Ardhana Motor.jpg',
+        ringkas: 'Bengkel motor yang melayani kebutuhan servis kendaraan warga Dusun Pakes dan sekitarnya.',
+        paragraf: [
+          'Bengkel Ardhana Motor menjadi tempat andalan warga Dusun Pakes untuk keperluan servis dan perbaikan sepeda motor sehari-hari, mengingat kendaraan roda dua masih menjadi moda transportasi utama di dusun ini.',
+          'Selain servis rutin, bengkel ini juga kerap membantu warga yang mengalami kendala mendadak di jalan, terutama saat musim panen tembakau ketika mobilitas warga meningkat.'
+        ] },
+      { id: 'umkm-pengrajin-kayu-karangduwek', nama: 'Pengrajin Kayu — Karangduwek', cat: 'umkm', dusun: 'Karangduwek', foto: 'images/Pengrajin kayu.jpg',
+        ringkas: 'Usaha kerajinan kayu yang menjadi bagian dari sentra pengrajin mebel Dusun Karangduwek.',
+        paragraf: [
+          'Dusun Karangduwek dikenal dengan UMKM pengrajin mebelnya, dan usaha pengolahan kayu ini menjadi salah satu bagian dari rantai produksi tersebut, mulai dari pemotongan hingga pembentukan awal sebelum menjadi perabot jadi.',
+          'Keterampilan mengolah kayu ini biasanya diturunkan dari generasi ke generasi, menjadikan sektor UMKM mebel sebagai salah satu identitas ekonomi khas Dusun Karangduwek.'
+        ] },
+      { id: 'umkm-toko-ilmia-cell-durin', nama: 'Toko Ilmia Cell', cat: 'umkm', dusun: 'Durin', foto: 'images/Toko ilmia cell.jpg',
+        ringkas: 'Toko pulsa dan aksesoris ponsel yang melayani kebutuhan komunikasi warga Dusun Durin.',
+        paragraf: [
+          'Toko Ilmia Cell menjadi salah satu tempat warga Dusun Durin memenuhi kebutuhan pulsa, paket data, hingga aksesoris ponsel sehari-hari, tanpa harus pergi jauh ke pusat kecamatan.',
+          'Keberadaan toko seperti ini cukup membantu warga di dusun yang kondisi jalannya menanjak dan berada di kaki gunung, mengingat akses menuju pusat perbelanjaan lebih besar memerlukan waktu tempuh yang tidak sebentar.'
+        ] },
+      { id: 'umkm-hidroponik-krajan', nama: 'Pengusaha Hidroponik', cat: 'umkm', dusun: 'Krajan', foto: 'images/Hidroponik Selada.jpg',
+        ringkas: 'Usaha budi daya sayur hidroponik di Dusun Krajan sebagai alternatif pertanian modern.',
+        paragraf: [
+          'Di tengah dominasi pertanian konvensional, usaha hidroponik ini hadir sebagai alternatif budi daya sayur seperti selada dengan metode tanpa tanah. Usaha ini dikelola langsung oleh warga Dusun Krajan.',
+          'Hasil panen sayur hidroponik biasanya dipasarkan ke warung sayur maupun dijual langsung ke warga sekitar, menjadi salah satu contoh diversifikasi usaha pertanian di pusat Desa Gondosuli.'
+        ] },
+
+      { id: 'keagamaan-masjid-al-ikhlas-kletek', nama: "Masjid Jami' Al-Ikhlas", cat: 'keagamaan', dusun: 'Kletek', foto: 'images/Masjid Jami Al-Ikhlas (1).jpg',
+        ringkas: 'Masjid utama Dusun Kletek, pusat kegiatan ibadah dan sosial keagamaan warga.',
+        paragraf: [
+          "Masjid Jami' Al-Ikhlas menjadi pusat kegiatan ibadah harian sekaligus kegiatan sosial keagamaan warga Dusun Kletek, mulai dari sholat berjamaah hingga pengajian rutin.",
+          'Letaknya yang berada di kawasan perbukitan menjadikan masjid ini juga sebagai titik kumpul warga saat ada kegiatan bersama, termasuk momen-momen hari besar keagamaan.'
+        ] },
+      { id: 'keagamaan-masjid-darussalam-pakes', nama: 'Masjid Darussalam', cat: 'keagamaan', dusun: 'Pakes', foto: 'images/Masjid Darussalam.jpg',
+        ringkas: 'Masjid Dusun Pakes yang jadi pusat kegiatan keagamaan warga yang dikenal religius.',
+        paragraf: [
+          'Masjid Darussalam menjadi salah satu pusat kegiatan keagamaan di Dusun Pakes, dusun yang dikenal memiliki banyak warga berprofesi sebagai petani sekaligus tokoh agama.',
+          'Selain sholat berjamaah, masjid ini juga kerap digunakan untuk kegiatan majelis dan pengajian yang melibatkan warga dari berbagai kalangan usia.'
+        ] },
+      { id: 'keagamaan-masjid-al-falah-karangduwek', nama: 'Masjid Al-Falah Nurul Bukhori', cat: 'keagamaan', dusun: 'Karangduwek', foto: 'images/Masjid.jpg',
+        ringkas: 'Masjid utama Dusun Karangduwek, tempat berlangsungnya majelis, tahlil, dan kegiatan keagamaan rutin.',
+        paragraf: [
+          'Masjid Al-Falah Nurul Bukhori menjadi tempat berlangsungnya berbagai kegiatan keagamaan rutin warga Dusun Karangduwek, seperti majelis, tahlil, dan sarweh yang telah menjadi tradisi turun-temurun.',
+          'Kehidupan sosial masyarakat Karangduwek yang harmonis salah satunya tercermin dari aktifnya kegiatan-kegiatan di masjid ini.'
+        ] },
+      { id: 'keagamaan-masjid-bahrul-ulum-durin', nama: 'Masjid Bahrul Ulum', cat: 'keagamaan', dusun: 'Durin', foto: 'images/Masjid Bahrul ulum.jpg',
+        ringkas: 'Masjid yang berdampingan dengan lembaga pendidikan Yayasan Bahrul Ulum di Dusun Durin.',
+        paragraf: [
+          'Masjid Bahrul Ulum berdiri berdampingan dengan lembaga pendidikan Yayasan Bahrul Ulum, menjadikan kawasan ini sebagai salah satu pusat kegiatan keagamaan sekaligus pendidikan di Dusun Durin.',
+          'Warga sekitar kerap memanfaatkan masjid ini tidak hanya untuk ibadah, tapi juga sebagai tempat berkumpul dalam kegiatan sosial keagamaan lainnya.'
+        ] },
+      { id: 'keagamaan-masjid-al-karomah-krajan', nama: 'Masjid Al-Karomah', cat: 'keagamaan', dusun: 'Krajan', foto: 'images/Masjid Alkaromah.jpeg',
+        ringkas: 'Masjid di pusat Desa Gondosuli yang menjadi rujukan kegiatan keagamaan warga Krajan.',
+        paragraf: [
+          'Masjid Al-Karomah menjadi tempat kegiatan keagamaan utama bagi warga Dusun Krajan yang merupakan pusat aktivitas Desa Gondosuli.',
+          'Letaknya yang strategis di dekat kantor desa membuat masjid ini juga kerap menjadi lokasi berbagai kegiatan sosial keagamaan yang melibatkan warga dari berbagai dusun.'
+        ] },
+
+      { id: 'kesehatan-praktek-keperawatan-fatima-pakes', nama: 'Praktek Keperawatan Mandiri Sitti Fatima, S.Kep. Ners', cat: 'kesehatan', dusun: 'Pakes', foto: 'images/Praktek Keperawatan.jpg',
+        ringkas: 'Layanan keperawatan mandiri yang membantu warga Dusun Pakes mendapat akses kesehatan dasar.',
+        paragraf: [
+          'Praktek keperawatan mandiri ini menjadi salah satu akses layanan kesehatan terdekat bagi warga Dusun Pakes, terutama untuk keluhan kesehatan ringan hingga perawatan dasar.',
+          'Keberadaan layanan ini cukup membantu warga yang tinggal di dataran tinggi dan memerlukan waktu tempuh lebih lama untuk mengakses fasilitas kesehatan yang lebih besar di pusat desa.'
+        ] },
+      { id: 'kesehatan-klinik-annajiyah-krajan', nama: 'Klinik Annajiyah', cat: 'kesehatan', dusun: 'Krajan', foto: 'images/Klinik Annajiyah.jpg',
+        ringkas: 'Klinik kesehatan di Dusun Krajan yang melayani warga dari berbagai dusun di Gondosuli.',
+        paragraf: [
+          'Klinik Annajiyah menjadi salah satu fasilitas kesehatan utama di Desa Gondosuli, melayani warga tidak hanya dari Dusun Krajan tapi juga dari dusun-dusun lain di sekitarnya.',
+          'Lokasinya yang berada di pusat desa memudahkan akses warga yang membutuhkan pemeriksaan maupun pengobatan tanpa harus pergi jauh ke puskesmas kecamatan.'
+        ] },
+      { id: 'kesehatan-puskesmas-pembantu-krajan', nama: 'Puskesmas Pembantu', cat: 'kesehatan', dusun: 'Krajan', foto: 'images/puskesmaspembantu.jpg',
+        ringkas: 'Puskesmas pembantu yang berlokasi di Balai Desa Gondosuli, melayani kebutuhan kesehatan dasar warga.',
+        paragraf: [
+          'Puskesmas Pembantu yang berada di kompleks Balai Desa Gondosuli ini menjadi salah satu fasilitas kesehatan resmi pemerintah yang melayani kebutuhan kesehatan dasar warga.',
+          'Selain pemeriksaan umum, fasilitas ini juga kerap mendukung kegiatan posyandu dan program kesehatan masyarakat yang diadakan secara berkala di tingkat desa.'
+        ] },
+
+      { id: 'lainnya-mie-ayam-kenken-karangduwek', nama: 'Mie Ayam & Bakso Kenken', cat: 'kuliner', dusun: 'Karangduwek', foto: 'images/Mie ayam & Bakso Kenken.jpg',
+        ringkas: 'Warung mie ayam dan bakso favorit warga Dusun Karangduwek.',
+        paragraf: [
+          'Mie Ayam & Bakso Kenken menjadi salah satu tempat makan favorit warga Dusun Karangduwek, terutama saat jam istirahat siang maupun sore hari selepas beraktivitas.',
+          'Cita rasa yang khas dan harga yang terjangkau membuat warung ini cukup ramai dikunjungi, baik oleh warga sekitar maupun pengunjung dari dusun tetangga.'
+        ] },
+      { id: 'lainnya-ayam-geprek-gg-krajan', nama: 'Ayam Geprek "GG"', cat: 'kuliner', dusun: 'Krajan', foto: 'images/Geprek GG.jpg',
+        ringkas: 'Kedai ayam geprek yang jadi salah satu jajanan populer di Dusun Krajan.',
+        paragraf: [
+          'Ayam Geprek "GG" menjadi salah satu pilihan kuliner yang digemari warga Dusun Krajan, terutama anak muda yang menyukai sensasi pedas dari sambal geprek khas kedai ini.',
+          'Lokasinya yang berada di pusat desa membuat kedai ini mudah dijangkau warga dari berbagai dusun sekitar.'
+        ] },
+      { id: 'lainnya-kedai-mbak-juai-krajan', nama: 'Kedai Mbak Juai', cat: 'kuliner', dusun: 'Krajan', foto: 'images/Kedai Mbak Juai.jpg',
+        ringkas: 'Kedai makanan rumahan di Dusun Krajan yang menyediakan menu sehari-hari warga.',
+        paragraf: [
+          'Kedai Mbak Juai menyediakan menu makanan rumahan yang jadi andalan warga Dusun Krajan untuk kebutuhan makan sehari-hari, mulai dari sarapan hingga makan siang.',
+          'Suasana kedai yang sederhana dan akrab membuat tempat ini juga sering menjadi lokasi warga berkumpul sambil berbincang santai.'
+        ] },
+      { id: 'lainnya-warung-bu-rohid-krajan', nama: 'Warung Bu Rohid', cat: 'kuliner', dusun: 'Krajan', foto: 'images/Warung Bu Rohid.jpg',
+        ringkas: 'Warung kelontong dan makanan yang sudah lama menjadi langganan warga Dusun Krajan.',
+        paragraf: [
+          'Warung Bu Rohid sudah cukup lama menjadi tempat langganan warga Dusun Krajan untuk memenuhi kebutuhan sehari-hari, mulai dari sembako hingga jajanan ringan.',
+          'Keramahan pemiliknya membuat warung ini tak sekadar tempat berbelanja, tapi juga tempat warga saling bertukar kabar seputar kegiatan di dusun.'
+        ] },
+      { id: 'lainnya-kantor-desa-krajan', nama: 'Kantor Desa Gondosuli', cat: 'pemerintahan', dusun: 'Krajan', foto: 'images/Kantor Desa Gondosuli.jpg',
+        ringkas: 'Pusat pelayanan administrasi dan pemerintahan Desa Gondosuli, berlokasi di Dusun Krajan.',
+        paragraf: [
+          'Kantor Desa Gondosuli menjadi pusat pelayanan administrasi bagi seluruh warga dari enam dusun, mulai dari pengurusan surat-menyurat hingga berbagai program pemerintahan desa.',
+          'Lokasinya yang berada di Dusun Krajan, yang memang menjadi pusat aktivitas masyarakat, memudahkan akses warga dari berbagai dusun untuk mendapatkan pelayanan pemerintahan.'
+        ] }
+    ];
+  </script>
+  <script>
+    // Kartu informasi per sektor — daftar terkurasi (maks 5 per kategori)
+    // NB: array CURATED_DATA ini sama persis dengan yang dipakai di informasi-detail.html
+    (function () {
+      const CATS = {
+        kuliner:     { label: 'Kuliner',      color: '#f59e0b', icon: '🍽️' },
+        umkm:        { label: 'UMKM & Ekonomi', color: '#d97706', icon: '🏪' },
+        pertanian:   { label: 'Pertanian',    color: '#2d8a52', icon: '🌾' },
+        pendidikan:  { label: 'Pendidikan',   color: '#3b82f6', icon: '📚' },
+        keagamaan:   { label: 'Keagamaan',    color: '#9b59b6', icon: '🕌' },
+        kesehatan:   { label: 'Kesehatan',    color: '#ef4444', icon: '🏥' },
+        pemerintahan:{ label: 'Pemerintahan', color: '#0a2e1a', icon: '🏛️' }
+      };
+
+      // Sektor utama yang punya tab sendiri — sisanya otomatis masuk tab "Lainnya"
+      const MAIN_TABS = ['pertanian', 'pendidikan', 'umkm', 'keagamaan', 'kesehatan'];
+
+      const CURATED_DATA = window.CURATED_DATA || [];
+
+      function escapeHTML(str) {
+        return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+      }
+
+      function cardHTML(poi) {
+        const cat = CATS[poi.cat] || { label: poi.cat, color: '#64748b', icon: '📍' };
+        const searchBlob = (poi.nama + ' ' + cat.label).toLowerCase();
+        const thumb = poi.foto
+          ? `<img src="../${poi.foto}" alt="${escapeHTML(poi.nama)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${cat.icon}',style:'font-size:32px;'}));">`
+          : `<span style="font-size:32px;">${cat.icon}</span>`;
+        return `<a href="informasi-detail.html?id=${encodeURIComponent(poi.id)}" class="news-card info-poi-card" data-cat="${poi.cat}" data-search="${escapeHTML(searchBlob)}">
+          <div class="news-card-thumb">
+            <span class="news-badge" style="background:${cat.color};color:#fff;">${cat.label}</span>
+            ${thumb}
+          </div>
+          <div class="news-card-body">
+            <h4>${escapeHTML(poi.nama)}</h4>
+            <p>${escapeHTML(poi.ringkas || '')}</p>
+          </div>
+        </a>`;
+      }
+
+      // Kelompokkan data per tab (kategori utama tetap terpisah, sisanya masuk "lainnya")
+      const byTab = { semua: CURATED_DATA };
+      MAIN_TABS.forEach(cat => { byTab[cat] = CURATED_DATA.filter(p => p.cat === cat); });
+      byTab.lainnya = CURATED_DATA.filter(p => !MAIN_TABS.includes(p.cat));
+
+      // Isi tiap grid sesuai sektornya
+      document.querySelectorAll('[data-grid]').forEach(grid => {
+        const items = byTab[grid.dataset.grid] || [];
+        grid.innerHTML = items.map(cardHTML).join('');
       });
+
+      // Pencarian real-time — cari berdasarkan nama & kategori, jalan di semua tab sekaligus
+      const searchInput = document.getElementById('info-search-input');
+      function applySearch() {
+        const q = searchInput.value.trim().toLowerCase();
+        document.querySelectorAll('.info-tab-panel').forEach(panel => {
+          const grid = panel.querySelector('[data-grid]');
+          const empty = panel.querySelector('[data-empty]');
+          if (!grid) return;
+          let visible = 0;
+          grid.querySelectorAll('.info-poi-card').forEach(card => {
+            const show = !q || card.dataset.search.includes(q);
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+          });
+          if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+        });
+      }
+      searchInput?.addEventListener('input', applySearch);
     })();
   </script>
 </body>
