@@ -119,6 +119,61 @@ p { text-align: justify; text-justify: inter-word; }
   background: var(--green-50);
   color: var(--green-700);
 }
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+}
+.nav-dropdown-trigger:hover,
+.nav-dropdown-trigger.active {
+  background: var(--green-50);
+  color: var(--green-700);
+}
+.nav-caret { transition: transform .2s ease; flex-shrink: 0; }
+.nav-dropdown:hover .nav-caret,
+.nav-dropdown.open .nav-caret { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--green-100);
+  padding: 6px;
+  min-width: 210px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 200;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(2px);
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--gray-700);
+  white-space: nowrap;
+}
+.nav-dropdown-menu a:hover { background: var(--green-50); color: var(--green-700); }
 .nav-cta {
   background: var(--green-700) !important;
   color: white !important;
@@ -478,6 +533,74 @@ section { padding: 100px 5%; }
 
 
 /* ── Teaser banner: Informasi Desa (segera hadir) ── */
+/* ── Teaser "Peta Wilayah" di homepage — link ke halaman peta interaktif ── */
+.peta-teaser-card {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(10,46,26,.08);
+  border: 1px solid var(--green-100);
+}
+.peta-teaser-visual {
+  background: linear-gradient(135deg,#0a2e1a,#2d8a52);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.peta-teaser-pin { font-size: 56px; filter: drop-shadow(0 6px 16px rgba(0,0,0,.3)); }
+.peta-teaser-stats { display: flex; gap: 20px; }
+.peta-teaser-stat {
+  text-align: center;
+  color: white;
+}
+.peta-teaser-stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.peta-teaser-stat span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.7);
+}
+.peta-teaser-body {
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.peta-teaser-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-900);
+  margin-bottom: 12px;
+}
+.peta-teaser-body p {
+  font-size: 14.5px;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+.peta-teaser-body .btn-primary {
+  align-self: flex-start;
+  text-decoration: none;
+}
+@media (max-width: 860px) {
+  .peta-teaser-card { grid-template-columns: 1fr; }
+  .peta-teaser-visual { padding: 32px; }
+}
+
+/* ── Sisa CSS peta lama (dipakai juga oleh pages/peta.html) ── */
 .info-teaser-banner {
   background: var(--gold, #c9a84c);
   padding: 14px 5%;
@@ -1060,6 +1183,22 @@ section { padding: 100px 5%; }
   .nav-links.open { transform: translateY(0); opacity: 1; }
   .nav-links li { width: 100%; }
   .nav-links a { display: block; width: 100%; }
+  .nav-dropdown-trigger { width: 100%; justify-content: space-between; text-align: left; }
+  .nav-dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 0 14px;
+    min-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .nav-dropdown.open .nav-dropdown-menu { max-height: 120px; margin-top: 4px; }
+  .nav-caret { margin-left: auto; }
 
   .hero-stats { position: static; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
   .profil-grid  { grid-template-columns: 1fr; }
