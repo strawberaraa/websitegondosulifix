@@ -14,11 +14,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/artsy.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css" />
   <style>
     em { font-style: normal; }
     .section-title { font-style: normal; }
@@ -342,55 +344,96 @@
   </section>
 
   <!-- ══ INFORMASI DESA (Segera Hadir) ══ -->
-  <section id="informasi">
-    <div class="section-header">
+  <section id="informasi" class="info-preview-section">
+    <div class="section-header" style="margin-bottom:0;">
       <div class="section-label">Situs Informasi</div>
       <h2 class="section-title">Informasi Seputar Desa</h2>
       <p class="section-subtitle">Sekilas informasi seputar kehidupan warga Desa Gondosuli dari berbagai bidang.</p>
     </div>
-    <div class="info-sector-grid">
+    <a href="pages/informasi.html" class="info-see-all">Lihat Semua <span>→</span></a>
 
-      <a href="pages/informasi.html#pertanian" class="info-sector-card fade-in" style="--accent:#2d8a52;--accent-bg:#eaf6ee;">
-        <div class="info-sector-icon">🌾</div>
-        <h3>Pertanian</h3>
-        <p>Pertanian menjadi salah satu penopang utama perekonomian Desa Gondosuli, mulai dari tembakau, padi, jagung, kopi, hingga gula aren yang tersebar di berbagai dusun.</p>
-        <span class="info-sector-link">Selengkapnya <span>→</span></span>
-      </a>
+    <div class="info-preview-layout">
 
-      <a href="pages/informasi.html#pendidikan" class="info-sector-card fade-in" style="--accent:#3b82f6;--accent-bg:#eaf2fe;">
-        <div class="info-sector-icon">📚</div>
-        <h3>Pendidikan</h3>
-        <p>Akses pendidikan warga didukung sejumlah lembaga mulai dari PAUD, TK, sekolah dasar, hingga madrasah dan pesantren yang tersebar di beberapa dusun.</p>
-        <span class="info-sector-link">Selengkapnya <span>→</span></span>
-      </a>
+      <!-- LIST KATEGORI -->
+      <div class="info-list-widget fade-in">
+        <h4>Kategori</h4>
+        <div class="info-list-scroll">
+          <a href="pages/informasi.html#pertanian" class="info-list-item">
+            <span class="info-list-icon">🌾</span>
+            <div><h5>Pertanian</h5><span>Tembakau, padi, jagung, kopi & gula aren</span></div>
+          </a>
+          <a href="pages/informasi.html#pendidikan" class="info-list-item">
+            <span class="info-list-icon">📚</span>
+            <div><h5>Pendidikan</h5><span>PAUD hingga madrasah & pesantren</span></div>
+          </a>
+          <a href="pages/informasi.html#umkm" class="info-list-item">
+            <span class="info-list-icon">🏪</span>
+            <div><h5>UMKM & Ekonomi</h5><span>Mebel, kuliner, hingga toko kelontong</span></div>
+          </a>
+          <a href="pages/informasi.html#keagamaan" class="info-list-item">
+            <span class="info-list-icon">🕌</span>
+            <div><h5>Keagamaan</h5><span>Masjid, majelis & kegiatan sholawatan</span></div>
+          </a>
+          <a href="pages/informasi.html#kesehatan" class="info-list-item">
+            <span class="info-list-icon">🏥</span>
+            <div><h5>Kesehatan</h5><span>Klinik, bidan & posyandu rutin</span></div>
+          </a>
+          <a href="pages/informasi.html#lainnya" class="info-list-item">
+            <span class="info-list-icon">✨</span>
+            <div><h5>Lainnya</h5><span>Kuliner khas & fasilitas pemerintahan</span></div>
+          </a>
+        </div>
+      </div>
 
-      <a href="pages/informasi.html#keagamaan" class="info-sector-card fade-in" style="--accent:#9b59b6;--accent-bg:#f5edf9;">
-        <div class="info-sector-icon">🕌</div>
-        <h3>Keagamaan</h3>
-        <p>Kehidupan keagamaan warga berjalan aktif lewat pengajian, majelis, dan sholawatan rutin di masjid maupun musala di tiap dusun.</p>
-        <span class="info-sector-link">Selengkapnya <span>→</span></span>
-      </a>
+      <!-- INFO UTAMA — carousel bergilir per kategori -->
+      <div class="news-featured fade-in" style="margin-bottom:0;">
+        <a href="pages/informasi-detail.html?id=pertanian-gula-aren-kletek" class="news-featured-thumb" id="info-featured-thumb">
+          <span class="news-badge" id="info-featured-badge" style="background:#2d8a52;color:white;">Pertanian</span>
+          <img id="info-featured-img" src="images/gula aren.jpg" alt="Perkebunan Gula Aren Kletek" style="width:100%;height:100%;object-fit:cover;">
+        </a>
+        <div class="news-featured-body">
+          <div class="news-meta"><span class="date" id="info-featured-meta">📍 Dusun Kletek</span></div>
+          <h2 id="info-featured-title">Perkebunan Gula Aren — Kletek</h2>
+          <p id="info-featured-desc">Pohon-pohon aren di kawasan ini menjadi sumber penghasilan tambahan bagi sejumlah warga Dusun Kletek, diolah secara tradisional menjadi gula aren yang dijual di pasar terdekat maupun dititipkan ke warung sekitar.</p>
+          <div class="info-featured-nav">
+            <a href="pages/informasi-detail.html?id=pertanian-gula-aren-kletek" class="news-read-more" id="info-featured-readmore">Baca Selengkapnya →</a>
+            <div class="info-featured-arrows">
+              <button type="button" id="info-featured-prev" aria-label="Kategori sebelumnya">‹</button>
+              <span class="info-featured-dots" id="info-featured-dots"></span>
+              <button type="button" id="info-featured-next" aria-label="Kategori berikutnya">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <a href="pages/informasi.html#kesehatan" class="info-sector-card fade-in" style="--accent:#ef4444;--accent-bg:#fdeceb;">
-        <div class="info-sector-icon">🏥</div>
-        <h3>Kesehatan</h3>
-        <p>Layanan kesehatan warga didukung oleh klinik, praktik bidan, dan kegiatan posyandu rutin di berbagai dusun untuk ibu, balita, hingga lansia.</p>
-        <span class="info-sector-link">Selengkapnya <span>→</span></span>
-      </a>
-
-      <a href="pages/informasi.html#umkm" class="info-sector-card fade-in" style="--accent:#d97706;--accent-bg:#fdf3e7;">
-        <div class="info-sector-icon">🏪</div>
-        <h3>UMKM & Ekonomi</h3>
-        <p>Roda perekonomian warga digerakkan beragam UMKM — pengrajin mebel, produksi minyak kelapa, kuliner khas, hingga toko kelontong di tiap dusun.</p>
-        <span class="info-sector-link">Selengkapnya <span>→</span></span>
-      </a>
-
-      <a href="pages/informasi.html#lainnya" class="info-sector-card fade-in" style="--accent:#64748b;--accent-bg:#f1f5f9;">
-        <div class="info-sector-icon">✨</div>
-        <h3>Lainnya</h3>
-        <p>Informasi lain seputar Desa Gondosuli di luar lima sektor utama — mulai dari kuliner khas warga hingga fasilitas pemerintahan desa.</p>
-        <span class="info-sector-link">Selengkapnya <span>→</span></span>
-      </a>
+      <!-- INFO LAINNYA -->
+      <div class="news-sidebar-widget fade-in" style="margin-bottom:0;">
+        <h4>Info Lainnya</h4>
+        <a href="pages/informasi-detail.html?id=umkm-biji-kopi-kletek" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
+          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
+            <img src="images/Produksi biji Kopi.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div><h5>Produksi Biji Kopi — Kletek</h5><span>UMKM & Ekonomi</span></div>
+        </a>
+        <a href="pages/informasi-detail.html?id=keagamaan-masjid-al-karomah-krajan" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
+          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
+            <img src="images/Masjid Alkaromah.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div><h5>Masjid Al-Karomah</h5><span>Keagamaan</span></div>
+        </a>
+        <a href="pages/informasi-detail.html?id=pendidikan-sdn-gondosuli-1-krajan" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
+          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
+            <img src="images/SDN Gondosuli 1.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div><h5>SDN Gondosuli 1</h5><span>Pendidikan</span></div>
+        </a>
+        <a href="pages/informasi-detail.html?id=kesehatan-klinik-annajiyah-krajan" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
+          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
+            <img src="images/Klinik Annajiyah.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div><h5>Klinik Annajiyah</h5><span>Kesehatan</span></div>
+        </a>
+      </div>
 
     </div>
   </section>
@@ -416,6 +459,16 @@
       <div class="peta-frame-wrap fade-in" style="grid-column:1;">
         <div class="peta-frame">
           <div id="gondosuli-map" aria-label="Peta interaktif Desa Gondosuli"></div>
+          <div id="gondosuli-map-3d" class="map-3d-view" aria-label="Peta 3D Desa Gondosuli"></div>
+          <div class="map-3d-hint" id="map-3d-hint">🖱️ Klik-geser (atau 2 jari di HP) untuk memutar & memiringkan tampilan 3D</div>
+          <div class="map-layer-switcher" id="map-layer-switcher">
+            <select id="map-layer-select" aria-label="Pilih gaya peta">
+              <option value="default">Default</option>
+              <option value="osm">OpenStreetMap</option>
+              <option value="topo">Topografi / Relief</option>
+              <option value="3d">OpenStreetMap 3D</option>
+            </select>
+          </div>
           <button type="button" id="map-expand-btn" class="map-expand-btn" aria-label="Perbesar peta ke layar penuh">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             <span>Perbesar Peta</span>
@@ -518,10 +571,13 @@
     <div class="hero-grid" style="opacity:.5;"></div>
     <div class="hero-particles" id="kontak-particles"></div>
     <div class="leaves-container" id="kontak-leaves"></div>
-    <div class="section-header" style="position:relative;z-index:2;">
-      <div class="section-label">Kontak</div>
-      <h2 class="section-title">Informasi Kontak</h2>
-      <p class="section-subtitle">Hubungi kami langsung melalui saluran di bawah ini.</p>
+    <div class="kontak-header-row" style="position:relative;z-index:2;">
+      <div class="section-header" style="margin-bottom:0;">
+        <div class="section-label">Kontak</div>
+        <h2 class="section-title">Informasi Kontak</h2>
+        <p class="section-subtitle">Hubungi kami langsung melalui saluran di bawah ini.</p>
+      </div>
+      <div class="map-service-hours kontak-hours-badge"><span class="dot"></span>Jam Layanan: Senin – Jumat 07.30 – 16.00 WIB</div>
     </div>
     <div class="kontak-grid" style="position:relative;z-index:2;">
       <div class="kontak-items">
@@ -581,7 +637,92 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // Carousel "Info Utama" — bergilir per kategori (bukan per artikel, karena
+    // situs ini gak punya kanal berita — jadi tiap kategori Informasi dapat
+    // giliran tampil, bisa pindah manual pakai panah/dot atau otomatis ganti.
+    (function () {
+      const slides = [
+        { label: 'Pertanian', color: '#2d8a52', img: 'images/gula aren.jpg', title: 'Perkebunan Gula Aren — Kletek', dusun: 'Kletek',
+          desc: 'Pohon-pohon aren di kawasan ini menjadi sumber penghasilan tambahan bagi sejumlah warga Dusun Kletek, diolah secara tradisional menjadi gula aren yang dijual di pasar terdekat maupun dititipkan ke warung sekitar.',
+          id: 'pertanian-gula-aren-kletek' },
+        { label: 'Pendidikan', color: '#3b82f6', img: 'images/Madrasah Nurul Yaqien.jpg', title: 'Madrasah Nurul Yaqien', dusun: 'Karangduwek',
+          desc: 'Yayasan Nurul Yaqien menaungi beberapa jenjang pendidikan — TK, SD Islam, SMP, serta Madrasah Diniyah — menjadikan Dusun Karangduwek punya akses pendidikan lengkap tanpa harus keluar dusun.',
+          id: 'pendidikan-nurul-yaqien-karangduwek' },
+        { label: 'UMKM & Ekonomi', color: '#d97706', img: 'images/Produksi biji Kopi.jpg', title: 'Produksi Biji Kopi — Kletek', dusun: 'Kletek',
+          desc: 'Warga memetik biji kopi dari kebun sendiri lalu mengolahnya secara sederhana mulai dari penjemuran hingga penyangraian — skala rumahan dengan cita rasa yang mulai dikenal.',
+          id: 'umkm-biji-kopi-kletek' },
+        { label: 'Keagamaan', color: '#9b59b6', img: 'images/Masjid Alkaromah.jpeg', title: 'Masjid Al-Karomah', dusun: 'Krajan',
+          desc: 'Masjid utama di pusat Desa Gondosuli ini jadi rujukan kegiatan keagamaan warga Krajan, letaknya yang strategis membuatnya juga sering dipakai untuk kegiatan sosial keagamaan lintas dusun.',
+          id: 'keagamaan-masjid-al-karomah-krajan' },
+        { label: 'Kesehatan', color: '#ef4444', img: 'images/Klinik Annajiyah.jpg', title: 'Klinik Annajiyah', dusun: 'Krajan',
+          desc: 'Salah satu fasilitas kesehatan utama di Desa Gondosuli, melayani warga tak hanya dari Dusun Krajan tapi juga dusun-dusun lain di sekitarnya.',
+          id: 'kesehatan-klinik-annajiyah-krajan' },
+        { label: 'Lainnya', color: '#64748b', img: 'images/Kantor Desa Gondosuli.jpg', title: 'Kantor Desa Gondosuli', dusun: 'Krajan',
+          desc: 'Pusat pelayanan administrasi bagi seluruh warga dari enam dusun, mulai dari pengurusan surat-menyurat hingga berbagai program pemerintahan desa.',
+          id: 'lainnya-kantor-desa-krajan' }
+      ];
+
+      const elThumb = document.getElementById('info-featured-thumb');
+      if (!elThumb) return;
+      const elBadge = document.getElementById('info-featured-badge');
+      const elImg = document.getElementById('info-featured-img');
+      const elMeta = document.getElementById('info-featured-meta');
+      const elTitle = document.getElementById('info-featured-title');
+      const elDesc = document.getElementById('info-featured-desc');
+      const elReadmore = document.getElementById('info-featured-readmore');
+      const elDots = document.getElementById('info-featured-dots');
+
+      let idx = 0;
+
+      function renderDots() {
+        elDots.innerHTML = slides.map((s, i) =>
+          `<button type="button" class="info-featured-dot${i === idx ? ' active' : ''}" data-i="${i}" aria-label="${s.label}"></button>`
+        ).join('');
+      }
+
+      function render(i) {
+        const s = slides[i];
+        const href = 'pages/informasi-detail.html?id=' + encodeURIComponent(s.id);
+        elThumb.href = href;
+        elBadge.textContent = s.label;
+        elBadge.style.background = s.color;
+        elImg.src = s.img;
+        elImg.alt = s.title;
+        elMeta.textContent = '📍 Dusun ' + s.dusun;
+        elTitle.textContent = s.title;
+        elDesc.textContent = s.desc;
+        elReadmore.href = href;
+        renderDots();
+      }
+      render(idx);
+
+      let timer;
+      function go(delta) {
+        idx = (idx + delta + slides.length) % slides.length;
+        render(idx);
+        resetTimer();
+      }
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => go(1), 6000);
+      }
+
+      document.getElementById('info-featured-prev')?.addEventListener('click', (e) => { e.preventDefault(); go(-1); });
+      document.getElementById('info-featured-next')?.addEventListener('click', (e) => { e.preventDefault(); go(1); });
+      elDots.addEventListener('click', (e) => {
+        const btn = e.target.closest('.info-featured-dot');
+        if (!btn) return;
+        idx = parseInt(btn.dataset.i, 10);
+        render(idx);
+        resetTimer();
+      });
+
+      resetTimer();
+    })();
+  </script>
   <script>
     // Floating particles
     const pc = document.getElementById('particles');
@@ -766,7 +907,6 @@
 
       // Kategori:id -> {label, color, icon} nyam
       const CATS = {
-        kuliner:     { label: 'Kuliner',      color: '#f59e0b', icon: '🍽️' },
         umkm:        { label: 'UMKM & Jasa',  color: '#d97706', icon: '🏪' },
         pertanian:   { label: 'Pertanian',    color: '#2d8a52', icon: '🌾' },
         pendidikan:  { label: 'Pendidikan',   color: '#3b82f6', icon: '📚' },
@@ -812,7 +952,7 @@
           { label: 'Kepala Sekolah TK (Sinta Wulandari)', nomor: '085648097369' }
         ] },
         { nama: 'Masjid Al-Falah Nurul Bukhori', cat: 'keagamaan', dusun: 'Karangduwek', lat: -7.78969025, lng: 113.5500424, elev: 132.170212, foto: 'images/Masjid.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
-        { nama: 'Mie Ayam & Bakso Kenken', cat: 'kuliner', dusun: 'Karangduwek', lat: -7.78985543, lng: 113.54941273, elev: 129.351547, foto: 'images/Mie ayam & Bakso Kenken.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '085230519771' },
+        { nama: 'Mie Ayam & Bakso Kenken', cat: 'umkm', dusun: 'Karangduwek', lat: -7.78985543, lng: 113.54941273, elev: 129.351547, foto: 'images/Mie ayam & Bakso Kenken.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '085230519771' },
         { nama: 'Pengepul Tembakau Pak Samsudin', cat: 'umkm', dusun: 'Karangduwek', lat: -7.78803895, lng: 113.5471893, elev: 115.992905, foto: 'images/Pengepul Tembakau Pak Samsuddin.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '082315595100 (Pak Samsudin)' },
         { nama: 'Pengrajin Kayu', cat: 'umkm', dusun: 'Karangduwek', lat: -7.79015181, lng: 113.54977573, elev: 131.558762, foto: 'images/Pengrajin kayu.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'Penyedia Bahan Minyak Kelapa', cat: 'umkm', dusun: 'Karangduwek', lat: -7.78897049, lng: 113.54821467, elev: 123.168266, foto: 'images/Kelapa 1.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '082314077150 (bu firda)' },
@@ -845,15 +985,15 @@
         { nama: 'Produksi Kepeng', cat: 'umkm', dusun: 'Ranon', lat: -7.79504903, lng: 113.55215937, elev: 163.715805, foto: 'images/Produksi Kepeng (krupuk).jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
 
         // ══════════ Dusun Krajan (ekspor Avenza Maps) ══════════
-        { nama: 'Ayam Geprek "GG" [KFC]', cat: 'kuliner', dusun: 'Krajan', lat: -7.78932064, lng: 113.55347987, elev: 139.45607, foto: 'images/Geprek GG.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
+        { nama: 'Ayam Geprek "GG" [KFC]', cat: 'umkm', dusun: 'Krajan', lat: -7.78932064, lng: 113.55347987, elev: 139.45607, foto: 'images/Geprek GG.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'Bengkel Ical Workshop', cat: 'umkm', dusun: 'Krajan', lat: -7.7907973, lng: 113.5525909, elev: 144.112595, foto: 'images/Bengkel Ical.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '082336176025 (Mas Risal)' },
         { nama: 'Toko Cipta Mulya', cat: 'umkm', dusun: 'Krajan', lat: -7.78946084, lng: 113.55350192, elev: 140.961945, foto: 'images/Cita Mulya.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '081232854988 (Pak Rian)' },
         { nama: 'Kantor Desa Gondosuli', cat: 'pemerintahan', dusun: 'Krajan', lat: -7.78978686, lng: 113.55377732, elev: 145.529129, foto: 'images/Kantor Desa Gondosuli.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: [
           { label: 'Pak Kades', nomor: '085259890315' },
           { label: 'Pak Sekdes', nomor: '082235460657' }
         ] },
-        { nama: 'Kedai Mbak Juai', cat: 'kuliner', dusun: 'Krajan', lat: -7.79081409, lng: 113.5529478, elev: 144.834579, foto: 'images/Kedai Mbak Juai.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '085130356366 (Bu Juai)' },
-        { nama: 'Kedai Papa X Jajanan Nampol', cat: 'kuliner', dusun: 'Krajan', lat: -7.79202783, lng: 113.55279805, elev: 148.072983, foto: 'images/Kedai Papa X.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
+        { nama: 'Kedai Mbak Juai', cat: 'umkm', dusun: 'Krajan', lat: -7.79081409, lng: 113.5529478, elev: 144.834579, foto: 'images/Kedai Mbak Juai.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '085130356366 (Bu Juai)' },
+        { nama: 'Kedai Papa X Jajanan Nampol', cat: 'umkm', dusun: 'Krajan', lat: -7.79202783, lng: 113.55279805, elev: 148.072983, foto: 'images/Kedai Papa X.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'Klinik Annajiyah', cat: 'kesehatan', dusun: 'Krajan', lat: -7.78995482, lng: 113.55235998, elev: 141.591599, foto: 'images/Klinik Annajiyah.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: ' 082322663369 (Klinik Annajiyah)' },
         { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79239776, lng: 113.55181261, elev: 146.318619, foto: 'images/Tembakau.jpeg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79274717, lng: 113.55186283, elev: 146.555252, foto: 'images/Tembakau.jpeg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
@@ -879,13 +1019,13 @@
         { nama: 'Toko Cerah Gondosuli', cat: 'umkm', dusun: 'Krajan', lat: -7.79010211, lng: 113.55275512, elev: 140.029984, foto: 'images/Toko Cerah Gondosuli.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'Toko Hartono', cat: 'umkm', dusun: 'Krajan', lat: -7.78956813, lng: 113.55327815, elev: 140.070419, foto: 'images/Toko Hartono.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'Toko Sumber Barokah Zahra', cat: 'umkm', dusun: 'Krajan', lat: -7.79002839, lng: 113.55160362, elev: 136.773041, foto: 'images/Toko Sumber Barokah Zahra.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '085338350052' },
-        { nama: 'Warung Bu Rohid', cat: 'kuliner', dusun: 'Krajan', lat: -7.78940889, lng: 113.55349104, elev: 140.374557, foto: 'images/Warung Bu Rohid.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
+        { nama: 'Warung Bu Rohid', cat: 'umkm', dusun: 'Krajan', lat: -7.78940889, lng: 113.55349104, elev: 140.374557, foto: 'images/Warung Bu Rohid.jpg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '' },
         { nama: 'YPI Miftahul Hasanah', cat: 'pendidikan', dusun: 'Krajan', lat: -7.79143597, lng: 113.55256651, elev: 145.519455, foto: 'images/YPI Nurul Hasanah.jpeg', deskripsi: 'Deskripsi lokasi ini masih placeholder — akan dilengkapi dengan informasi lebih detail.', telepon: '085236683875 (Bu Salama) ' }
       ];
 
       const map = L.map('gondosuli-map', {
         scrollWheelZoom: false,
-        zoomControl: true,
+        zoomControl: false,
         // Leaflet punya bug lama di HP: handler "tap" bawaannya kadang membaca
         // koordinat sentuhan terakhir dari gesture SCROLL sebelumnya, bukan posisi
         // jari saat tap pin — makanya peta "lompat" ke tempat lain saat pin di-tap.
@@ -893,16 +1033,116 @@
         tap: false
       }).setView(CENTER, 14);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+      // Zoom control dipindah ke pojok kanan-bawah biar tidak tabrakan dengan
+      // pemilih gaya peta (kiri-atas) & tombol perbesar (kanan-atas).
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+      // ── Pilihan gaya peta ──
+      // "Default" & "OpenStreetMap" tetap pakai Leaflet (raster tile, ringan, dengan
+      // seluruh marker & cluster POI). "OpenStreetMap 3D" beralih ke MapLibre GL —
+      // mesin peta berbasis vector yang benar-benar bisa menampilkan gedung 3D
+      // (extrusion) dan bisa diputar/dimiringkan (drag untuk rotate & pitch).
+      const baseLayers = {
+        default: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }),
+        osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }),
+        topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+          maxZoom: 17,
+          attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a>'
+        })
+      };
+      let activeBaseLayer = baseLayers.default.addTo(map);
+      const layerSelect = document.getElementById('map-layer-select');
+      const mapEl3D = document.getElementById('gondosuli-map-3d');
+      const map3DHint = document.getElementById('map-3d-hint');
+      const CENTER_3D = [CENTER[1], CENTER[0]]; // MapLibre pakai [lng, lat]
+      let map3D = null;
+      let hint3DShown = false;
+      const markers3D = [];
+      function addPoiMarkers3D() {
+        POI_DATA.forEach(poi => {
+          const cat = CATS[poi.cat] || { label: poi.cat, color: '#64748b', icon: '📍' };
+          const el = document.createElement('div');
+          el.className = 'gs-3d-pin-wrap';
+          el.innerHTML = `<div class="gs-3d-pin" style="background:linear-gradient(135deg, ${cat.color}, ${cat.color}cc);"><span class="gs-3d-pin-icon">${cat.icon}</span></div>`;
+          const popup = new maplibregl.Popup({ offset: 22, closeButton: true, maxWidth: '260px', className: 'gs-maplibre-popup' })
+            .setHTML(buildPopupHTML(poi));
+          const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
+            .setLngLat([poi.lng, poi.lat])
+            .setPopup(popup)
+            .addTo(map3D);
+          el.addEventListener('click', () => {
+            map3D.easeTo({ center: [poi.lng, poi.lat], duration: 500 });
+          });
+          markers3D.push({ marker, poi, el });
+        });
+        applyFilters3D();
+      }
+      function ensure3DMap() {
+        if (map3D || typeof maplibregl === 'undefined') return map3D;
+        map3D = new maplibregl.Map({
+          container: 'gondosuli-map-3d',
+          style: 'https://tiles.openfreemap.org/styles/liberty',
+          center: CENTER_3D,
+          zoom: 16,
+          pitch: 60,
+          bearing: -20,
+          dragRotate: true,
+          attributionControl: true
+        });
+        map3D.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
+        map3D.on('load', () => {
+          map3D.resize();
+          addPoiMarkers3D();
+        });
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(() => map3D && map3D.resize()).observe(mapEl3D);
+        }
+        return map3D;
+      }
+      function show3DHint() {
+        if (hint3DShown || !map3DHint) return;
+        hint3DShown = true;
+        map3DHint.classList.add('show');
+        setTimeout(() => map3DHint.classList.remove('show'), 4500);
+      }
+      layerSelect?.addEventListener('change', () => {
+        const val = layerSelect.value;
+        if (val === '3d') {
+          mapEl.style.display = 'none';
+          mapEl3D.classList.add('active');
+          // Tunggu dua animation frame supaya browser benar-benar selesai
+          // menghitung ulang layout sebelum MapLibre membaca ukuran container.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              ensure3DMap();
+              map3D?.resize();
+              show3DHint();
+            });
+          });
+        } else {
+          mapEl3D.classList.remove('active');
+          mapEl.style.display = '';
+          const next = baseLayers[val];
+          if (next && next !== activeBaseLayer) {
+            map.removeLayer(activeBaseLayer);
+            next.addTo(map);
+            activeBaseLayer = next;
+          }
+          setTimeout(fixMapSize, 60);
+        }
+      });
 
       // ── Perbaikan akurasi klik di HP: paksa peta hitung ulang ukurannya ──
       // (kontainer peta ada di dalam elemen ".fade-in" yang punya animasi transform;
       // kalau Leaflet sempat menghitung ukuran sebelum animasi itu selesai, titik
       // klik di peta jadi meleset dari lokasi aslinya — terutama di HP.)
-      const fixMapSize = () => map.invalidateSize();
+      const fixMapSize = () => { map.invalidateSize(); if (map3D) map3D.resize(); };
       setTimeout(fixMapSize, 300);
       setTimeout(fixMapSize, 800);
       window.addEventListener('load', fixMapSize);
@@ -940,7 +1180,7 @@
         expandBtn.setAttribute('aria-label', on ? 'Tutup peta layar penuh' : 'Perbesar peta ke layar penuh');
         expandBtn.querySelector('span').textContent = on ? 'Tutup' : 'Perbesar Peta';
         expandBtn.classList.toggle('is-close', on);
-        setTimeout(fixMapSize, 260);
+        setTimeout(() => { fixMapSize(); map3D?.resize(); }, 260);
       }
       expandBtn?.addEventListener('click', () => setFullscreen(!isFullscreen));
       document.addEventListener('keydown', (e) => {
@@ -949,7 +1189,11 @@
 
       // ── Tombol "kembalikan tampilan awal" — biar gak perlu zoom/geser manual kalau kesasar ──
       document.getElementById('map-reset-btn')?.addEventListener('click', () => {
-        map.setView(CENTER, 14, { animate: true });
+        if (layerSelect?.value === '3d' && map3D) {
+          map3D.flyTo({ center: CENTER_3D, zoom: 16, pitch: 60, bearing: -20 });
+        } else {
+          map.setView(CENTER, 14, { animate: true });
+        }
       });
 
       // ── Zoom peta hanya dengan Ctrl/Cmd + scroll — scroll halaman biasa tetap mulus ──
@@ -1013,13 +1257,13 @@
         });
       });
 
-      POI_DATA.forEach(poi => {
+      // Bangun kartu popup (foto + badge + deskripsi) — dipakai bareng oleh
+      // marker peta 2D (Leaflet) maupun marker peta 3D (MapLibre GL).
+      function buildPopupHTML(poi) {
         const c = CATS[poi.cat];
-        const marker = L.marker([poi.lat, poi.lng], { icon: catIcon(poi.cat) });
         const fotoHtml = poi.foto
           ? `<div class="gs-popup-photo" data-foto="${escapeAttr(poi.foto)}" title="Klik untuk lihat foto penuh" style="background-image:url('${escapeAttr(poi.foto)}');"></div>`
           : '';
-        // telepon bisa berupa string (1 nomor) ATAU array [{label, nomor}, ...] kalau ada beberapa kontak
         const buildWaBtn = (nomor, label) => {
           const num = (nomor || '').replace(/[^0-9]/g, '');
           if (!num) return '';
@@ -1033,7 +1277,7 @@
           teleponHtml = buildWaBtn(poi.telepon, '');
         }
         const d = DUSUNS[poi.dusun];
-        const popupHtml = `
+        return `
           <div class="gs-popup">
             ${fotoHtml}
             <div class="gs-popup-body" style="padding-top:16px;">
@@ -1049,7 +1293,12 @@
               <a href="https://www.openstreetmap.org/?mlat=${poi.lat}&mlon=${poi.lng}#map=18/${poi.lat}/${poi.lng}" target="_blank" rel="noopener" class="gs-popup-btn">Buka di OpenStreetMap →</a>
             </div>
           </div>`;
-        marker.bindPopup(popupHtml, { maxWidth: 260, className: 'gs-leaflet-popup' });
+      }
+
+      POI_DATA.forEach(poi => {
+        const c = CATS[poi.cat];
+        const marker = L.marker([poi.lat, poi.lng], { icon: catIcon(poi.cat) });
+        marker.bindPopup(buildPopupHTML(poi), { maxWidth: 260, className: 'gs-leaflet-popup' });
         clusterGroups[poi.cat].addLayer(marker);
         allMarkers.push({ marker, poi });
       });
@@ -1075,6 +1324,10 @@
       lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
       mapEl.addEventListener('click', (e) => {
+        const photoEl = e.target.closest('.gs-popup-photo');
+        if (photoEl && photoEl.dataset.foto) openLightbox(photoEl.dataset.foto, '');
+      });
+      mapEl3D.addEventListener('click', (e) => {
         const photoEl = e.target.closest('.gs-popup-photo');
         if (photoEl && photoEl.dataset.foto) openLightbox(photoEl.dataset.foto, '');
       });
@@ -1110,6 +1363,21 @@
       }
       renderDusunFilterBar();
 
+      function applyFilters3D() {
+        const q = searchQuery.trim().toLowerCase();
+        const matches = [];
+        markers3D.forEach(item => {
+          const p = item.poi;
+          const okCat = activeCat === 'semua' || activeCat === p.cat;
+          const okDusun = activeDusun === 'semua' || activeDusun === p.dusun;
+          const okSearch = !q || p.nama.toLowerCase().includes(q);
+          const show = okCat && okDusun && okSearch;
+          item.el.style.display = show ? 'block' : 'none';
+          if (show) matches.push(item);
+        });
+        return matches;
+      }
+
       function applyFilters() {
         Object.keys(clusterGroups).forEach(catId => clusterGroups[catId].clearLayers());
 
@@ -1132,12 +1400,23 @@
           if (!hasVisible && map.hasLayer(clusterGroups[catId])) map.removeLayer(clusterGroups[catId]);
         });
 
+        // Peta 3D (MapLibre) pakai daftar marker terpisah — filter & search
+        // di atas mesti diterapkan ke situ juga, bukan cuma ke peta 2D Leaflet.
+        const matches3D = applyFilters3D();
+
         if (q) {
-          searchResult.textContent = matches.length
-            ? `${matches.length} tempat ditemukan untuk "${searchQuery}"`
+          const totalMatches = (layerSelect?.value === '3d') ? matches3D.length : matches.length;
+          searchResult.textContent = totalMatches
+            ? `${totalMatches} tempat ditemukan untuk "${searchQuery}"`
             : `Tidak ada tempat yang cocok dengan "${searchQuery}"`;
-          searchResult.classList.toggle('empty', matches.length === 0);
-          if (matches.length === 1) {
+          searchResult.classList.toggle('empty', totalMatches === 0);
+          if (layerSelect?.value === '3d') {
+            if (matches3D.length === 1 && map3D) {
+              const only = matches3D[0];
+              map3D.flyTo({ center: [only.poi.lng, only.poi.lat], zoom: 18, pitch: 60 });
+              setTimeout(() => only.marker.togglePopup(), 400);
+            }
+          } else if (matches.length === 1) {
             const only = matches[0];
             map.setView(only.marker.getLatLng(), 17);
             setTimeout(() => only.marker.openPopup(), 300);
