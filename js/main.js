@@ -33,6 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- Dropdown menu: Dusun / Informasi / Peta — pilih ke beranda atau halaman khusus ----
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const parent = trigger.closest('.nav-dropdown');
+      const wasOpen = parent.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+      if (!wasOpen) parent.classList.add('open');
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  });
+  document.querySelectorAll('.nav-dropdown-menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+      navLinks.classList.remove('open');
+    });
+  });
+
   // ---- Active nav link on scroll ----
   const sections = document.querySelectorAll('section[id]');
   const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -107,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(a.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        const offset = 80;
+        const offset = 92;
         window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
       }
     });
