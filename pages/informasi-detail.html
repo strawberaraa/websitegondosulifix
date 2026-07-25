@@ -203,7 +203,7 @@
 
   <!-- Notifikasi kecil, dipakai saat tautan berhasil disalin -->
   <div class="gs-toast" id="gs-toast" role="status" aria-live="polite">
-    <span class="tick">✓</span><span id="gs-toast-text">Tautan disalin</span>
+    <span class="tick">✓</span><span id="gs-toast-text">Tautan tersalin</span>
   </div>
 
   <!-- Lightbox untuk lihat foto ukuran penuh -->
@@ -795,7 +795,7 @@
         const original = btn.textContent;
         salinTautan(window.location.href).then(() => {
           btn.textContent = '✓ Tersalin';
-          tampilkanToast('Tautan artikel disalin');
+          tampilkanToast('Tautan tersalin');
           setTimeout(() => { btn.textContent = original; }, 1800);
         }).catch(() => {
           tampilkanToast('Gagal menyalin, silakan salin manual dari kolom alamat');
