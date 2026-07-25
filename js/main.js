@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', () => {
     document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
   });
+  // Fix: kalau satu dropdown dibuka lewat klik (dapat class .open), lalu mouse
+  // pindah ke dropdown sebelah yang kebuka lewat CSS :hover, dua menu bisa
+  // tampil bersamaan (overlap). Begitu mouse masuk ke dropdown lain, paksa
+  // tutup dropdown yang masih "nyangkut" kebuka dari klik sebelumnya.
+  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+        if (d !== dropdown) d.classList.remove('open');
+      });
+    });
+  });
   document.querySelectorAll('.nav-dropdown-menu a').forEach(a => {
     a.addEventListener('click', () => {
       document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
