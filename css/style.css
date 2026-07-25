@@ -100,6 +100,16 @@ p { text-align: justify; text-justify: inter-word; }
   gap: 4px;
   list-style: none;
 }
+/* Cegah long-press context menu / link-preview bawaan browser mobile
+   (mis. "Show Preview" di iOS Safari) muncul di atas link navbar —
+   ini yang bikin tampilannya kayak "keluar frame" saat ditekan lama. */
+.nav-links a,
+.nav-dropdown-trigger,
+.nav-dropdown-menu a {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
 .nav-links a {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
