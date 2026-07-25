@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Informasi Desa — Desa Gondosuli</title>
+  <meta name="description" content="Informasi seputar kehidupan warga Desa Gondosuli." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artsy.css" />
+  <style>
+    /* Tombol kembali di header artikel */
+    .gs-back-btn {
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28);
+      color:#fff; font-family:inherit; font-size:13px; font-weight:600;
+      padding:7px 15px 7px 12px; border-radius:100px; cursor:pointer;
+      margin-bottom:16px; backdrop-filter:blur(6px);
+      transition:background .25s, border-color .25s, transform .25s;
+    }
+    .gs-back-btn:hover { background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.5); }
+    .gs-back-btn:hover svg { transform:translateX(-3px); }
+    .gs-back-btn svg { transition:transform .25s; }
+    .gs-back-btn:active { transform:scale(.96); }
+
+    /* Notifikasi kecil (toast) — muncul di bawah layar lalu hilang sendiri */
+    .gs-toast {
+      position:fixed; left:50%; bottom:32px; z-index:9999;
+      transform:translate(-50%,20px); opacity:0; pointer-events:none;
+      display:inline-flex; align-items:center; gap:9px;
+      background:var(--green-900,#0a2e1a); color:#fff;
+      font-size:14px; font-weight:500; line-height:1;
+      padding:13px 20px; border-radius:100px;
+      box-shadow:0 8px 30px rgba(10,46,26,.35);
+      transition:opacity .3s ease, transform .3s ease;
+      max-width:calc(100vw - 40px);
+    }
+    .gs-toast.show { opacity:1; transform:translate(-50%,0); }
+    .gs-toast .tick {
+      width:19px; height:19px; border-radius:50%; background:#6dc993; color:#0a2e1a;
+      display:flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:800; flex-shrink:0;
+    }
+    @media (max-width:560px) { .gs-toast { bottom:22px; font-size:13px; padding:12px 18px; } }
+    @media (prefers-reduced-motion:reduce) { .gs-toast { transition:opacity .2s; } }
+  </style>
+  <link rel="icon" type="image/png" href="../images/favicon-gondosuli.png" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img class="nav-logo" src="../images/logo-gondosuli.png" alt="Logo Desa Gondosuli">
+      <div class="nav-brand-text">
+        <div class="village">Desa Gondosuli</div>
+        <div class="region">Pakuniran · Probolinggo</div>
+      </div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Beranda</a></li>
+      <li><a href="../index.html#profil">Profil Desa</a></li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger">Dusun <svg class="nav-caret" viewBox="0 0 12 8" width="10" height="7"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu">
+          <a href="../index.html#dusun">🏠 Lihat di Beranda</a>
+          <a href="dusun.html">📄 Buka Halaman Dusun</a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger active">Informasi <svg class="nav-caret" viewBox="0 0 12 8" width="10" height="7"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu">
+          <a href="../index.html#informasi">🏠 Lihat di Beranda</a>
+          <a href="informasi.html">📄 Buka Halaman Informasi</a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger">Peta <svg class="nav-caret" viewBox="0 0 12 8" width="10" height="7"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu">
+          <a href="../index.html#peta">🏠 Lihat di Beranda</a>
+          <a href="peta.html">📄 Buka Halaman Peta</a>
+        </div>
+      </li>
+      <li><a href="../index.html#galeri">Galeri</a></li>
+      <li><a href="#kontak" class="nav-cta">Kontak</a></li>
+    </ul>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- Hero detail — samain kayak header hijau halaman lain -->
+  <div class="page-hero">
+    <div class="page-hero-orb page-hero-orb-1"></div>
+    <div class="page-hero-orb page-hero-orb-2"></div>
+    <div class="page-hero-orb page-hero-orb-3"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-particles" id="page-hero-particles"></div>
+    <div class="leaves-container" id="page-hero-leaves"></div>
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="../index.html">Beranda</a><span>›</span>
+        <a href="informasi.html">Informasi</a><span>›</span>
+        <span id="detail-cat-crumb">Kategori</span>
+      </div>
+      <!-- Tombol kembali — balik ke halaman sebelumnya, atau ke daftar Informasi -->
+      <button type="button" class="gs-back-btn" id="gs-back-btn">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span id="gs-back-label">Kembali</span>
+      </button>
+      <span class="info-detail-badge" id="detail-badge">Kategori</span>
+      <h1 id="detail-title">Memuat informasi…</h1>
+      <p id="detail-ringkas">Memuat informasi…</p>
+      <div class="info-detail-share">
+        <span class="label">Bagikan:</span>
+        <button type="button" id="share-copy">🔗 Salin Tautan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Konten detail — foto, deskripsi, dan info lain di kategori yang sama -->
+  <section class="info-detail-section">
+    <div class="info-detail-layout">
+
+      <div class="info-detail-main">
+        <div class="info-detail-image" id="detail-image" style="cursor:zoom-in;">🌿</div>
+        <!-- Keterangan foto utama — diambil otomatis dari blok foto pertama di data artikel -->
+        <p id="detail-image-caption" style="display:none;text-align:center;font-size:12.5px;line-height:1.5;color:var(--gray-500);margin-top:10px;"></p>
+        <div class="info-detail-body" id="detail-body">
+          <p>Memuat informasi selengkapnya…</p>
+        </div>
+      </div>
+
+      <aside class="info-detail-sidebar">
+        <div class="news-sidebar-widget">
+          <h4 id="detail-related-title">Lainnya di Kategori Ini</h4>
+          <div id="detail-related"></div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <section id="kontak" class="kontak-section">
+    <div class="hero-grid" style="opacity:.5;"></div>
+    <div class="hero-particles" id="kontak-particles"></div>
+    <div class="leaves-container" id="kontak-leaves"></div>
+    <div class="kontak-header-row" style="position:relative;z-index:2;">
+      <div class="section-header" style="margin-bottom:0;">
+        <div class="section-label">Kontak</div>
+        <h2 class="section-title">Informasi Kontak</h2>
+        <p class="section-subtitle">Hubungi kami langsung melalui saluran di bawah ini.</p>
+      </div>
+      <div class="map-service-hours kontak-hours-badge"><span class="dot"></span>Jam Layanan: Senin – Jumat 07.30 – 16.00 WIB</div>
+    </div>
+    <div class="kontak-grid" style="position:relative;z-index:2;">
+      <div class="kontak-items">
+        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📍</div><div><h4>Alamat</h4><p>Desa Gondosuli, Kecamatan Pakuniran,<br>Kabupaten Probolinggo, Jawa Timur 67292</p></div></div>
+        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📞</div><div><h4>Telepon / WhatsApp</h4><p>Sekretaris Desa · 082235460657</p></div></div>
+        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">✉️</div><div><h4>Email</h4><p>desagondosuliprobolinggo@gmail.com</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-leaf-divider">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,0 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#0d3320"/>
+      </svg>
+    </div>
+    <div class="footer-glow"></div>
+    <div class="footer-glow-2"></div>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img class="nav-logo" src="../images/logo-gondosuli.png" alt="Logo Desa Gondosuli" style="margin-bottom:16px;">
+          <div class="village" style="color:white;font-weight:700;font-size:16px;margin-bottom:8px;">Desa Gondosuli</div>
+          <p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.7;">Desa pegunungan yang subur di kaki Gunung Rengganis, Kecamatan Pakuniran, Kabupaten Probolinggo, Jawa Timur.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="../index.html#beranda">Beranda</a></li>
+            <li><a href="../index.html#profil">Profil Desa</a></li>
+            <li><a href="../index.html#dusun">Dusun</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Informasi</h4>
+          <ul>
+            <li><a href="peta.html">Peta Wilayah</a></li>
+            <li><a href="../index.html#galeri">Galeri Foto</a></li>
+            <li><a href="informasi.html">Informasi Desa</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+            <li><a href="dusun.html">Profil Dusun</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Copyright 2026. Pemerintah Desa Gondosuli · Kabupaten Probolinggo</p>
+    </div>
+  </footer>
+
+  <!-- Notifikasi kecil, dipakai saat tautan berhasil disalin -->
+  <div class="gs-toast" id="gs-toast" role="status" aria-live="polite">
+    <span class="tick">✓</span><span id="gs-toast-text">Tautan disalin</span>
+  </div>
+
+  <!-- Lightbox untuk lihat foto ukuran penuh -->
+  <div class="gs-lightbox" id="gs-lightbox">
+    <button type="button" class="gs-lightbox-close" id="gs-lightbox-close" aria-label="Tutup">✕</button>
+    <img src="" alt="" id="gs-lightbox-img" />
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Efek dekoratif header — partikel & daun, gaya sama seperti hero beranda
+    (function () {
+      const pc = document.getElementById('page-hero-particles');
+      if (pc) {
+        for (let i = 0; i < 10; i++) {
+          const p = document.createElement('div');
+          p.className = 'particle';
+          const size = Math.random() * 3 + 2;
+          p.style.cssText = `left:${Math.random()*100}%;bottom:${Math.random()*20}%;width:${size}px;height:${size}px;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.5+.2};`;
+          pc.appendChild(p);
+        }
+      }
+      const lc = document.getElementById('page-hero-leaves');
+      if (lc) {
+        const leafSVGs = [
+          `<svg viewBox="0 0 64 64"><path d="M32 4C20 14 10 28 10 42c0 12 10 18 22 18s22-6 22-18C54 28 44 14 32 4z" fill="#6dc993"/><path d="M32 4v56" stroke="#3a8a5c" stroke-width="1.5" fill="none"/></svg>`,
+          `<svg viewBox="0 0 64 64"><path d="M32 6C18 18 8 30 8 40c0 14 11 20 24 20s24-6 24-20c0-10-10-22-24-34z" fill="#8fd6ac"/><path d="M32 6v54M20 30c4 4 8 6 12 6M44 30c-4 4-8 6-12 6" stroke="#4a9d6c" stroke-width="1.2" fill="none"/></svg>`
+        ];
+        for (let i = 0; i < 7; i++) {
+          const leaf = document.createElement('div');
+          const depth = Math.random();
+          const depthClass = depth < 0.4 ? 'leaf-back' : (depth > 0.75 ? 'leaf-front' : '');
+          leaf.className = 'leaf ' + depthClass;
+          const size = depthClass === 'leaf-back' ? (16 + Math.random()*10) : (20 + Math.random()*16);
+          const startLeft = Math.random() * 100;
+          const fallDuration = 14 + Math.random() * 10;
+          const swayDuration = 3 + Math.random() * 3;
+          const delay = Math.random() * fallDuration * -1;
+          leaf.style.cssText = `left:${startLeft}%; top:-10%; width:${size}px; height:${size}px; animation-duration:${fallDuration}s, ${swayDuration}s; animation-delay:${delay}s, ${Math.random()*-3}s;`;
+          leaf.innerHTML = leafSVGs[Math.floor(Math.random()*leafSVGs.length)];
+          lc.appendChild(leaf);
+        }
+      }
+      const kp = document.getElementById('kontak-particles');
+      if (kp) {
+        for (let i = 0; i < 12; i++) {
+          const p = document.createElement('div');
+          p.className = 'particle';
+          const size = Math.random() * 3 + 2;
+          p.style.cssText = `left:${Math.random()*100}%;bottom:${Math.random()*20}%;width:${size}px;height:${size}px;animation-duration:${Math.random()*12+10}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.35+.15};`;
+          kp.appendChild(p);
+        }
+      }
+      const kl = document.getElementById('kontak-leaves');
+      if (kl) {
+        for (let i = 0; i < 8; i++) {
+          const leaf = document.createElement('div');
+          const depth = Math.random();
+          const depthClass = depth < 0.5 ? 'leaf-back' : '';
+          leaf.className = 'leaf ' + depthClass;
+          const size = depthClass === 'leaf-back' ? (16 + Math.random()*12) : (20 + Math.random()*16);
+          const startLeft = Math.random() * 100;
+          const fallDuration = 16 + Math.random() * 12;
+          const swayDuration = 3 + Math.random() * 3;
+          const delay = Math.random() * fallDuration * -1;
+          leaf.style.cssText = `left:${startLeft}%; top:-10%; width:${size}px; height:${size}px; opacity:.5; animation-duration:${fallDuration}s, ${swayDuration}s; animation-delay:${delay}s, ${Math.random()*-3}s;`;
+          leaf.innerHTML = leafSVGs[Math.floor(Math.random()*leafSVGs.length)];
+          kl.appendChild(leaf);
+        }
+      }
+    })();
+  </script>
+
+  <script>
+    // Data informasi terkurasi — sama persis dengan yang dipakai di informasi.html
+    // Isi paragraf masih ditulis sementara, akan disesuaikan lagi oleh tim copywriting.
+    window.CURATED_DATA = [
+    /* ═══════════════════════════════════════════════════════════════════════
+       DATA ARTIKEL INFORMASI DESA
+       Dipakai bersama oleh informasi.html (daftar kartu) & halaman ini (isi artikel).
+
+       CARA MENAMBAH ARTIKEL BARU
+       ──────────────────────────
+       Salin blok di bawah ini ke bagian kategori yang sesuai:
+
+         { id: 'kategori-nama-dusun', nama: 'Judul Artikel', cat: 'kategori',
+           dusun: 'Krajan', foto: 'images/NamaFoto.jpg',
+           ringkas: 'Satu kalimat ringkasan untuk kartu.',
+           paragraf: [
+             { img: 'images/Foto1.jpg', caption: 'Keterangan foto' },   <- foto
+             "Paragraf pertama...",                                     <- teks
+             { img: 'images/Foto2.jpg', caption: 'Keterangan foto' },
+             "Paragraf kedua..."
+           ] },
+
+       CARA MENAMBAH FOTO
+       ──────────────────
+       - `foto:`  = foto utama (tampil di header artikel + jadi thumbnail kartu).
+       - Di dalam `paragraf:` boleh dicampur teks (string) dan foto ({ img, caption }).
+         Urutannya persis seperti yang akan tampil, jadi bisa disusun mengikuti
+         tata letak dokumen aslinya: foto - paragraf - foto - paragraf.
+       - Kalau blok foto PERTAMA sama dengan `foto:` utama, foto itu tidak
+         ditampilkan dua kali — captionnya otomatis dipindah ke bawah foto header.
+       - Nama file harus sama persis dengan yang ada di folder /images
+         (huruf besar-kecil ikut dibaca saat online). Kalau file tidak ada,
+         fotonya otomatis disembunyikan, tidak jadi gambar rusak.
+
+       Semua artikel dikelompokkan per kategori di bawah ini.
+       ═══════════════════════════════════════════════════════════════════════ */
+
+      /* ───────────────────────────────────────────────────────────────────
+         🌾  PERTANIAN  (6 artikel)
+         ─────────────────────────────────────────────────────────────────── */
+
+      { id: 'pertanian-sengon-gondosuli', nama: "Alasan Warga Desa Gondosuli Beralih dari Jati ke Sengon", cat: 'pertanian', dusun: 'Berbagai Dusun', foto: 'images/lahanperkebunansengon.jpg',
+        ringkas: "Tanaman sengon menjadi salah satu komoditas perkebunan yang mulai populer sejak sekitar tahun 2005–2006.",
+        paragraf: [
+        { img: 'images/lahanperkebunansengon.jpg', caption: 'Foto Lahan Perkebunan Kayu Sengon, Desa Gondosuli' },
+        "Tanaman sengon menjadi salah satu komoditas perkebunan yang mulai populer sejak sekitar tahun 2005–2006. Sebelumnya, masyarakat lebih banyak membudidayakan tanaman kayu jati. Namun, seiring berjalannya waktu, banyak masyarakat mengalih fungsikan kebun jati menjadi kebun sengon karena dinilai lebih menguntungkan dan daya minat kayu jati dinilai mulai kurang diminati pembeli. Dibandingkan dengan kayu jati yang membutuhkan waktu puluhan tahun untuk dipanen, sengon dapat dipanen dalam waktu sekitar enam tahun apabila dirawat dengan baik sehingga mampu memberikan hasil ekonomi lebih cepat.",
+        "Budidaya tanaman kayu sengon tergolong mudah dengan biaya perawatan yang relatif rendah. Pada tahun pertama, tanaman memerlukan perawatan optimal berupa pemupukan dan pengendalian hama. Setelah melewati masa tersebut, tanaman hanya memerlukan pemantauan berkala hingga mencapai usia panen sekitar enam tahun, tergantung pada kualitas perawatan dan kondisi pertumbuhan tanaman. Tantangan utama dalam budidaya sengon adalah serangan hama dan penyakit, seperti ulat dan tumor, yang umumnya diatasi melalui perawatan serta pemberian pestisida sesuai kebutuhan.",
+        "Kayu sengon hasil panen sebagian besar dimanfaatkan hanya sebagai bahan baku industri triplek, jenis kayu ini tidak dapat dibuat perkakas karena keterbatasan keunggulan kualitas kayu tersebut, sedangkan ranting dan bagian kayu yang tidak dapat dimanfaatkan digunakan sebagai kayu bakar. Pemasaran hasil industri ini dilakukan melalui pengepul atau juragan setempat yang kemudian didistribusikan ke berbagai pabrik pengolahan di wilayah Lumajang, Malang, dan Maron Kraksaan. Nilai jual sengon cukup tinggi, tergantung pada ukuran pohon, kualitas kayu, serta akses lahan. Oleh karena itu, masyarakat memandang sengon sebagai investasi jangka panjang yang dapat dimanfaatkan untuk memenuhi kebutuhan ekonomi dalam jumlah besar."
+      ] },
+
+      { id: 'pertanian-tembakau-gondosuli', nama: "Tembakau sebagai Komoditas Andalan dalam Menggerakkan Perekonomian Pertanian Desa Gondosuli", cat: 'pertanian', dusun: 'Krajan, Karangduwek, Ranon & Durin', foto: 'images/Tembakau2.jpg',
+        ringkas: "Tembakau merupakan salah satu komoditas pertanian yang telah dibudidayakan secara turun-temurun oleh masyarakat Desa Gondosuli.",
+        paragraf: [
+        { img: 'images/Tembakau2.jpg', caption: 'Foto Lahan Pertanian Tembakau, Desa Gondosuli' },
+        "Tembakau merupakan salah satu komoditas pertanian yang telah dibudidayakan secara turun-temurun oleh masyarakat Desa Gondosuli. Tanaman ini masih ditanam setiap tahun di Dusun Krajan, Karangduwek, Ranon dan Durin. Sistem pengelolaan lahan tembakau ini beragam, mulai dari lahan milik sendiri, sistem bagi hasil, hingga sewa lahan yang biayanya sekitar Rp2.000.000 per tahun.",
+        "Pola tanam masyarakat di desa ini umumnya dilakukan secara bergiliran dari padi lalu tembakau kemudian jagung. Masa panen tanaman tembakau sekitar tiga bulan setelah masa tanam. Proses pengolahan lahan dilakukan menggunakan traktor, kemudian lahan tersebut dialiri air sebelum penanaman bibit. Selama masa pertumbuhan, tanaman memerlukan perawatan yang intensif berupa penyiraman, pemupukan secara bertahap, penyiangan gulma, dan penggemburan tanah.",
+        "Keunggulan hasil tembakau Desa Gondosuli terdapat pada warna daun yang lebih kuning dan aroma yang khas. Walaupun berat daun lebih ringan dibandingkan dengan tembakau dari daerah pesisir, keunggulan tersebut menjadi nilai tambahan yang banyak dicari pembeli. Sebagian tembakau yang telah kering juga dipasarkan untuk bahan gambir atau tembakau merah untuk nginang.",
+        "Hasil panen dipasarkan dengan dua jalur, yang pertama dijual langsung ke pabrik pengolahan seperti Gudang Garam, PBG Kraksaan, Djarum dan Sampoerna. Sebelum diterima biasanya petani mengirimkan sekitar satu kuintal tembakau sebagai sampel untuk uji kualitas tembakau. Harga tembakau kering berkisar antara Rp60.000 sampai dengan Rp70.000 per kilogram atau bahkan lebih tinggi jika kualitasnya terbaik. Jalur yang kedua melalui pengepul setempat. Kegiatan pengepulan tembakau berkembang di salah satu dusun di Desa ini, yakni Dusun Karangduwek.",
+        "Hasil tembakau memberikan kontribusi penting terhadap perekonomian masyarakat, namun budidaya ini juga menghadapi berbagai tantangan, seperti mahalnya biaya bibit dan pupuk, serangan ulat dan hama serta resiko kerusakan tembakau akibat curah hujan. Curah hujan yang berlebih dapat menurunkan kualitas atau bahkan sampai mematikan tanaman. Oleh karena itu, keberhasilan kualitas tembakau sangat dipengaruhi oleh kondisi cuaca. Namun, berbekal pengalaman yang telah dimiliki serta jaringan pemasaran yang terbentuk, sektor pertanian tanaman ini menjadi salah satu penggerak utama ekonomi Desa."
+      ] },
+
+      { id: 'pertanian-budidaya-lele-krajan', nama: "Budidaya Lele Menjadi Komoditas Baru yang Menjanjikan di Desa Gondosuli", cat: 'pertanian', dusun: 'Krajan', foto: 'images/budidayalele.jpg',
+        ringkas: "Usaha budidaya lele ini mulai dirintis pada 7 Januari 2026.",
+        paragraf: [
+        { img: 'images/budidayalele.jpg', caption: 'Foto Budidaya Lele, Desa Gondosuli' },
+        "Usaha budidaya lele ini mulai dirintis pada 7 Januari 2026. Awal mula usaha ini dirintis bermula dari percakapan antara pemilik usaha dengan seorang teman yang sedang membudidayakan lele. Hasil percakapan tersebut kemudian muncul ide untuk mengembangkan budidaya lele dalam skala yang lebih besar. Perkembangan usaha ini dimulai hanya dengan satu kolam berukuran sekitar 1x2 meter yang diisi hanya 700 ekor lele, kemudian berkembang sampai sekarang sudah menambah 2 kolam dengan kapasitas kurang lebih 7.000 ekor lele.",
+        "Produk yang ditawarkan dalam usaha ini meliputi lele hidup, lele bersih dan lele siap saji, dengan produk yang paling banyak diminati pelanggan adalah lele bersih. Sebelum dipasarkan kepada pembeli, lele yang siap panen disortir, dibersihkan, kemudian pelanggan yang telah memesan sebelumnya akan dihubungi. Sebagian besar pelanggan berasal dari masyarakat sekitar desa.",
+        "Pengelolaan budidaya lele ini dilakukan hanya dua orang tanpa melibatkan masyarakat sekitar atau anggota keluarga. Selain melayani penjualan secara langsung, pemasaran juga dilakukan melalui media sosial sehingga informasi yang berkaitan dengan produk lebih mudah menjangkau konsumen. Adanya usaha ini memudahkan masyarakat memperoleh kebutuhan ikan lele tanpa harus membeli ke luar desa.",
+        "Walaupun tergolong usaha yang baru berkembang, usaha budidaya lele ini terus menunjukkan perkembangan yang baik. Kendala utama yang dihadapi dalam menjalankan usaha adalah keterbatasan peralatan, terutama pompa air (sanyo). Dalam pengembangan berikutnya, pelaku usaha berencana meningkatkan kapasitas peralatan tersebut agar proses produksi dapat berjalan lebih optimal."
+      ] },
+
+      { id: 'pertanian-gula-aren-gondosuli', nama: "Gula Aren Menjadi Andalan Usaha Berbasis Potensi Lokal Desa Gondosuli", cat: 'pertanian', dusun: 'Berbagai Dusun', foto: 'images/gulaaren.jpg',
+        ringkas: "Usaha produksi gula aren menjadi salah satu mata pencaharian masyarakat Desa Gondosuli yang masih dipertahankan hingga saat ini.",
+        paragraf: [
+        { img: 'images/gulaaren.jpg', caption: 'Foto Lahan Perkebunan Gula Aren, Desa Gondosuli' },
+        "Usaha produksi gula aren menjadi salah satu mata pencaharian masyarakat Desa Gondosuli yang masih dipertahankan hingga saat ini. Bahan baku utama gula aren yang digunakan bukan berasal dari lahan milik pribadi, sehingga pemilik usaha hanya mengelola saja. Meskipun tidak memiliki lahan pribadi, pengelolaan tersebut tetap menghasilkan produksi gula aren secara berkelanjutan.",
+        "Proses pembuatan gula aren dilakukan secara tradisional dan membutuhkan waktu yang cukup lama. Pengambilan nira dilakukan setiap hari, kemudian nira tersebut dimasak secara manual, biasanya proses pemasakan tersebut dimulai pada pagi hari sekitar pukul 07.00 hingga sore pukul 15.00 WIB. Selama proses pemasakan tersebut, nira direbus sampai mengental sebelum akhirnya dituangkan ke dalam cetakan agar membentuk gula aren.",
+        "Produksi gula aren dilakukan setiap hari dengan hasil sekitar 10 bungkus. Satu bungkus dipasarkan dengan harga Rp15.000 karena jumlah proses produksi terbatas, hasil olahan gula aren dipasarkan kepada pedagang di pasar yang kemudian dijual kembali kepada konsumen. Walaupun hasil pembuatan gula aren terbatas, produksi ini tetap dipertahankan sebagai salah satu bentuk pemanfaatan potensi lokal sekaligus sumber pendapatan bagi keluarga yang mengelola."
+      ] },
+
+      { id: 'pertanian-jamur-tiram-krajan', nama: "Budidaya Jamur Tiram Dukung Perekonomian Keluarga di Desa Gondosuli", cat: 'pertanian', dusun: 'Krajan', foto: 'images/budidayajamurtiram.jpg',
+        ringkas: "Budidaya jamur tiram merupakan salah satu usaha warga Desa Gondosuli yang mulai dikembangkan pada pertengahan tahun ini, lebih tepatnya sejak 7 Juni 2026.",
+        paragraf: [
+        { img: 'images/budidayajamurtiram.jpg', caption: 'Foto Budidaya Jamur Tiram, Dusun Krajan, Desa Gondosuli' },
+        "Budidaya jamur tiram merupakan salah satu usaha warga Desa Gondosuli yang mulai dikembangkan pada pertengahan tahun ini, lebih tepatnya sejak 7 Juni 2026. Walaupun tergolong baru, usaha ini mendapatkan tanggapan positif dari masyarakat sekitar, dengan melihat jumlah peminat yang terus meningkat. Komoditas utama yang dihasilkan ialah jamur tiram segar yang diperjualbelikan untuk memenuhi kebutuhan konsumen lokal.",
+        "Awal mula proses produksi dilaksanakan dengan menanam bibit jamur tiram yang dilakukan rutin setiap hari, hal tersebut dilakukan agar hasil panen yang diperoleh tetap berkelanjutan. Seluruh kegiatan budidaya jamur dijalankan oleh anggota keluarga, sehingga usaha ini menjadi sebuah bentuk pemberdayaan ekonomi keluarga. Pelanggan jamur tiram ini berasal dari warga sekitar rumah produksi sampai pedagang di pasar. Selain transaksi secara langsung, pemasaran juga dilakukan melalui media sosial dengan memanfaatkan fitur Status pada aplikasi WhatsApp, sehingga jangkauan pemasaran menjadi lebih luas.",
+        "Usaha budidaya jamur tiram membawa pengaruh terhadap perekonomian. Hal tersebut karena usaha ini sebagai sumber penghidupan keluarga, usaha budidaya jamur tiram ini memberikan kontribusi yang besar terhadap perekonomian rumah tangga. Dengan meningkatnya minat pelanggan, usaha ini memberikan potensi untuk terus berkembang dan menjadi salah satu usaha unggulan di bidang pertanian di Desa ini."
+      ] },
+
+      { id: 'pertanian-kacang-panjang-terong-gondosuli', nama: "Perkebunan Kacang Panjang dan Terong Perkuat Penghidupan Warga Desa Gondosuli", cat: 'pertanian', dusun: 'Berbagai Dusun', foto: 'images/kacangterong.jpg',
+        ringkas: "Perkebunan kacang panjang dan terong milik salah satu warga Desa Gondosuli ini menjadi salah satu usaha pertanian yang menopang perekonomian keluarga.",
+        paragraf: [
+        { img: 'images/kacangterong.jpg', caption: 'Foto Lahan Perkebunan Kacang Panjang dan Terong, Desa Gondosuli' },
+        "Perkebunan kacang panjang dan terong milik salah satu warga Desa Gondosuli ini menjadi salah satu usaha pertanian yang menopang perekonomian keluarga. Awalnya, lahan ini ditanami jagung kemudian mulai tahun ini dialihkan menjadi perkebunan kacang panjang dan terong. Selain kebun tersebut, keluarga ini juga mengelola lahan lain yang ditanami tembakau sebagai bagian dari usaha pertanian mereka.",
+        "Budidaya sayur ini dilakukan secara mandiri oleh pasangan suami istri tanpa bantuan dari pemerintah. Tanaman yang dibudidayakan merupakan jenis kacang panjang dan terong lokal dengan masa panen sekitar dua bulan. Setiap hari hasil panen berkisar antara 2-5 kilogram, kemudian diperjualkan kepada warga sekitar, sementara sisanya dipasarkan ke pasar tradisional dengan harga sekitar Rp5.000 per kilogram.",
+        "Dalam proses budidaya, musim hujan dinilai lebih menguntungkan pertumbuhan tanaman dibandingkan dengan musim kemarau yang membutuhkan perawatan lebih intensif. Salah satu kendala yang dihadapi adalah serangan hama, sehingga tanaman perlu disemprot pestisida secara berkala setiap satu sampai dua minggu. Selain itu, kebutuhan pupuk yang dibutuhkan selama masa perawatan juga ditanggung secara mandiri oleh petani.",
+        "Melalui pengelolaan yang dilakukan secara konsisten, usaha perkebunan sayur ini menjadi sumber penghidupan bagi keluarga. Walaupun masih menghadapi berbagai macam tantangan dalam budidaya, usaha ini terus dipertahankan sebagai salah satu potensi dari sektor pertanian yang dapat berkontribusi terhadap pemenuhan kebutuhan pangan dan perekonomian keluarga."
+      ] },
+
+      /* ───────────────────────────────────────────────────────────────────
+         📚  PENDIDIKAN  (9 artikel)
+         ─────────────────────────────────────────────────────────────────── */
+
+      { id: 'pendidikan-bahrul-ulum-durin', nama: 'Pendidikan Formal dan Keagamaan di Bawah Naungan Yayasan Bahrul Ulum Desa Gondosuli', cat: 'pendidikan', dusun: 'Durin', foto: 'images/MI Bahrul Ulum.jpg',
+        ringkas: 'Yayasan Bahrul Ulum merupakan lembaga pendidikan di Dusun Durin yang menaungi pendidikan formal dan keagamaan.',
+        paragraf: [
+        { img: 'images/MI Bahrul Ulum.jpg', caption: 'Foto Yayasan Bahrul Ulum, Dusun Durin, Desa Gondosuli' },
+        'Yayasan Bahrul Ulum merupakan lembaga pendidikan di Dusun Durin yang menaungi pendidikan formal dan keagamaan. Yayasan ini berdiri sejak tahun 2013 dan pada awalnya merupakan cabang dari MA Miftahul Ulum Pakuniran, sebelum kemudian mengurus perizinan secara mandiri. Saat ini, Yayasan Bahrul Ulum memiliki berbagai jenjang pendidikan, mulai dari PAUD, RA, MI, MTs, MA, Madin, hingga TPQ.',
+        'Berdirinya yayasan berawal dari kebutuhan masyarakat terhadap akses pendidikan yang lebih dekat dan terjangkau. Melalui kegiatan kerja bakti dan musyawarah bersama pemerintah desa serta tokoh masyarakat, Bapak Masyhuri Arifin ditunjuk sebagai Ketua Yayasan untuk mengelola lembaga pendidikan tersebut. Kegiatan pendidikan diawali dengan TPQ, PAUD, dan Madin sebelum berkembang menjadi lembaga pendidikan formal.',
+        'Kegiatan pembelajaran di Yayasan Bahrul Ulum memadukan pendidikan formal dengan pembiasaan keagamaan. Setiap pagi peserta didik mengikuti pembacaan Maulid Simtudduror, istighosah, dan salat Dhuha sebelum belajar di kelas, sedangkan Madrasah Diniyah dilaksanakan pada sore hari dengan fokus pada pendalaman ilmu agama. Selain pembelajaran utama, yayasan juga menyediakan kegiatan pendukung seperti pramuka, qiraah, kursus bahasa Inggris, dan pembinaan membaca kitab.',
+        'Perkembangan Yayasan Bahrul Ulum terlihat dari bertambahnya jenjang pendidikan, meningkatnya jumlah tenaga pendidik, serta dukungan masyarakat dan pemerintah dalam pembangunan fasilitas secara gotong royong. Bentuk dukungan dari masyarakat berupa tenaga, bahan bangunan, dan dari pemerintah berupa ruang kelas. Dengan adanya dukungan masyarakat dan pemerintah, Yayasan Bahrul Ulum diharapkan terus menjadi lembaga pendidikan yang bermanfaat bagi generasi muda Desa Gondosuli.'
+        ] },
+
+      { id: 'pendidikan-hidayatul-ummah-karangduwek', nama: 'Pendidikan Berjenjang di Yayasan Hidayatul Ummah Desa Gondosuli', cat: 'pendidikan', dusun: 'Karangduwek', foto: 'images/Madrasah Nurul Yaqien.jpg',
+        ringkas: 'Pendidikan formal dan keagamaan di Dusun Karangduwek berkembang melalui keberadaan Yayasan Hidayatul Ummah yang menjadi salah satu lembaga pendidikan penting di wilayah tersebut.',
+        paragraf: [
+        { img: 'images/Madrasah Nurul Yaqien.jpg', caption: 'Foto Yayasan Hidayatul Ummah, Dusun Karangduwek, Desa Gondosuli' },
+        'Pendidikan formal dan keagamaan di Dusun Karangduwek berkembang melalui keberadaan Yayasan Hidayatul Ummah yang menjadi salah satu lembaga pendidikan penting di wilayah tersebut. Yayasan ini menaungi beberapa jenjang pendidikan, yaitu TK Hidayatul Ummah, SD Islam Hidayatul Ummah, SMP Islam Hidayatul Ummah, dan Madrasah Diniyah Nurul Yaqien. Keberadaan berbagai jenjang tersebut memberikan kesempatan bagi anak-anak untuk memperoleh pendidikan berkelanjutan sejak usia dini hingga tingkat menengah.',
+        'TK Hidayatul Ummah berdiri pada tahun 2013 dan memiliki 23 peserta didik yang didampingi oleh dua tenaga pendidik. Kegiatan pembelajaran dilaksanakan setiap hari Senin hingga Sabtu dengan memadukan pembelajaran akademik, pengembangan motorik, salat Duha, mengaji metode Tartila, pembelajaran Asmaul Husna, serta kegiatan menari. Jenjang berikutnya adalah SD Islam Hidayatul Ummah yang berdiri sejak tahun 2005 dengan 47 peserta didik dan sembilan tenaga pendidik, serta didukung oleh enam ruang kelas dan perangkat pembelajaran seperti Chromebook.',
+        'Pada jenjang pendidikan menengah, Yayasan Hidayatul Ummah menaungi SMP Islam Hidayatul Ummah yang berdiri pada tahun 2009. Sekolah ini memiliki tujuh tenaga pendidik dengan enam peserta didik yang berasal dari Dusun Karangduwek, serta didukung fasilitas seperti televisi digital, LCD, proyektor, dan buku paket pembelajaran. Selain pembelajaran di kelas, sekolah juga melaksanakan kegiatan Pramuka bersama jenjang SD.',
+        'Madrasah Diniyah di bawah naungan Yayasan Hidayatul Ummah telah berdiri sejak sekitar tahun 1950-an dan melayani sekitar 50 santri dengan dukungan delapan tenaga pengajar. Pembelajaran dilaksanakan setiap hari kecuali Jumat dengan materi seperti Al-Qur\'an, Tajwid, Fiqih, Bahasa Arab, Tauhid, Akhlak, Hadis, dan praktik ibadah. Melalui perpaduan pendidikan formal dan keagamaan, Madrasah Diniyah Nurul Yaqien terus berupaya meningkatkan kualitas pendidikan dengan dukungan masyarakat, tenaga pendidik, dan berbagai pihak terkait.'
+        ] },
+
+      { id: 'pendidikan-mi-hidayatul-amin-kletek', nama: 'Madrasah Ibtidaiyah Hidayatul Amin dalam Menyelenggarakan Pendidikan Formal dan Keagamaan di Dusun Kletek', cat: 'pendidikan', dusun: 'Kletek', foto: 'images/SMP Hidayatul Amin.jpg',
+        ringkas: 'Pendidikan formal dan keagamaan di Dusun Kletek berkembang melalui keberadaan Madrasah Ibtidaiyah Hidayatul Amin.',
+        paragraf: [
+        { img: 'images/SMP Hidayatul Amin.jpg', caption: 'Foto Madrasah Ibtidaiyah Hidayatul Amin, Dusun Kletek, Desa Gondosuli' },
+        'Pendidikan formal dan keagamaan di Dusun Kletek berkembang melalui keberadaan Madrasah Ibtidaiyah Hidayatul Amin. Lembaga ini berawal dari Madrasah Diniyah yang telah berdiri sekitar 20 tahun, kemudian dilanjutkan dengan penyelenggaraan pendidikan formal yang telah berjalan kurang lebih 18 tahun. Madrasah Ibtidaiyah Hidayatul Amin merupakan lembaga pendidikan yang diwariskan dalam keluarga dan terus dikelola untuk memenuhi kebutuhan pendidikan masyarakat sekitar.',
+        'Madrasah Ibtidaiyah Hidayatul Amin menyelenggarakan pendidikan formal dan Madrasah Diniyah secara berdampingan. Pada jenjang formal, lembaga ini melayani PAUD dan Madrasah Ibtidaiyah hingga kelas III dengan kegiatan belajar setiap hari pukul 07.00–10.00 WIB. Jumlah peserta didik PAUD sebanyak 15 peserta didik, sedangkan Madrasah Diniyah diikuti oleh 35 peserta didik. Seluruh layanan pendidikan diberikan secara gratis, termasuk pembagian seragam sekolah setiap tahun.',
+        'Pendidikan keagamaan menjadi bagian penting dalam pembelajaran di Madrasah Ibtidaiyah Hidayatul Amin. Kegiatan Madrasah Diniyah dilaksanakan setiap hari Senin hingga Kamis dengan materi bahasa Arab, Nahwu, dan Hadis, sedangkan TPQ dilaksanakan setiap hari Sabtu dan Minggu dengan pembelajaran membaca Al-Qur\'an, tartil, dan menulis huruf Arab. Pembelajaran diberikan secara bertahap sesuai kemampuan peserta didik, terutama pada kelas awal, sehingga proses belajar dapat berlangsung dengan baik.',
+        'Selain pembelajaran di kelas, Madrasah Ibtidaiyah Hidayatul Amin juga mendukung kegiatan keagamaan masyarakat melalui sarweh yang rutin dilaksanakan pada malam Jumat di masjid dan mushola. Fasilitas pembelajaran sebagian besar dipenuhi secara mandiri oleh lembaga, sementara pendidikan formal memperoleh bantuan BOP dari pemerintah dan dukungan berupa bantuan beras dari pemerintah desa. Melalui penyelenggaraan pendidikan formal dan keagamaan yang berjalan berdampingan, Madrasah Ibtidaiyah Hidayatul Amin diharapkan dapat terus menjadi ruang belajar yang mendukung perkembangan akademik dan pemahaman keagamaan peserta didik.'
+        ] },
+
+      { id: 'pendidikan-sdn-gondosuli-4-kletek', nama: 'Perkembangan SDN Gondosuli IV dalam Mendukung Pendidikan Dasar di Kletek', cat: 'pendidikan', dusun: 'Kletek', foto: 'images/SDN Gondosuli 4.jpg',
+        ringkas: 'Keberadaan SDN Gondosuli IV menjadi bagian penting dalam mendukung pendidikan dasar bagi anak-anak di Dusun Kletek.',
+        paragraf: [
+        { img: 'images/SDN Gondosuli 4.jpg', caption: 'Foto SDN Gondosuli IV, Dusun Kletek, Desa Gondosuli' },
+        'Keberadaan SDN Gondosuli IV menjadi bagian penting dalam mendukung pendidikan dasar bagi anak-anak di Dusun Kletek. Sekolah yang berdiri sejak tahun 1994 ini memiliki 46 peserta didik dengan dukungan 11 tenaga pendidik dan kependidikan, termasuk kepala sekolah. Sebagian besar siswa berasal dari Kletek Atas dan masih berjalan kaki menuju sekolah, sehingga pihak sekolah memberikan toleransi keterlambatan hingga pukul 07.30 WIB. Semangat siswa untuk tetap bersekolah menjadi hal yang paling disyukuri oleh pihak sekolah.',
+        'Kegiatan belajar mengajar di SDN Gondosuli IV berlangsung setiap hari hingga pukul 12.00 WIB. Jadwal tersebut disesuaikan agar peserta didik tetap memiliki waktu untuk mengikuti pendidikan di madrasah diniyah pada siang hari. Saat ini, sekolah memfokuskan pembelajaran pada penguatan kemampuan dasar siswa, terutama membaca, menulis, dan berhitung sebagai bekal utama dalam pendidikan dasar.',
+        'Perkembangan sekolah semakin terlihat dalam empat tahun terakhir sejak kepemimpinan kepala sekolah saat ini. Berbagai pembenahan dilakukan, seperti peningkatan kedisiplinan siswa, penataan aset sekolah, serta pengadaan fasilitas pembelajaran berupa laptop untuk guru dan televisi sebagai media belajar. Dana BOS Reguler dan BOS Kinerja dimanfaatkan untuk mendukung operasional sekolah, meningkatkan sarana prasarana, serta membantu peserta didik yang kurang mampu. Melalui berbagai upaya tersebut, SDN Gondosuli IV terus menunjukkan komitmennya dalam mendukung peningkatan kualitas pendidikan dasar bagi masyarakat Dusun Kletek.'
+        ] },
+
+      { id: 'pendidikan-madin-darussalam-pakes', nama: 'Madrasah Diniyah Darussalam Sebagai Wadah Pendidikan Keagamaan di Dusun Pakes', cat: 'pendidikan', dusun: 'Pakes', foto: 'images/Madin Darussalam.jpg',
+        ringkas: 'Madrasah Diniyah Darussalam merupakan lembaga pendidikan keagamaan yang berperan penting dalam membentuk karakter religius anak-anak di Dusun Pakes.',
+        paragraf: [
+        { img: 'images/Madin Darussalam.jpg', caption: 'Foto Madrasah Diniyah Darussalam, Dusun Pakes, Desa Gondosuli' },
+        'Madrasah Diniyah Darussalam merupakan lembaga pendidikan keagamaan yang berperan penting dalam membentuk karakter religius anak-anak di Dusun Pakes. Lembaga ini berdiri sejak tahun 2006 atas inisiatif masyarakat yang menginginkan adanya tempat pendidikan agama bagi anak-anak di lingkungan tersebut. Pada tahun 2007, Madrasah Diniyah Darussalam resmi memperoleh piagam dari pihak dewan sebagai pengakuan atas keberadaannya. Perkembangan madrasah ini mengalami beberapa tahap, dimulai dengan berdirinya bangunan atas pada tahun 2007 sebagai fasilitas utama pembelajaran. Dilanjut pada tahun 2011, dibangun bangunan bawah sebagai tambahan ruang belajar.',
+        'Saat ini, Madrasah Diniyah Darussalam memiliki 38 siswa yang berasal dari Dusun Pakes, Dusun Durin, dan wilayah sekitar Desa Gondosuli, dengan jenjang pendidikan dari TK hingga kelas 6 SD. Proses pembelajaran didukung oleh lima orang guru yang salah satunya merupakan lulusan madrasah tersebut dan mengampu mata pelajaran seperti Fiqih, Sirah Nabi, Aqidatul Awam, dan Nahwu Jurumiyah. Kurikulum yang digunakan mengikuti kurikulum Al-Miftah dari Sidogiri, sehingga siswa tidak hanya belajar membaca kitab, tetapi juga memahami dasar-dasar ilmu agama. Kegiatan belajar mengajar dilaksanakan setiap hari mulai pukul 14.00 - 17.00 WIB, kemudian dilanjutkan dengan kegiatan mengaji setelah Ashar dan ba\'da Maghrib. Dengan dukungan masyarakat dan semangat para guru, Madrasah Diniyah Darussalam diharapkan terus menjadi wadah pendidikan keagamaan yang mampu mencetak generasi muda yang berilmu dan berakhlak baik.'
+        ] },
+
+      { id: 'pendidikan-madin-takmiliyah-mubtadiin-krajan', nama: 'Peran Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadiin di Dusun Krajan', cat: 'pendidikan', dusun: 'Krajan', foto: 'images/Madin Takmiliyah ula.jpg',
+        ringkas: 'Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadiin merupakan lembaga pendidikan keagamaan yang berperan penting dalam membentuk karakter anak-anak di Dusun Krajan.',
+        paragraf: [
+        { img: 'images/Madin Takmiliyah ula.jpg', caption: 'Foto Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadiin Dusun Krajan, Desa Gondosuli' },
+        'Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadiin merupakan lembaga pendidikan keagamaan yang berperan penting dalam membentuk karakter anak-anak di Dusun Krajan. Madrasah ini menjadi tempat bagi anak-anak untuk belajar agama Islam sejak usia dini. Selain itu, madrasah juga membiasakan santri untuk memiliki akhlak yang baik dan perilaku positif dalam kehidupan sehari-hari.',
+        'Madrasah ini telah lama dirintis oleh masyarakat setempat dan sejak tahun 2019 menempati lokasi baru di Dusun Krajan. Sebelumnya, kegiatan pembelajaran dilaksanakan di tempat lain sebelum dipindahkan ke lokasi yang sekarang. Meskipun mengalami perpindahan tempat, madrasah tetap aktif menyelenggarakan pendidikan keagamaan bagi anak-anak di lingkungan sekitar.',
+        'Kegiatan belajar mengajar dilaksanakan setiap hari mulai pukul 12.30–15.00 WIB. Madrasah memiliki jenjang kelas dari kelas 1 sampai kelas 6, sehingga santri dapat belajar sesuai dengan tingkat kemampuannya. Materi yang diajarkan meliputi dasar-dasar agama Islam serta hafalan Al-Quran sebagai bekal bagi santri yang ingin melanjutkan pendidikan ke pondok pesantren.',
+        'Saat ini, madrasah memiliki 12 tenaga pendidik dan 90 santri yang mengikuti pembelajaran setiap hari. Jumlah tersebut menunjukkan bahwa madrasah mendapat kepercayaan dan dukungan yang baik dari masyarakat Dusun Krajan. Para orang tua secara sukarela mengikutsertakan anak-anak mereka untuk belajar di madrasah.',
+        'Fasilitas yang tersedia meliputi ruang kelas, bangku, buku, dan papan tulis yang masih menggunakan kapur. Sarana tersebut cukup mendukung proses belajar mengajar, meskipun masih terdapat keterbatasan lahan dan ruang kelas. Oleh karena itu, pihak madrasah berencana menambah ruang kelas dan memperbaiki kondisi gedung agar pembelajaran dapat berlangsung lebih nyaman.',
+        'Madrasah juga menjalin hubungan yang baik dengan Pemerintah Desa Gondosuli dalam pelaksanaan kegiatan pendidikan. Koordinasi dengan pemerintah desa dilakukan agar kegiatan madrasah berjalan sesuai dengan ketentuan yang berlaku. Dengan dukungan masyarakat dan pemerintah desa, madrasah diharapkan terus berkembang dan memberikan manfaat bagi pendidikan keagamaan di Dusun Krajan.'
+        ] },
+
+      { id: 'pendidikan-ypi-miftahul-hasanah-krajan', nama: 'Mengembangkan Pendidikan Berbasis Keagamaan Bersama YPI Miftahul Hasanah', cat: 'pendidikan', dusun: 'Krajan', foto: 'images/YPI Nurul Hasanah.jpeg',
+        ringkas: 'YPI Miftahul Hasanah menjadi salah satu lembaga pendidikan berbasis keagamaan yang memiliki peran penting dalam perkembangan pendidikan di Dusun Krajan.',
+        paragraf: [
+        { img: 'images/YPI Nurul Hasanah.jpeg', caption: 'Foto YPI Miftahul Hasanah, Dusun Krajan, Desa Gondosuli' },
+        'YPI Miftahul Hasanah menjadi salah satu lembaga pendidikan berbasis keagamaan yang memiliki peran penting dalam perkembangan pendidikan di Dusun Krajan. YPI Miftahul Hasanah berupaya membentuk generasi yang tidak hanya memiliki kemampuan akademik, tetapi juga berakhlak baik. Antusiasme masyarakat terhadap yayasan ini terlihat dari kepercayaan para orang tua yang menyekolahkan anaknya di lingkungan pendidikan tersebut.',
+        'YPI Miftahul Hasanah telah berdiri sekitar tahun 1980-an dan terus berkembang hingga saat ini. Lembaga yang pertama dibangun adalah Madrasah Ibtidaiyah pada tahun 1982, kemudian disusul dengan berdirinya Raudhatul Athfal, Madrasah Tsanawiyah, dan Madrasah Aliyah. Perkembangan YPI Miftahul Hasanah menunjukkan adanya komitmen yayasan dalam memperluas akses pendidikan bagi masyarakat Desa Gondosuli. Dari yang awalnya hanya memiliki dua ruang kelas, kini yayasan telah memiliki beberapa jenjang pendidikan yang dapat diikuti oleh peserta didik sesuai dengan tingkat usianya. YPI Miftahul Hasanah tidak hanya memberikan pendidikan formal, tetapi juga menanamkan nilai-nilai keagamaan dalam setiap kegiatan pembelajaran.',
+        'Dalam menunjang kegiatan belajar mengajar, beberapa fasilitas seperti ruang multimedia, laboratorium komputer, buku-buku penunjang pembelajaran, serta lapangan yang berada di sebelah utara yayasan. Ruang multimedia telah berfungsi menjadi salah satu fasilitas yang mendukung proses pembelajaran modern. Selain itu, yayasan tidak hanya menyediakan layanan pendidikan, tetapi juga berkontribusi dalam membentuk karakter religius generasi muda. Dengan dukungan masyarakat, wali murid, alumni, dan berbagai pihak terkait, YPI Miftahul Hasanah diharapkan dapat terus meningkatkan kualitas pendidikan serta melahirkan generasi berilmu, berakhlak, dan bermanfaat bagi masyarakat.'
+        ] },
+
+      { id: 'pendidikan-tk-pgri-krajan', nama: 'Mendukung Pendidikan Anak Usia Dini di TK PGRI Desa Gondosuli', cat: 'pendidikan', dusun: 'Krajan', foto: 'images/TK PGRI Gondosuli.jpg',
+        ringkas: 'Pendidikan anak usia dini di Desa Gondosuli semakin terbantu dengan adanya TK PGRI Gondosuli sebagai tempat belajar bagi anak-anak sebelum memasuki sekolah dasar.',
+        paragraf: [
+        { img: 'images/TK PGRI Gondosuli.jpg', caption: 'Foto TK PGRI Gondosuli, Dusun Krajan' },
+        'Pendidikan anak usia dini di Desa Gondosuli semakin terbantu dengan adanya TK PGRI Gondosuli sebagai tempat belajar bagi anak-anak sebelum memasuki sekolah dasar. Sekolah ini berdiri sejak tahun 1984 karena pada saat itu belum terdapat taman kanak-kanak di Desa Gondosuli. Hingga saat ini, TK PGRI Gondosuli tetap aktif menjadi pilihan masyarakat dalam memberikan pendidikan awal bagi anak-anak mereka.',
+        'Perjalanan TK PGRI Gondosuli mengalami beberapa perkembangan, termasuk pergantian kepala sekolah sebanyak tiga kali. Kepala sekolah yang saat ini menjabat telah memimpin sejak tahun 2019 selama delapan tahun. Pada awal berdiri, jumlah peserta didik hanya sekitar 15 anak, sedangkan saat ini telah meningkat menjadi 35 anak dengan dukungan enam tenaga pendidik.',
+        'Kegiatan belajar mengajar di TK PGRI Gondosuli dilaksanakan menggunakan perangkat pembelajaran seperti RPPH dan RPPM. Sekolah juga mulai menerapkan kurikulum deep learning, meskipun para guru masih menghadapi kendala dalam memahami penerapannya secara menyeluruh. Walaupun demikian, proses pembelajaran tetap berjalan sesuai dengan program yang telah disusun oleh sekolah.',
+        'Dalam bidang prestasi, TK PGRI Gondosuli pernah meraih penghargaan pada lomba Agustus tingkat kecamatan, yaitu lomba puisi dan lomba dingklik. Sekolah ini belum memiliki kegiatan ekstrakurikuler, tetapi kegiatan pembelajaran utama tetap dilaksanakan dengan baik. Antusiasme masyarakat terhadap sekolah cukup tinggi, terlihat dari banyaknya orang tua yang mempercayakan pendidikan anak-anaknya di TK PGRI Gondosuli, termasuk peserta didik yang berasal dari Dusun Durin. Fasilitas yang tersedia di TK PGRI Gondosuli dinilai cukup memadai untuk menunjang kegiatan belajar mengajar, baik bagi peserta didik maupun tenaga pendidik. Dengan dukungan tenaga pendidik, fasilitas yang ada, serta kepercayaan masyarakat, TK PGRI Gondosuli terus berkomitmen mendukung pendidikan anak usia dini di Desa Gondosuli.'
+        ] },
+
+      { id: 'pendidikan-sdn-gondosuli-1-krajan', nama: 'Wujudkan Harapan Anak-Anak Desa Gondosuli, SDN Gondosuli 1 Tetap Eksis Hingga Kini', cat: 'pendidikan', dusun: 'Krajan', foto: 'images/SDN Gondosuli 1.jpeg',
+        ringkas: 'SDN Gondosuli 1 ialah lembaga pendidikan dasar negeri yang berada di Dusun Krajan dan berdiri sejak tahun 1956.',
+        paragraf: [
+        { img: 'images/SDN Gondosuli 1.jpeg', caption: 'Foto SDN Gondosuli 1, Dusun Krajan, Desa Gondosuli' },
+        "SDN Gondosuli 1 ialah lembaga pendidikan dasar negeri yang berada di Dusun Krajan dan berdiri sejak tahun 1956. Selama puluhan tahun, SDN Gondosuli 1 tetap menjadi tempat belajar bagi anak-anak di Desa Gondosuli dan masih aktif menyelenggarakan pendidikan dasar bagi masyarakat sekitar. Perkembangan SDN Gondosuli 1 dari awal berdiri hingga sekarang mengalami beberapa perubahan. Pada awalnya, terdapat tiga lembaga yang kemudian dijadikan dua sekolah, yaitu SDN Gondosuli 1 dan SDN Gondosuli IV. SDN Gondosuli 2 berada di dekat kantor desa yang beralih fungsi menjadi TK PGRI, sedangkan SDN Gondosuli 4 berada di Dusun Kletek.",
+        "SDN Gondosuli 1 memiliki 96 peserta didik dan didukung oleh 9 tenaga pendidik. Pada tahun ajaran ini, jumlah peserta didik baru yang diterima sebanyak 16 orang. Proses belajar mengajar di SDN Gondosuli 1 tidak jauh berbeda dengan lembaga pendidikan dasar negeri lainnya, dimulai pada pukul 07.00–12.30 WIB. Sekolah menerapkan sistem enam hari kerja dalam satu minggu.",
+        "Dalam kegiatan pengembangan peserta didik, SDN Gondosuli 1 saat ini memiliki kegiatan ekstrakurikuler pramuka yang masih aktif. Namun, sekolah memberi wadah bagi peserta didik yang memiliki prestasi agar berkembang sesuai dengan minat bakat yang dimiliki. Hal ini menjadi salah satu bentuk perhatian sekolah terhadap potensi peserta didik. Beberapa prestasi pernah diraih oleh SDN Gondosuli 1, baik di bidang akademik maupun non akademik. Pada bidang akademik, sekolah pernah meraih Juara Harapan 1 lomba Matematika tingkat kecamatan. Sementara pada bidang non akademik, siswa pernah mengikuti lomba lari marathon. Sekolah juga pernah mengikuti kegiatan Peringatan Hari Besar Nasional (PHBN) tingkat kecamatan dalam rangka peringatan Hari Kemerdekaan Republik Indonesia."
+        ] },
+
+      /* ───────────────────────────────────────────────────────────────────
+         🏪  UMKM & EKONOMI  (8 artikel)
+         ─────────────────────────────────────────────────────────────────── */
+
+      { id: 'umkm-hidroponik-krajan', nama: "Budidaya Hidroponik Berkembang dari Hobi hingga Menjadi Usaha Produktif", cat: 'umkm', dusun: 'Krajan', foto: 'images/Hidroponik Selada.jpg',
+        ringkas: "Budidaya Hidroponik merupakan usaha rumahan di bidang pertanian yang berada di Dusun Krajan dan mulai berdiri sejak tahun 2021.",
+        paragraf: [
+        { img: 'images/Hidroponik Selada.jpg', caption: 'Foto Budidaya Hidroponik, Dusun Krajan, Desa Gondosuli' },
+        "Budidaya Hidroponik merupakan usaha rumahan di bidang pertanian yang berada di Dusun Krajan dan mulai berdiri sejak tahun 2021. Berawal dari hobi dan latar belakang pendidikan pertanian, Ibu Alma selaku pemilik memiliki keinginan untuk mencoba budidaya tanaman hidroponik yang dilakukan secara mandiri di rumah. Pada awalnya, kegiatan hanya dilakukan untuk sekedar hobi, hingga saat ini budidaya hidroponik sudah mencapai skala produksi.",
+        "Produk yang ditawarkan dalam usaha budidaya hidroponik ini meliputi sawi, selada, kangkung, sawi pagoda, dan pakcoy. Proses budidaya dimulai dari tahap pembenihan yang benihnya diperoleh melalui pembelian secara online. Pelanggan dari usaha hidroponik ini berasal dari warga sekitar Dusun Krajan hingga jangkauan pelanggan yang paling jauh berasal dari Paiton. Pemasaran produk pada awalnya dipromosikan melalui media sosial, seiring berjalannya waktu, metode pemasaran beralih menjadi sistem door to door serta melalui kerjasama dengan para reseller. Usaha ini dijalankan dengan melibatkan anggota keluarga dan saudara untuk membantu proses pengelolaan. Usaha hidroponik ini cukup membantu perekonomian keluarga meskipun sumber penghasilan belum menjadi penghasilan utama dan hanya sebagai usaha sampingan."
+      ] },
+
+      { id: 'umkm-produksi-kopra-karangduwek', nama: "Industri Pengolahan Kelapa Menjadi Kopra sebagai Bahan Baku Minyak Kelapa", cat: 'umkm', dusun: 'Karangduwek', foto: 'images/Kelapa 1.jpg',
+        ringkas: "Kopra merupakan bahan baku dalam industri minyak kelapa yang berkembang di Dusun Karangduwek.",
+        paragraf: [
+        { img: 'images/Kelapa 1.jpg', caption: 'Foto Kopra di Dusun Karangduwek, Desa Gondosuli' },
+        "Kopra merupakan bahan baku dalam industri minyak kelapa yang berkembang di Dusun Karangduwek. Industri ini mulai dirintis pada tahun 2025 dengan awal usaha yang dilakukan dalam skala kecil, melalui usaha produksi arang dari batok kelapa. Produksi arang menjadi awal pemanfaatan kelapa sebagai bidang usaha yang mendatangkan sumber penghasilan. Seiring berjalannya waktu, usaha ini terus berkembang menjadi industri produksi kopra yang kini berjalan kurang lebih dua bulan.",
+        "Sebagian besar bahan baku kelapa yang digunakan untuk produksi kopra tidak berasal dari daerah sekitar, melainkan didatangkan dari luar Pulau Jawa, terutama dari daerah Lombok. Selain dari daerah Lombok, bahan baku kelapa juga didatangkan dari beberapa daerah seperti Bondowoso, Situbondo, dan Lumajang. Pemasokan bahan baku kelapa dari luar daerah menunjukkan bahwa produksi kopra telah berkembang menjadi industri dengan skala yang cukup besar, sehingga membutuhkan pemasokan bahan baku dari berbagai wilayah untuk memenuhi jumlah minimal supply setiap minggunya.",
+        "Proses produksi kopra dilakukan melalui beberapa tahapan. Tahap pertama adalah pembelahan kelapa, kemudian pada tahap kedua, kelapa dijemur dengan tujuan untuk mengurangi kadar air. Setelah melalui proses penjemuran, dilakukan proses pencungkilan kelapa untuk memisahkan daging dari tempurungnya. Tahap selanjutnya, yaitu proses pengasapan yang berfungsi untuk mengeringkan kelapa secara menyeluruh, serta meningkatkan ketahanan terhadap jamur maupun pembusukan. Setelah melewati seluruh tahapan produksi kopra, hasil produksi kemudian dikirim langsung ke pabrik pengolahan yang berada di Surabaya. Pengiriman kopra dilakukan secara rutin dengan kapasitas supply minimal enam ton setiap minggu."
+      ] },
+
+      { id: 'umkm-pengepul-tembakau-karangduwek', nama: "Berawal Dari Budidaya Tembakau, Menuju Usaha Pengepulan yang Terus Berkembang", cat: 'umkm', dusun: 'Karangduwek', foto: 'images/Pengepul Tembakau Pak Samsuddin.jpg',
+        ringkas: "Pengepul tembakau merupakan usaha yang dikelola oleh salah satu warga Dusun Karangduwek, yaitu Bapak Syamsudin.",
+        paragraf: [
+        { img: 'images/Pengepul Tembakau Pak Samsuddin.jpg', caption: 'Foto Hasil Panen dan Pengangkutan Hasil Panen Tembakau Dusun Karangduwek, Desa Gondosuli' },
+        "Pengepul tembakau merupakan usaha yang dikelola oleh salah satu warga Dusun Karangduwek, yaitu Bapak Syamsudin. Sebelum memulai usaha pengepulan tembakau, Bapak Syamsudin membudidayakan tanaman tembakau sejak tahun 2002. Pengalaman budidaya tembakau yang telah dilakukan selama bertahun-tahun membuat Bapak Syamsudin mulai merintis usaha sebagai pengepul tembakau secara bertahap yang sudah berjalan sekitar satu bulan.",
+        "Pengepulan tembakau dilakukan dengan sistem pengambilan secara langsung dari petani dalam kondisi tembakau yang sudah kering dan selanjutnya akan dikirim ke gudang. Dalam kurun waktu satu hari, proses pengepulan tembakau dapat mencapai empat kali pengiriman menggunakan mobil pick up dengan berat rata-rata satu ton tembakau setiap mobilnya. Tembakau dikemas menggunakan tikar dengan berat setiap gulungan mencapai tiga puluh kilogram dan bahkan bisa lebih. Kualitas tembakau yang bagus ditentukan melalui pengamatan tampilan fisik, tingkat kekeringan, serta aroma. Harga jual tembakau beragam tergantung kualitasnya, mulai dari harga terendah Rp30.000 per kilo, hingga harga tertinggi dari pabrik, Rp74.000 per kilo.",
+        "Selain menjalankan usaha pengepulan tembakau, Bapak Syamsudin juga menyewakan mesin rajang tembakau yang dimanfaatkan oleh para petani di sekitar Dusun Karangduwek. Dalam menjalankan usahanya, Bapak Syamsudin melibatkan anggota keluarga, saudara, serta masyarakat sekitar sebagai tenaga kerja. Keterlibatan warga sekitar memberikan manfaat ekonomi bagi masyarakat Dusun Karangduwek dan menunjukkan bahwa usaha pengepulan tembakau memiliki potensi untuk terus berkembang."
+      ] },
+
+      { id: 'umkm-kerupuk-pattolah-kletek', nama: "Mengolah Singkong Menjadi Usaha Kerupuk Pattolah Sebagai Peluang Ekonomi", cat: 'umkm', dusun: 'Kletek', foto: 'images/Produksi patolah.jpeg',
+        ringkas: "Kerupuk Pattolah merupakan salah satu produk olahan pangan yang diproduksi oleh masyarakat Dusun Kletek sebagai usaha sampingan.",
+        paragraf: [
+        { img: 'images/Produksi patolah.jpeg', caption: 'Foto Penjemuran dan Pencetakan Kerupuk Pattolah, Dusun Kletek, Desa Gondosuli' },
+        "Kerupuk Pattolah merupakan salah satu produk olahan pangan yang diproduksi oleh masyarakat Dusun Kletek sebagai usaha sampingan. Produksi pattolah dibuat menggunakan bahan baku singkong yang diperoleh dari pemasok karena bahan baku singkong tidak ditanam sendiri oleh masyarakat Dusun Kletek. Singkong kemudian diolah melalui beberapa tahapan hingga pada akhirnya menjadi camilan yang memiliki cita rasa khas.",
+        "Dalam satu hari, kapasitas produksi dapat mencapai sekitar 700 buah dengan harga jual Rp20.000 per 100 buah. Produk Pattolah dipasarkan melalui penjualan langsung kepada konsumen serta melalui pengepul yang datang langsung ke lokasi produksi. Dalam sekali pengambilan, jumlah pesanan dapat mencapai sekitar 500 hingga 1.000 bungkus, menunjukkan bahwa kerupuk pattolah memiliki permintaan yang cukup tinggi. Selain memproduksi Pattolah, masyarakat Dusun Kletek juga memproduksi keripik Kepeng dari bahan baku singkong. Meskipun masyarakat Dusun Kletek juga memproduksi Kerupuk Kepeng sebagai variasi olahan dari singkong, tingkat peminat produk Pattolah tetap lebih tinggi dibandingkan dengan produk keripik Kepeng, sehingga Pattolah menjadi produk usaha rumahan unggulan yang membuka peluang ekonomi bagi masyarakat Dusun Kletek."
+      ] },
+
+      { id: 'umkm-toko-bangunan-hindun-krajan', nama: "Jatuh Bangun Toko Bangunan Hindun Tetap Bertahan", cat: 'umkm', dusun: 'Krajan', foto: 'images/Toko Bangunan Hindun.jpg',
+        ringkas: "Toko Bangunan Hindun merupakan usaha yang menyediakan berbagai macam kebutuhan alat bangunan bagi masyarakat sekitar Dusun Krajan.",
+        paragraf: [
+        { img: 'images/Toko Bangunan Hindun.jpg', caption: 'Foto Toko Bangunan Hindun, Dusun Krajan, Desa Gondosuli' },
+        "Toko Bangunan Hindun merupakan usaha yang menyediakan berbagai macam kebutuhan alat bangunan bagi masyarakat sekitar Dusun Krajan. Toko Bangunan Hindun berdiri sejak tahun 2023 dengan proses merintis usaha yang berawal pada tahun 2015. Pada tahun 2015, Bapak Hindun memulai usahanya dengan menjual beberapa produk seperti bensin, alat sepeda, baut, serta membuka usaha warnet. Namun pada tahun 2017, usaha warnet yang dibangun oleh Bapak Hindun terpaksa ditutup akibat kerusakan yang disebabkan oleh sambaran petir sehingga warnet tersebut ditutup. Setelah melewati masa tersebut, Bapak Hindun mulai membangun usaha toko bangunan pada tahun 2023, yang bertahan dan berkembang hingga saat ini.",
+        "Sejak awal dibangun pada tahun 2023, Toko Bangunan Hindun menjalani perkembangan usaha dengan cukup lancar. Produk yang ditawarkan Toko Bangunan Hindun meliputi alat bangunan, oli, serta ban. Proses penyediaan produk dilakukan melalui kerja sama dengan sales yang datang langsung untuk menitipkan barang ke toko, kemudian sistem pembayaran dilakukan setelah sekitar dua bulan barang dititipkan. Pelanggan Toko Bangunan Hindun sebagian besar adalah warga sekitar Dusun Krajan yang datang untuk memenuhi kebutuhan alat bangunan maupun perlengkapan lainnya.",
+        "Usaha Toko Bangunan Hindun berjalan dengan melibatkan anggota keluarga sebagai pengurus, yaitu istri dan bapak dari Bapak Hindun sendiri, sehingga usaha dibangun secara kekeluargaan. Berdirinya Toko Bangunan Hindun memberikan pengaruh yang signifikan terhadap perekonomian keluarga karena usaha ini telah menjadi salah satu sumber penghasilan yang cukup diandalkan dan memiliki potensi untuk berkembang di masa yang akan datang."
+      ] },
+
+      { id: 'umkm-toko-cita-mulya-krajan', nama: "Toko Cita Mulya Lengkapi Kebutuhan Pertanian dan Peternakan Masyarakat dari Berbagai Dusun", cat: 'umkm', dusun: 'Krajan', foto: 'images/Cita Mulya.jpg',
+        ringkas: "Toko Cita Mulya merupakan usaha yang menyediakan kebutuhan pertanian dan peternakan yang berdiri sejak tahun 2020 di Dusun Krajan.",
+        paragraf: [
+        { img: 'images/Cita Mulya.jpg', caption: 'Foto Toko Cita Mulya, Dusun Krajan, Desa Gondosuli' },
+        "Toko Cita Mulya merupakan usaha yang menyediakan kebutuhan pertanian dan peternakan yang berdiri sejak tahun 2020 di Dusun Krajan. Usaha ini berawal dari salah satu anggota keluarga yang memiliki keinginan untuk membangun usaha toko alat pertanian, karena di Dusun Krajan usaha yang menyediakan kebutuhan pertanian dan peternakan belum tersedia. Sejak awal dibangun pada tahun 2020 hingga saat ini, Toko Cita Mulya menunjukkan perkembangan usaha yang berjalan cukup lancar.",
+        "Produk yang ditawarkan di Toko Cita Mulya cukup beragam, seperti obat pertanian, pakan ternak, hingga alat pertanian. Proses penyediaan produk yang akan dijual dilakukan dengan dua cara, yaitu yang pertama melalui sales yang datang ke toko untuk menyediakan obat pertanian dan yang kedua pembelian secara langsung di kota untuk penyediaan seperti sentrat atau pakan ternak. Produk dengan peminat paling tinggi adalah obat untuk hama tembakau dan pakan ayam.",
+        "Pelanggan Toko Cita Mulya berasal dari masyarakat sekitar Dusun Krajan hingga masyarakat yang datang dari dusun lain. Toko Cita Mulya melakukan pemasaran dengan sistem dari mulut ke mulut atau dari orang ke orang. Usaha ini dikelola dengan melibatkan anggota keluarga sebagai pengurus, sehingga usaha ini memberikan pengaruh yang besar bagi perekonomian keluarga."
+      ] },
+
+      { id: 'umkm-bengkel-ical-krajan', nama: "Bengkel Ical Perluas Jangkauan Pasar Melalui Pemasaran Digital", cat: 'umkm', dusun: 'Krajan', foto: 'images/Bengkel Ical.jpg',
+        ringkas: "Bengkel Ical merupakan usaha di bidang perbengkelan yang mulai berdiri sejak tahun 2018 di Dusun Krajan.",
+        paragraf: [
+        { img: 'images/Bengkel Ical.jpg', caption: 'Foto Bengkel Ical, Dusun Krajan, Desa Gondosuli' },
+        "Bengkel Ical merupakan usaha di bidang perbengkelan yang mulai berdiri sejak tahun 2018 di Dusun Krajan. Usaha ini berawal dari keinginan untuk membuka usaha secara mandiri tanpa harus bergantung pada pekerjaan orang lain dengan keterampilan yang diperoleh secara otodidak. Perjalanan usaha Bengkel Ical dari awal dibangun hingga sekarang, sudah mengalami banyak perkembangan dan sudah banyak dikenal oleh masyarakat dibandingkan pada awal berdirinya usaha.",
+        "Jangkauan pemasaran usaha Bengkel Ical tergolong cukup luas dengan pelanggan yang berasal dari wilayah Kraksaan, Tiris, Situbondo, hingga kawasan wisata air terjun. Luasnya jangkauan pemasaran ini berasal dari pemasaran usaha yang dilakukan melalui media sosial seperti TikTok, Facebook sebagai sarana promosi, hingga pemasaran melalui jaringan relasi dari sesama para tukang. Produk yang paling banyak diminati oleh pelanggan yaitu pagar, kanopi, plang jalan, dan tong sampah. Usaha ini dijalankan dengan melibatkan anggota keluarga, teman, serta karyawan berjumlah lima orang yang membantu proses usaha. Melalui dukungan yang muncul, Bengkel Ical mampu terus berkembang bahkan menjangkau pasar secara lebih luas hingga ke luar wilayah."
+      ] },
+
+      { id: 'umkm-produksi-kepeng-ranon', nama: "Mengolah Singkong Menjadi Kerupuk Kepeng Melalui Proses Produksi Tradisional", cat: 'umkm', dusun: 'Ranon', foto: 'images/Produksi Kepeng (krupuk).jpg',
+        ringkas: "Produksi kepeng merupakan usaha yang telah dijalani sejak pemilik usaha masih muda dengan lokasi produksi pembuatan Kerupuk Kepeng yang dilakukan di Dusun Ranon.",
+        paragraf: [
+        { img: 'images/Produksi Kepeng (krupuk).jpg', caption: 'Foto Penjemuran Kerupuk Kepeng, Dusun Ranon, Desa Gondosuli' },
+        "Produksi kepeng merupakan usaha yang telah dijalani sejak pemilik usaha masih muda dengan lokasi produksi pembuatan Kerupuk Kepeng yang dilakukan di Dusun Ranon. Bahan baku yang digunakan dalam pembuatan Kerupuk Kepeng adalah singkong dengan harga Rp 100.000 per sak. Selain bahan baku singkong, Kerupuk Kepeng juga menggunakan bahan tambahan yang meliputi garam, micin, bawang, dan daun bawang. Sebelum memasuki proses pengolahan Kerupuk Kepeng, singkong terlebih dahulu melalui proses penyelepan untuk mempermudah proses produksi selanjutnya.",
+        "Proses produksi dimulai dari waktu subuh hingga sekitar pukul 08.00 WIB. Proses produksi Kerupuk Kepeng menjalani beberapa tahapan. Tahap pertama, yaitu dimulai dari proses pengupasan singkong dari kulitnya, kemudian pencucian yang bertujuan untuk membersihkan singkong agar bersih dari kotoran. Setelah melewati proses pencucian, singkong kemudian diparut menggunakan alat selep kecil hingga halus. Hasil parutan singkong kemudian dicampur dengan sedikit air dan selanjutnya dibentuk menjadi bulat pipih dengan alas plastik agar adonan tidak lengket. Selanjutnya adonan tersebut ditekan hingga tipis dan memiliki bentuk yang sama hingga pada tahap selanjutnya yaitu adonan akan memasuki proses pengeringan yang biasanya dilakukan hingga siang hari.",
+        "Setelah melalui seluruh tahapan produksi, Kerupuk Kepeng sudah bisa diambil dan dijual. Jumlah produksi Kerupuk Kepeng sekitar 1.500 biji setiap harinya dengan harga jual Rp 15.000 per 100 buah. Pemasaran produk Kerupuk Kepeng dijual melalui pengepul yang datang untuk mengambil produk secara langsung dan pemasaran juga dilakukan dari Dusun Ranon kemudian disalurkan ke wilayah sekitar Pakuniran."
+      ] },
+
+      /* ───────────────────────────────────────────────────────────────────
+         🕌  KEAGAMAAN  (2 artikel)
+         ─────────────────────────────────────────────────────────────────── */
+
+      { id: 'keagamaan-majelis-al-araf-riyadhul-jinan-ranon', nama: "Majelis Al A'raf Riyadhul Jinan: dari Perkumpulan Biasa Menjadi Wadah Spiritual Masyarakat Desa Gondosuli", cat: 'keagamaan', dusun: 'Ranon', foto: 'images/Majelis Al araf Riyadhul Jinan.jpg',
+      ringkas: "Majelis Al A'raf Riyadhul Jinan adalah sebuah wadah atau forum pengajian tempat menuntut ilmu, mendengarkan ceramah, dan mempererat tali silaturahmi yang mulai dirintis pada pertengahan Agustus 2021.",
+      paragraf: [
+      { img: 'images/Majelis Al araf Riyadhul Jinan.jpg', caption: 'Foto Kegiatan Majelis Al A\'raf Riyadhul Jinan' },
+      "Majelis Al A'raf Riyadhul Jinan adalah sebuah wadah atau forum pengajian tempat menuntut ilmu, mendengarkan ceramah, dan mempererat tali silaturahmi yang mulai dirintis pada pertengahan Agustus 2021, tepat setelah pandemi Covid-19. Majelis ini berawal dari sebuah kebiasaan beberapa orang yang sering berkumpul tanpa perencanaan khusus, hingga muncul gagasan untuk mengisi pertemuan itu dengan kegiatan keagamaan. Pertemuan pertama berlangsung di rumah Pak Basit dengan dihadiri oleh sembilan orang, rangkaian pertemuan itu hanya berupa pembacaan Yasin tanpa adanya seorang kiai yang mengisi pertemuan tersebut.",
+      { img: 'images/fotomajelis.jpg', caption: 'Foto Kegiatan Majelis Al A\'raf Riyadhul Jinan' },
+      "Seiring dengan berjalanya waktu, pertemuan tersebut berkembang menjadi sebuah kegiatan yang mulai terkonsep dengan tambahan istighosah yaitu membaca doa bersama yang dilakukan secara khusus untuk memohon pertolongan, kelapangan, dan keberkahan kepada Allah SWT ketika menghadapi kesulitan, dan kehadiran kiai sebagai penceramah. Kemudian ditambah dengan hadrah, sebuah seni musik islami yang menggunakan alat musik perkusi seperti rebana untuk mengiringi pembacaan selawat, puji-pujian kepada Allah, serta syair-syair berisi ajaran dan nilai-nilai Islam yang dipimpin oleh Pak Novel, salah satu pengajar hadrah tertua di Desa Gondosuli. Tujuan hadrah dibentuk adalah sebagai upaya menjaga remaja agar tidak salah pergaulan, dan seiring waktu, hadrah awalnya diberi nama Hadrah Madura Al Jiduri lalu berubah menjadi Al Banjari. Hingga akhirnya ditetapkan nama Riyadhul Jinan yang kemudian disempurnakan menjadi Majelis Al A'raf Riyadhul Jinan setelah sowan kepada Gus Muhammad Maftuhin. Struktur kepengurusan pun mulai dibentuk dengan Pak Novel sebagai ketua karena dianggap lebih mumpuni dalam mengayomi jamaah.",
+      { img: 'images/fotomajelis2.jpg', caption: 'Foto Kegiatan Majelis Al A\'raf Riyadhul Jinan' },
+      "Forum tanya jawab baru dimulai sekitar dua tahun setelah majelis berdiri, ketika sudah ada ustaz atau kiai yang bisa menjawab pertanyaan jamaah. Kegiatan majelis ini diadakan di rumah masyarakat sekitar dan dilakukan secara bergilir setiap malam jum'at. Jamaah pun semakin beragam, dari yang awalnya hanya laki-laki hingga kini perempuan juga ikut bergabung. Jumlah jamaah aktif mencapai sekitar 100 orang, dengan kehadiran paling sedikit sekitar 80 orang setiap kegiatan. Majelis juga mengadakan kegiatan milad di bulan September.",
+      "Majelis Al A'raf Riyadhul Jinan menghadapi banyak tantangan baik itu internal maupun eksternal, berupa perselisihan antar anggota hingga kritik dari masyarakat, majelis tetap bertahan dengan prinsip sabar dan tanggapan positif. Harapan besar dari pengurus adalah agar majelis ini menjadi teladan penerapan ilmu di masyarakat serta dikenang sebagai wadah kebersamaan. Pesan ketua menekankan pentingnya mengedepankan adab di atas ilmu, sehingga majelis dapat berkembang dengan kekompakan dan membawa manfaat bagi jamaah serta masyarakat sekitar."
+      ] },
+
+      { id: 'keagamaan-profil-masjid-kehidupan-keagamaan-gondosuli', nama: 'Profil Masjid dan Kehidupan Keagamaan di Desa Gondosuli', cat: 'keagamaan', dusun: 'Pakes, Krajan, Durin & Kletek', foto: 'images/Masjid Darussalam.jpg',
+        ringkas: 'Masjid Darussalam merupakan salah satu masjid di Desa Gondosuli yang telah lama berdiri sebagai pusat kegiatan keagamaan masyarakat.',
+        paragraf: [
+        { img: 'images/Masjid Darussalam.jpg', caption: 'Foto Masjid Darussalam' },
+        "Masjid Darussalam merupakan salah satu masjid di Desa Gondosuli yang telah lama berdiri sebagai pusat kegiatan keagamaan masyarakat. Sejak awal keberadaannya, masjid ini menjadi tempat berkumpul masyarakat untuk menjalankan ibadah sekaligus memperkuat ukhuwah. Kegiatan rutin yang dilaksanakan cukup beragam, mulai dari sarweh, doa bersama sering disebut arwahan yang dikhususkan untuk memohonkan ampunan dan mengirimkan pahala dzikir kepada orang yang telah meninggal dunia yang dilakukan setiap malam Senin secara bergilir dengan mushola sekitar, hingga majelis shalawat nariyah. Sebuah perkumpulan jamaah (majelis) yang berkumpul untuk membaca, mengamalkan, dan mengagungkan shalawat nariyah. Kegiatan ini dilakukan setiap tanggal 20 yang dilengkapi hadroh dan terbuka untuk jamaah laki-laki maupun perempuan. Meski tidak ada kegiatan khataman Al-Qur'an, proses membaca atau mendengarkan pembacaan seluruh isi kitab suci Al-Qur'an mulai dari awal hingga tuntas 30 juz.",
+        "Selain kegiatan ibadah, masjid ini juga berperan dalam pendidikan agama anak-anak. Meski tidak memiliki TPQ resmi, pengajian sederhana tetap berjalan setiap malam selepas Maghrib hingga Isya dan diikuti sekitar 25 anak dengan bimbingan seorang ustaz yang telah mengabdikan diri. Anak-anak yang lebih besar umumnya melanjutkan pendidikan di pondok pesantren, menjadikan masjid sebagai fondasi awal pendidikan agama. Antusiasme masyarakat cukup baik dengan jamaah aktif yang berasal dari lingkungan sekitar. Dengan dukungan masyarakat dan fasilitas yang memadai, Masjid Darussalam tetap menjadi pusat kegiatan keagamaan yang hidup dan berfungsi dengan baik di tengah masyarakat.",
+        { img: 'images/Masjid Alkaromah.jpeg', caption: 'Foto Masjid Al Karomah' },
+        "Masjid Al Karomah, memiliki sejarah panjang yang dimulai dari sebuah mushola sederhana dengan bangunan tembok di bagian bawah dan sirap kayu jati di bagian atas. Mushola ini selesai dibangun pada tahun 1987, kemudian berubah status menjadi masjid pada tahun 1992–1993 karena kebutuhan masyarakat yang tidak memiliki masjid terdekat. Perkembangan terbaru terjadi pada tahun 2020 dengan penambahan bangunan kecil sebagai pelengkap, menjadikan masjid ini semakin kokoh sebagai pusat ibadah masyarakat.",
+        "Kegiatan keagamaan di Masjid Al Karomah berlangsung rutin setiap malam dengan pengajian, serta kegiatan khusus seperti sarweh malam Rabu, qodiran sebuah majelis dzikir atau amalan wirid khusus yang dinisbatkan kepada tarekat Syekh Abdul Qadir Al-Jaelani yang diadakan setiap malam Jumat legi dan ratiban, pembacaan ratib berupa rangkaian dzikir serta doa pada setiap malam Kamis Kliwon yang mampu menarik hingga 90 jamaah. Kegiatan TPQ masih berjalan khusus untuk santri putri yang dikenal sebagai kegiatan mengaji. Sarana masjid tergolong lengkap, mulai dari pengeras suara, radio, Al-Qur'an, halaman luas untuk shalat hari raya, hingga tempat pemandian jenazah dan nisan. Struktur kepengurusan masjid juga lengkap, mulai dari takmir dan dukungan masyarakat yang menyeluruh. Masjid Al Karomah pernah mendapat bantuan revitalisasi dari pemerintah sebesar 100 juta rupiah.",
+        "Masjid Sirojul Mustaqin berdiri sekitar 40 tahun lalu sebagai masjid pertama di Dusun Durin. Awalnya masyarakat harus menempuh jalan setapak di atas gunung untuk shalat di dusun lain, hingga akhirnya atas saran salah satu warga, masyarakat bergotong royong membangun masjid ini. Seiring berjalannya waktu, masjid memperoleh sertifikat resmi dan menjadi pusat kegiatan keagamaan. Rutinitasnya meliputi kegiatan mengaji setiap malam, pembacaan Maulid Diba'i sebuah kitab sastra religius berisi pujian, salawat, serta kisah sanjungan atas keluhuran akhlak dan riwayat hidup Nabi Muhammad SAW karangan ulama Imam Abdurrahman Ad-Diba'i, istighosah, Ratibul Haddad, Khotmil Qur'an, hingga peringatan Maulid Nabi. Antusiasme masyarakat tinggi dengan jamaah bulanan mencapai 40–50 orang.",
+        "Masjid Jami' Al Ikhlas telah berdiri sejak tahun 90-an di atas tanah wakaf. Pengurus masjid saat ini dipegang oleh Pak Harsun yang dikenal sebagai Kyai Abdul Wafi. Sejak awal berdirinya, masjid ini menjadi pusat ibadah utama di dusun dan rutin digunakan untuk salat Jumat serta berbagai kegiatan keagamaan lainnya. Kegiatan rutin meliputi sarweh setiap malam Jumat khusus laki-laki dan malam Selasa untuk perempuan. Selain itu, terdapat TPQ setiap malam yang masih aktif, meskipun pengajian umum sudah tidak lagi berlangsung karena kurangnya kekompakan masyarakat. Kegiatan khas lainnya adalah majelis tahunan setiap bulan Maulid serta khataman Al-Qur'an tiap malam Jumat legi yang diadakan secara bergantian di rumah masyarakat. Organisasi masjid dijalankan oleh pengurus yang aktif menjaga keberlangsungan kegiatan, sehingga masjid tetap menjadi pusat spiritual yang menjaga tradisi keagamaan di Dusun Kletek."
+        ] },
+
+      /* ───────────────────────────────────────────────────────────────────
+         🏥  KESEHATAN  (3 artikel)
+         ─────────────────────────────────────────────────────────────────── */
+
+      { id: 'kesehatan-praktek-keperawatan-fatima-pakes', nama: "Menjangkau Kebutuhan Kesehatan Masyarakat Lebih Dekat Melalui Praktik Keperawatan Mandiri Sitti Fatima, S.Kep", cat: 'kesehatan', dusun: 'Pakes', foto: 'images/praktekkeperawatan.jpg',
+        ringkas: "Praktik Keperawatan Mandiri Sitti Fatima, S. Kep mulai beroperasi sejak tahun 2021 sebagai layanan kesehatan tambahan di luar pekerjaan utama pemilik praktik sebagai perawat di Puskesmas Kotaanyar.",
+        paragraf: [
+        { img: 'images/praktekkeperawatan.jpg', caption: 'Foto Praktik Keperawatan Mandiri Sitti Fatima, S.Kep, Dusun Pakes, Desa Gondosuli' },
+        "Praktik Keperawatan Mandiri Sitti Fatima, S. Kep mulai beroperasi sejak tahun 2021 sebagai layanan kesehatan tambahan di luar pekerjaan utama pemilik praktik sebagai perawat di Puskesmas Kotaanyar. Berdirinya praktik ini bermula dari pengalaman pribadi merawat anggota keluarga yang memiliki riwayat hipertensi dan penyakit jantung, sehingga mendorong pemilik praktik untuk memberikan pelayanan kesehatan bagi masyarakat yang lebih luas. Praktik ini telah memiliki surat izin praktik yang berlaku selama lima tahun dan dapat diperpanjang sesuai dengan ketentuan.",
+        "Layanan yang diberikan berupa pemeriksaan tekanan darah, suntik KB, dan beberapa tindakan kesehatan lainnya. Sistem pelayanan bersifat fleksibel, dimana pasien dapat datang tanpa perlu adanya perjanjian dengan perawat. Selain melayani pelayanan di tempat praktik, pelayanan kesehatan juga dapat diberikan melalui layanan kunjungan ke rumah (home visit) bagi pasien yang membutuhkan. Keluhan kesehatan yang paling sering ditangani adalah demam dan batuk.",
+        "Praktik ini masih belum menyediakan layanan BPJS dan tidak memiliki jam operasional yang bersifat tetap karena dalam melayani pasien masih menyesuaikan waktu kerja utama di Puskesmas Kotaanyar. Obat-obatan yang disediakan di praktek mandiri diperoleh dari apotek dengan menunjukkan surat izin praktik. Keberadaan praktik ini sangat membantu masyarakat khususnya di Dusun Pakes untuk memperoleh akses pelayanan kesehatan yang lebih terjangkau dan cepat."
+      ] },
+
+      { id: 'kesehatan-klinik-annajiyah-krajan', nama: "Klinik Annajiyah Hadir Untuk Memperkuat Layanan Kesehatan di Desa Gondosuli", cat: 'kesehatan', dusun: 'Krajan', foto: 'images/klinikannajiyah.jpg',
+        ringkas: "Klinik Annajiyah merupakan salah satu fasilitas pelayanan kesehatan di Desa Gondosuli yang mulai beroperasi sebagai klinik pada bulan April 2024.",
+        paragraf: [
+        { img: 'images/klinikannajiyah.jpg', caption: 'Foto klinik Annajiyah di Dusun Krajan, Desa Gondosuli' },
+        "Klinik Annajiyah merupakan salah satu fasilitas pelayanan kesehatan di Desa Gondosuli yang mulai beroperasi sebagai klinik pada bulan April 2024. Sebelumnya, Klinik Annajiyah berstatus sebagai praktik mandiri. Berdirinya klinik ini dilatarbelakangi oleh adanya kebutuhan masyarakat setempat akan pelayanan kesehatan yang lebih dekat karena letak Desa Gondosuli yang cukup jauh dari Puskesmas Pakuniran maupun Puskesmas Kotaanyar.",
+        "Layanan yang tersedia di Klinik Annajiyah meliputi poli umum, pemeriksaan umum, Kesehatan Ibu dan Anak (KIA) yang masih berfokus pada program KB, terapi bekam, dan layanan home care bagi pasien yang membutuhkan pelayanan kesehatan di rumah. Poli umum menjadi pelayanan yang paling sering dimanfaatkan, terutama untuk keluhan pegal linu dan nyeri otot. Alur pelayanan dimulai dari pendaftaran, pengambilan nomor antrian, pemeriksaan, dan pelayanan farmasi.",
+        "Klinik Annajiyah masih melakukan proses perizinan kerjasama dengan BPJS Kesehatan. Meskipun begitu, klinik ini telah mendapatkan pembinaan dari Dinas Kesehatan. Kedepannya, Klinik Annajiyah akan terus berusaha untuk meningkatkan pelayanan kesehatan dengan menghadirkan dan menyediakan layanan rawat inap agar kebutuhan masyarakat akan kesehatan dapat terpenuhi secara maksimal."
+      ] },
+
+      { id: 'kesehatan-puskesmas-pembantu-krajan', nama: "Puskesmas Pembantu Desa Gondosuli Perkuat Akses Pelayanan Kesehatan bagi Warga", cat: 'kesehatan', dusun: 'Krajan', foto: 'images/pustu.jpg',
+        ringkas: "Puskesmas Pembantu (PUSTU) Desa Gondosuli merupakan bagian dari Puskesmas dan dikategorikan sebagai fasilitas kesehatan tingkat pertama.",
+        paragraf: [
+        { img: 'images/pustu.jpg', caption: 'Foto Puskesmas Pembantu, Dusun Krajan, Desa Gondosuli' },
+        "Puskesmas Pembantu (PUSTU) Desa Gondosuli merupakan bagian dari Puskesmas dan dikategorikan sebagai fasilitas kesehatan tingkat pertama. Pustu Desa Gondosuli berperan dalam menyediakan pelayanan kesehatan dasar bagi masyarakat setempat. Pelayanan yang terdapat di Pustu Desa Gondosuli berupa pelayanan kesehatan bayi, balita, lansia, ibu hamil, pelayanan umum, pelayanan KIA-KB, pemeriksaan kehamilan, dan konsultasi kesehatan. Selain itu, tenaga kesehatan yang bertugas di Pustu juga aktif melaksanakan kegiatan posyandu, penyuluhan kesehatan, screening kesehatan, serta pemberian obat cacing kepada masyarakat sasaran.",
+        "Pelayanan diberikan pada hari kerja sesuai dengan jam operasional yang berlaku. Sedangkan untuk pelayanan persalinan, Pustu Desa Gondosuli masih belum menyediakan guna memenuhi standar pemerintah yang mengharuskan persalinan ditangani oleh puskesmas induk dengan fasilitas medis yang lebih lengkap, yaitu di Puskesmas Pakuniran. Meskipun begitu, antusiasme masyarakat terhadap pelayanan kesehatan di Pustu Desa Gondosuli tergolong sangat baik yang ditunjukkan dengan aktifnya masyarakat dalam memanfaatkan layanan yang tersedia. Fasilitas yang tersedia saat ini berupa ruang tunggu, ruang farmasi, ruang KIA, ruang bersalin, serta fasilitas penunjang lainnya."
+      ] },
+
+      /* ───────────────────────────────────────────────────────────────────
+         📜  LAINNYA  (6 artikel)
+         ─────────────────────────────────────────────────────────────────── */
+
+      { id: 'lainnya-pembagian-wilayah-karangduwek', nama: "Keunikan Pembagian Wilayah Di Karangduwek", cat: 'budaya', dusun: 'Karangduwek', foto: 'images/wilayahunik.jpg',
+        ringkas: "Dusun Karangduwek merupakan salah satu dusun yang berada di bagian paling ujung barat Desa Gondosuli.",
+        paragraf: [
+        { img: 'images/wilayahunik.jpg', caption: 'Foto Pemandangan, Desa Gondosuli' },
+        "Dusun Karangduwek merupakan salah satu dusun yang berada di bagian paling ujung barat Desa Gondosuli. Ditinjau dari kondisi geografisnya, Dusun Karangduwek berada di kawasan dataran tinggi yang memiliki karakteristik lingkungan yang mendukung berbagai kegiatan pertanian. Dengan demikian, kondisi geografis Dusun Karangduwek memiliki peran penting dalam mendukung aktivitas ekonomi masyarakat.",
+        "Selain memiliki karakteristik geografis yang khas, Dusun Karangduwek juga memiliki keunikan dalam pembagian wilayah yang berkembang di tengah masyarakat. Berdasarkan pemahaman masyarakat setempat, kawasan Dusun Karangduwek sering dibedakan menjadi dua wilayah, yaitu wilayah yang dikenal dengan sebutan \"Karangduwek\" dan wilayah yang disebut \"Cekor\". Penyebutan kedua wilayah tersebut telah lama digunakan dalam kehidupan sehari-hari sebagai penanda lokasi atau identitas kawasan tertentu di dalam dusun.",
+        "Meskipun demikian, pembagian antara wilayah Karangduwek dan Cekor tidak termasuk pembagian wilayah secara administratif. Berdasarkan administrasi pemerintahan Desa Gondosuli, seluruh kawasan tersebut tetap tercatat sebagai bagian dari Dusun Karangduwek. Oleh karena itu, penyebutan Karangduwek dan Cekor hanya berupa pembagian yang berkembang di kalangan masyarakat sebagai bentuk identitas lokal dan tidak memengaruhi struktur pemerintahan maupun batas administrasi resmi yang berlaku."
+      ] },
+
+      { id: 'lainnya-peninggalan-leluhur-kletek', nama: "Kepercayaan Masyarakat Terhadap Peninggalan Leluhur di Dusun Kletek", cat: 'budaya', dusun: 'Kletek', foto: 'images/leluhurunik.jpg',
+        ringkas: "Dusun Kletek memiliki peninggalan yang diyakini oleh masyarakat berasal dari masa Kerajaan Majapahit.",
+        paragraf: [
+        { img: 'images/leluhurunik.jpg', caption: 'Foto Lahan Perkerbunan, Desa Gondosuli' },
+        "Dusun Kletek memiliki peninggalan yang diyakini oleh masyarakat berasal dari masa Kerajaan Majapahit. Peninggalan tersebut berupa makam dan guci yang berada di kawasan Kletek Atas. Keberadaan situs tersebut tidak hanya dipandang sebagai warisan sejarah, tetapi juga memiliki nilai budaya yang masih dijunjung tinggi oleh masyarakat setempat. Oleh karena itu, kawasan tersebut tetap dirawat dan dijaga sebagai bagian dari peninggalan leluhur yang diwariskan secara turun-temurun.",
+        "Kepercayaan masyarakat terhadap situs peninggalan tersebut masih terus berkembang hingga sekarang. Sebagian warga meyakini bahwa kawasan makam dan guci memiliki penjaga gaib atau \"penunggu\", sehingga masyarakat senantiasa menjaga sikap, perkataan, dan perilaku ketika berada di lokasi tersebut sebagai bentuk penghormatan terhadap warisan leluhur. Kepercayaan yang diwariskan dari generasi ke generasi ini telah menjadi bagian dari tradisi dan identitas budaya masyarakat Dusun Kletek. Dengan demikian, keberadaan peninggalan leluhur tersebut tidak hanya memiliki nilai sejarah, tetapi juga berperan dalam mempertahankan nilai-nilai budaya yang masih hidup di tengah kehidupan masyarakat."
+      ] },
+
+      { id: 'lainnya-asal-usul-nama-ranon', nama: "Cerita Dibalik Nama Dusun Ranon", cat: 'budaya', dusun: 'Ranon', foto: 'images/sumberunik.jpg',
+        ringkas: "Dusun Ranon memiliki cerita yang menjadi latar belakang penamaannya.",
+        paragraf: [
+        { img: 'images/sumberunik.jpg', caption: 'Foto Sumber, Desa Gondosuli' },
+        "Dusun Ranon memiliki cerita yang menjadi latar belakang penamaannya. Di dusun ini terdapat sebuah sumber mata air yang dipandang oleh masyarakat setempat memiliki nilai penting dan disakralkan. Keberadaan sumber mata air tersebut telah lama dijaga kelestariannya sebagai bagian dari warisan yang diwariskan secara turun-temurun. Bagi masyarakat, sumber mata air tersebut tidak hanya berfungsi sebagai penyedia air, tetapi juga memiliki nilai budaya yang erat kaitannya dengan sejarah dusun.",
+        "Berdasarkan cerita yang berkembang di masyarakat, sumber mata air tersebut dahulu dihuni oleh ikan yang dikenal dengan nama ikan Rangon. Nama ikan tersebut kemudian dipercaya menjadi asal mula penyebutan Dusun Ranon yang digunakan hingga sekarang. Cerita mengenai asal-usul nama dusun tersebut terus diwariskan dari satu generasi ke generasi berikutnya sebagai bagian dari tradisi lisan masyarakat. Hingga saat ini, sumber mata air tersebut masih dimanfaatkan oleh masyarakat untuk memenuhi kebutuhan sehari-hari, sehingga keberadaannya memiliki nilai historis, budaya, sekaligus manfaat bagi kehidupan masyarakat Dusun Ranon."
+      ] },
+
+      { id: 'lainnya-peran-ganda-pakes', nama: "Mengenal Lebih Dekat Peran Ganda Masyarakat Di Dusun Pakes", cat: 'budaya', dusun: 'Pakes', foto: 'images/unikmajelis.jpg',
+        ringkas: "Dusun Pakes memiliki karakteristik sosial yang menjadi ciri khas masyarakat setempat.",
+        paragraf: [
+        { img: 'images/unikmajelis.jpg', caption: 'Foto Majlis, Desa Gondosuli' },
+        "Dusun Pakes memiliki karakteristik sosial yang menjadi ciri khas masyarakat setempat. Salah satu keunikan yang dapat dijumpai adalah adanya warga yang menjalankan peran ganda sebagai petani sekaligus kiai atau tokoh agama. Keberadaan tokoh dengan dua peran tersebut mencerminkan bahwa aktivitas masyarakat tidak hanya berorientasi pada pemenuhan kebutuhan ekonomi melalui sektor pertanian, tetapi juga diimbangi dengan penguatan nilai-nilai keagamaan dalam kehidupan sehari-hari.",
+        "Peran ganda yang dimiliki oleh sebagian masyarakat tersebut memberikan kontribusi penting dalam kehidupan sosial Dusun Pakes. Sebagai petani, mereka berperan dalam mendukung produktivitas pertanian dan pemenuhan kebutuhan ekonomi keluarga. Sementara itu, sebagai kiai atau tokoh agama, mereka turut membimbing masyarakat dalam berbagai kegiatan keagamaan serta menjadi rujukan dalam kehidupan bermasyarakat. Perpaduan kedua peran tersebut menunjukkan adanya hubungan yang erat antara aktivitas ekonomi dan nilai-nilai religius, sehingga membentuk karakter sosial masyarakat Dusun Pakes yang harmonis dan tetap menjaga tradisi keagamaan di tengah aktivitas pertanian sehari-hari."
+      ] },
+
+      { id: 'lainnya-asal-usul-nama-durin', nama: "Asal-Usul Nama Dusun Durin, Nggak Ada Hubungan Sama Buah Durian Lur!", cat: 'budaya', dusun: 'Durin', foto: 'images/kayuunik.jpg',
+        ringkas: "Nama Dusun Durin kerap menimbulkan anggapan bahwa dusun ini memiliki keterkaitan dengan buah durian.",
+        paragraf: [
+        { img: 'images/kayuunik.jpg', caption: 'Foto Tumpukan Kayu Sengon, Desa Gondosuli' },
+        "Nama Dusun Durin kerap menimbulkan anggapan bahwa dusun ini memiliki keterkaitan dengan buah durian. Namun, berdasarkan kondisi yang ada di wilayah tersebut, penamaan Dusun Durin tidak berkaitan dengan keberadaan tanaman durian. Hingga saat ini, tanaman durian bukan merupakan komoditas yang dijumpai maupun dibudidayakan oleh masyarakat di dusun tersebut. Oleh karena itu, nama \"Durin\" tidak mencerminkan jenis tanaman yang mendominasi wilayah Dusun Durin.",
+        "Sebaliknya, masyarakat Dusun Durin lebih banyak memanfaatkan lahan untuk kegiatan pertanian dengan berbagai jenis tanaman yang sesuai dengan kondisi geografis wilayahnya. Komoditas yang umum dibudidayakan meliputi jagung, padi, tembakau, kopi, serta kayu sengon. Tanaman-tanaman tersebut menjadi bagian penting dalam aktivitas pertanian masyarakat sekaligus menjadi sumber penghidupan bagi sebagian besar penduduk. Dengan demikian, meskipun nama dusun sering dikaitkan dengan buah durian, kondisi nyata di lapangan menunjukkan bahwa karakteristik pertanian Dusun Durin didominasi oleh komoditas lain yang lebih sesuai dengan lingkungan setempat."
+      ] },
+
+      { id: 'lainnya-krajan-pusat-ekonomi', nama: "Dusun Krajan Menjadi Pusat Perekonomian Desa Gondosuli", cat: 'budaya', dusun: 'Krajan', foto: 'images/lahanunik.jpg',
+        ringkas: "Peran Dusun Krajan sebagai pusat perekonomian desa terlihat dari berkembangnya berbagai usaha mikro, kecil, dan menengah (UMKM) yang bergerak di berbagai sektor.",
+        paragraf: [
+        { img: 'images/lahanunik.jpg', caption: 'Foto Lahan Pertanian, Desa Gondosuli' },
+        "Peran Dusun Krajan sebagai pusat perekonomian desa terlihat dari berkembangnya berbagai usaha mikro, kecil, dan menengah (UMKM) yang bergerak di berbagai sektor. Masyarakat mengembangkan usaha sesuai dengan kebutuhan dan potensi wilayah, seperti budidaya jamur tiram, budidaya lele, usaha hidroponik, bengkel, toko bangunan, serta Toko Cita Mulya yang menyediakan berbagai kebutuhan pertanian, seperti obat pertanian, pakan ternak, dan alat pertanian. Keberagaman jenis usaha tersebut menunjukkan bahwa aktivitas ekonomi di Dusun Krajan tidak hanya berfokus pada satu sektor, tetapi berkembang sesuai dengan kebutuhan masyarakat.",
+        "Selain sektor usaha, Dusun Krajan juga didukung oleh berbagai fasilitas yang menunjang kehidupan masyarakat. Keberadaan sarana pendidikan, layanan kesehatan, kegiatan keagamaan, dan pelayanan sosial memberikan kemudahan bagi masyarakat dalam memenuhi berbagai kebutuhan dasar. Fasilitas tersebut tidak hanya dimanfaatkan oleh warga Dusun Krajan, tetapi juga menjadi pendukung aktivitas masyarakat dari dusun-dusun lain di Desa Gondosuli. Dengan demikian, Dusun Krajan memiliki peran yang cukup penting dalam meningkatkan kualitas sumber daya manusia serta mendukung pelayanan kepada masyarakat.",
+        "Berbagai potensi ekonomi yang dipadukan dengan ketersediaan fasilitas umum menjadikan Dusun Krajan sebagai salah satu pusat perekonomian di Desa Gondosuli. Aktivitas perdagangan, jasa, budidaya, dan pelayanan yang berkembang di wilayah ini memberikan kontribusi terhadap perputaran ekonomi masyarakat desa. Kondisi tersebut menunjukkan bahwa Dusun Krajan tidak hanya berfungsi sebagai pusat aktivitas masyarakat, tetapi juga menjadi salah satu penggerak utama dalam mendukung pertumbuhan ekonomi dan pembangunan Desa Gondosuli secara menyeluruh."
+      ] },
+
+];
+  </script>
+
+  <script>
+    (function () {
+      const CATS = {
+        kuliner:     { label: 'Kuliner',      color: '#f59e0b', icon: '🍽️' },
+        umkm:        { label: 'UMKM & Ekonomi', color: '#d97706', icon: '🏪' },
+        pertanian:   { label: 'Pertanian',    color: '#2d8a52', icon: '🌾' },
+        pendidikan:  { label: 'Pendidikan',   color: '#3b82f6', icon: '📚' },
+        keagamaan:   { label: 'Keagamaan',    color: '#9b59b6', icon: '🕌' },
+        kesehatan:   { label: 'Kesehatan',    color: '#ef4444', icon: '🏥' },
+        pemerintahan:{ label: 'Pemerintahan', color: '#0a2e1a', icon: '🏛️' },
+        budaya:      { label: 'Lainnya', color: '#8b5e34', icon: '📜' }
+      };
+      const DATA = window.CURATED_DATA || [];
+
+      function escapeHTML(str) {
+        return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const poi = DATA.find(p => p.id === id);
+
+      const elTitle = document.getElementById('detail-title');
+      const elBadge = document.getElementById('detail-badge');
+      const elCatCrumb = document.getElementById('detail-cat-crumb');
+      const elRingkas = document.getElementById('detail-ringkas');
+      const elImage = document.getElementById('detail-image');
+      const elImageCaption = document.getElementById('detail-image-caption');
+      const elBody = document.getElementById('detail-body');
+      const elRelatedTitle = document.getElementById('detail-related-title');
+      const elRelated = document.getElementById('detail-related');
+      const elPageTitle = document.getElementById('page-title');
+
+      let fotoUrl = null;
+
+      if (!poi) {
+        elTitle.textContent = 'Informasi Tidak Ditemukan';
+        elBadge.style.display = 'none';
+        elCatCrumb.textContent = '—';
+        elRingkas.textContent = '';
+        document.querySelector('.info-detail-share').style.display = 'none';
+        elImage.innerHTML = '🔍';
+        elImage.style.cursor = 'default';
+        elBody.innerHTML = '<p>Maaf, informasi yang kamu cari tidak tersedia atau tautannya sudah tidak berlaku. Silakan kembali ke halaman Informasi untuk menjelajahi informasi lainnya.</p>';
+        elRelatedTitle.textContent = 'Info Lainnya';
+        DATA.slice(0, 5).forEach(p => elRelated.appendChild(relatedItem(p)));
+      } else {
+        const cat = CATS[poi.cat] || { label: poi.cat, color: '#64748b', icon: '📍' };
+
+        document.title = poi.nama + ' — Informasi Desa Gondosuli';
+        elPageTitle.textContent = poi.nama + ' — Informasi Desa Gondosuli';
+
+        elBadge.textContent = cat.label;
+        elBadge.style.background = cat.color;
+        elCatCrumb.textContent = cat.label;
+        elTitle.textContent = poi.nama;
+        elRingkas.textContent = poi.ringkas || '';
+
+        if (poi.foto) {
+          fotoUrl = '../' + poi.foto;
+          elImage.innerHTML = `<img src="${fotoUrl}" alt="${escapeHTML(poi.nama)}" onerror="this.parentElement.textContent='${cat.icon}';">`;
+        } else {
+          elImage.textContent = cat.icon;
+          elImage.style.cursor = 'default';
+        }
+
+        let paragraf = (poi.paragraf && poi.paragraf.length) ? poi.paragraf : [poi.ringkas || ''];
+        // Blok foto pertama biasanya foto utama yang sudah tampil di header.
+        // Jangan ditampilkan dua kali — keterangannya dipindah ke bawah foto header.
+        const blokPertama = paragraf[0];
+        if (blokPertama && typeof blokPertama === 'object' && blokPertama.img && blokPertama.img === poi.foto) {
+          if (blokPertama.caption) {
+            elImageCaption.textContent = blokPertama.caption;
+            elImageCaption.style.display = '';
+          }
+          paragraf = paragraf.slice(1);
+        }
+        elBody.innerHTML = paragraf.map(p => {
+          if (p && typeof p === 'object' && p.img) {
+            const cap = p.caption ? `<figcaption style="text-align:center;font-size:12.5px;line-height:1.5;color:var(--gray-500);margin-top:8px;">${escapeHTML(p.caption)}</figcaption>` : '';
+            return `<figure class="info-detail-figure" style="margin:24px auto;max-width:560px;"><img src="../${p.img}" alt="${escapeHTML(p.caption || poi.nama)}" loading="lazy" data-full="../${p.img}" style="width:100%;border-radius:14px;display:block;cursor:zoom-in;box-shadow:0 6px 24px rgba(10,46,26,.14);" onerror="this.parentElement.style.display='none';">${cap}</figure>`;
+          }
+          return `<p>${escapeHTML(p)}</p>`;
+        }).join('');
+
+        elRelatedTitle.textContent = 'Lainnya di Kategori ' + cat.label;
+        const related = DATA.filter(p => p.cat === poi.cat && p.id !== poi.id).slice(0, 5);
+        const fallback = related.length ? related : DATA.filter(p => p.id !== poi.id).slice(0, 5);
+        fallback.forEach(p => elRelated.appendChild(relatedItem(p)));
+      }
+
+      function relatedItem(p) {
+        const c = CATS[p.cat] || { label: p.cat, color: '#64748b', icon: '📍' };
+        const a = document.createElement('a');
+        a.href = 'informasi-detail.html?id=' + encodeURIComponent(p.id);
+        a.className = 'sidebar-news-item';
+        a.style.textDecoration = 'none';
+        a.style.color = 'inherit';
+        const thumbStyle = p.foto ? '' : `background:${c.color}22;`;
+        const thumbContent = p.foto
+          ? `<img src="../${p.foto}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" onerror="this.parentElement.textContent='${c.icon}';this.parentElement.style.background='${c.color}22';">`
+          : c.icon;
+        a.innerHTML = `<div class="sidebar-news-thumb" style="${thumbStyle}">${thumbContent}</div><div><h5>${escapeHTML(p.nama)}</h5><span>${c.label}</span></div>`;
+        return a;
+      }
+
+      // ── Notifikasi kecil (toast) ──────────────────────────────────────────
+      const toastEl = document.getElementById('gs-toast');
+      const toastTextEl = document.getElementById('gs-toast-text');
+      let toastTimer;
+      function tampilkanToast(pesan) {
+        if (!toastEl) return;
+        toastTextEl.textContent = pesan;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2400);
+      }
+
+      // ── Tombol bagikan — salin tautan ─────────────────────────────────────
+      function salinTautan(teks) {
+        // clipboard API cuma jalan di HTTPS/localhost, jadi disiapkan cara cadangan
+        if (navigator.clipboard?.writeText) return navigator.clipboard.writeText(teks);
+        return new Promise((resolve, reject) => {
+          const ta = document.createElement('textarea');
+          ta.value = teks;
+          ta.style.cssText = 'position:fixed;top:-999px;opacity:0;';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          ok ? resolve() : reject();
+        });
+      }
+
+      document.getElementById('share-copy')?.addEventListener('click', (e) => {
+        const btn = e.currentTarget;
+        const original = btn.textContent;
+        salinTautan(window.location.href).then(() => {
+          btn.textContent = '✓ Tersalin';
+          tampilkanToast('Tautan artikel disalin');
+          setTimeout(() => { btn.textContent = original; }, 1800);
+        }).catch(() => {
+          tampilkanToast('Gagal menyalin, silakan salin manual dari kolom alamat');
+        });
+      });
+
+      // ── Tombol kembali ────────────────────────────────────────────────────
+      (function () {
+        const btn = document.getElementById('gs-back-btn');
+        const label = document.getElementById('gs-back-label');
+        if (!btn) return;
+
+        // Kalau pengunjung datang dari halaman lain di situs ini, tombol dibuat
+        // menyebut asal halamannya biar jelas mau balik ke mana.
+        const asal = document.referrer;
+        let internal = false;
+        try {
+          internal = !!asal && new URL(asal).origin === window.location.origin;
+        } catch (_) { internal = false; }
+
+        if (internal) {
+          if (asal.includes('informasi.html')) label.textContent = 'Kembali ke Informasi';
+          else if (/index\.html|\/$/.test(asal)) label.textContent = 'Kembali ke Beranda';
+          else if (asal.includes('informasi-detail.html')) label.textContent = 'Kembali ke artikel sebelumnya';
+        } else {
+          label.textContent = 'Lihat Semua Informasi';
+        }
+
+        btn.addEventListener('click', () => {
+          // history.back() dipakai kalau memang ada riwayat di dalam situs ini,
+          // selain itu diarahkan ke daftar Informasi supaya tidak keluar situs.
+          if (internal && window.history.length > 1) window.history.back();
+          else window.location.href = 'informasi.html';
+        });
+      })();
+
+      // Foto bisa diklik untuk dilihat ukuran penuh
+      const lightbox = document.getElementById('gs-lightbox');
+      const lightboxImg = document.getElementById('gs-lightbox-img');
+      const lightboxClose = document.getElementById('gs-lightbox-close');
+      function openLightbox(url, alt) {
+        lightboxImg.src = url;
+        lightboxImg.alt = alt || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      elImage.addEventListener('click', () => { if (fotoUrl) openLightbox(fotoUrl, poi ? poi.nama : ''); });
+      elBody.addEventListener('click', (e) => {
+        const img = e.target.closest('.info-detail-figure img');
+        if (img) openLightbox(img.dataset.full || img.src, img.alt);
+      });
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+    })();
+  </script>
+
+</body>
+</html>
