@@ -95,7 +95,9 @@
   text-transform: uppercase;
   backdrop-filter: blur(4px);
 }
-.dusun-card-body { padding: 24px; }
+.dusun-card-main { display: flex; flex-direction: column; }
+.dusun-card-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.dusun-card-body .dusun-tags { margin-top: auto; }
 .dusun-card-body h3 {
   font-family: var(--font-display);
   font-size: 1.3rem;
@@ -103,6 +105,7 @@
   color: var(--green-900);
   margin-bottom: 8px;
 }
+/* Deskripsi dusun ditampilkan penuh (verbatim dari dokumen profil dusun) */
 .dusun-card-body p {
   font-size: 13px;
   color: var(--gray-500);
@@ -208,7 +211,8 @@
 .sidebar-dusun-link.current .dot { background: var(--green-700); }
 
 /* Detail Content */
-.dusun-detail-content {}
+/* .dusun-detail-content sengaja tidak diberi style — dipakai sebagai penanda
+   kolom isi di halaman dusun, tata letaknya diatur oleh .dusun-detail-layout */
 .detail-section-block {
   margin-bottom: 48px;
   scroll-margin-top: 100px;
@@ -465,6 +469,7 @@
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -474,6 +479,7 @@
   line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -524,6 +530,7 @@
   margin-bottom: 4px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
