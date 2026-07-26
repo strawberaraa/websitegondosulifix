@@ -100,16 +100,12 @@ p { text-align: justify; text-justify: inter-word; }
   gap: 4px;
   list-style: none;
 }
-}
 /* Cegah long-press di HP memunculkan blok seleksi teks, menu "Salin/Bagikan",
    atau bayangan drag yang tampak keluar frame.
    Diterapkan ke seluruh navbar — bukan cuma link — karena teks yang tersorot
    saat ditekan lama bisa berasal dari elemen pembungkusnya juga. */
 .navbar,
-.navbar *,
-.nav-links a,
-.nav-dropdown-trigger,
-.nav-dropdown-menu a {
+.navbar * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -124,16 +120,10 @@ p { text-align: justify; text-justify: inter-word; }
   -webkit-user-drag: none;
   user-drag: none;
 }
-/* Menu mobile dikunci supaya isinya tidak bisa melebar keluar layar */
-.nav-links {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-.nav-dropdown-menu a {
-  white-space: normal;
-  word-break: break-word;
-}
-}
+/* CATATAN: jangan pasang overflow apa pun di .nav-links pada tampilan desktop.
+   Di desktop dropdown-nya position:absolute — begitu induknya diberi overflow,
+   dropdown ikut terpotong (menu jadi tidak bisa dibuka) dan muncul scrollbar
+   kecil di navbar. Pembatasan ukuran hanya boleh di media query mobile. */
 .nav-links a {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
@@ -1243,11 +1233,18 @@ section { padding: 100px 5%; }
     border-left: 2px solid var(--green-100);
     margin: 2px 0 6px 4px;
   }
-  .nav-dropdown-menu a { padding: 8px 12px; }
-  /* Menu mobile dibatasi tinggi layar, kalau kepanjangan tinggal digulir */
+  .nav-dropdown-menu a {
+    padding: 8px 12px;
+    white-space: normal;
+    word-break: break-word;
+  }
+  /* Aman dipasang di sini karena pada tampilan HP dropdown-nya position:static
+     (ikut aliran normal), jadi tidak ikut terpotong seperti di desktop. */
   .nav-links {
+    max-width: 100%;
     max-height: calc(100vh - 84px);
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
 
