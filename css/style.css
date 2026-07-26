@@ -100,6 +100,35 @@ p { text-align: justify; text-justify: inter-word; }
   gap: 4px;
   list-style: none;
 }
+/* Cegah long-press di HP memunculkan blok seleksi teks, menu "Salin/Bagikan",
+   atau bayangan drag yang tampak keluar frame.
+   Diterapkan ke seluruh navbar — bukan cuma link — karena teks yang tersorot
+   saat ditekan lama bisa berasal dari elemen pembungkusnya juga. */
+.navbar,
+.navbar * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Link/gambar di navbar tidak bisa diseret (drag) — inilah yang bikin muncul
+   "bayangan" teks melayang di luar layar saat ditekan lama lalu digeser. */
+.navbar a,
+.navbar img,
+.navbar button {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+/* Menu mobile dikunci supaya isinya tidak bisa melebar keluar layar */
+.nav-links {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.nav-dropdown-menu a {
+  white-space: normal;
+  word-break: break-word;
+}
 .nav-links a {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
@@ -1192,20 +1221,30 @@ section { padding: 100px 5%; }
   }
   .nav-caret { display: none; }
   .nav-dropdown-menu {
-    position: static;
+    position: static !important;   /* kunci: jangan sampai kembali absolute
+                                      lalu melayang keluar layar */
+    inset: auto !important;
     opacity: 1;
     visibility: visible;
-    transform: none;
+    transform: none !important;
     box-shadow: none;
     border: none;
     padding: 2px 0 10px 14px;
     min-width: 0;
+    width: auto;
+    max-width: 100%;
     max-height: none;
     overflow: visible;
     border-left: 2px solid var(--green-100);
     margin: 2px 0 6px 4px;
   }
   .nav-dropdown-menu a { padding: 8px 12px; }
+  /* Menu mobile dibatasi tinggi layar, kalau kepanjangan tinggal digulir */
+  .nav-links {
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
   .hero-stats { position: static; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
   .profil-grid  { grid-template-columns: 1fr; }

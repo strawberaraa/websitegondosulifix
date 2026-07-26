@@ -108,7 +108,30 @@
     .dov-map-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3; font-size:32px; pointer-events:none; background:rgba(255,255,255,.88); border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,.12); }
     .dov-body { padding:18px 20px 14px; }
     .dov-body h3 { font-size:15px; font-weight:700; color:var(--green-900); margin-bottom:6px; }
+    /* Deskripsi dusun ditampilkan penuh (verbatim dari dokumen profil dusun) */
     .dov-body p { font-size:12px; color:var(--gray-500); line-height:1.6; margin-bottom:12px; }
+    /* Widget "Info Lainnya" — berganti otomatis */
+    .side-news-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px; }
+    .side-news-ctrl { display:flex; align-items:center; gap:7px; }
+    .side-news-ctrl button {
+      width:22px; height:22px; border-radius:50%; border:1px solid var(--green-200);
+      background:white; color:var(--green-700); font-size:14px; line-height:1;
+      cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .25s;
+    }
+    .side-news-ctrl button:hover { background:var(--green-50); border-color:var(--green-400); }
+    .side-news-dots { display:flex; gap:5px; }
+    .side-news-dots span {
+      width:6px; height:6px; border-radius:50%; background:var(--green-200);
+      cursor:pointer; transition:all .25s;
+    }
+    .side-news-dots span.active { background:var(--green-600); width:16px; border-radius:100px; }
+    #side-news-list { transition:opacity .35s ease; }
+    #side-news-list.fading { opacity:0; }
+
+    .dov-body { display:flex; flex-direction:column; }
+    .dov-body .dov-tags { margin-top:auto; }
+    .dov-card { display:flex; flex-direction:column; }
+    .dov-card .dov-body { flex:1; }
     .dov-tags { display:flex; flex-wrap:wrap; gap:5px; }
     .dov-tag { background:var(--green-50); border:1px solid var(--green-200); border-radius:100px; padding:3px 10px; font-size:10px; font-weight:600; color:var(--green-700); }
     .dov-footer { padding:11px 20px; border-top:1px solid var(--green-50); font-size:12px; color:var(--green-600); font-weight:600; display:flex; justify-content:space-between; align-items:center; }
@@ -141,6 +164,7 @@
       50%      { margin-left:12px; }
     }
   </style>
+  <link rel="canonical" href="https://gondosulifix.vercel.app/" />
 </head>
 <body>
 
@@ -269,7 +293,7 @@
         </div>
         <div class="dov-body">
           <h3>Dusun Kletek</h3>
-          <p>Dusun berlereng perbukitan yang terbagi tiga zona ketinggian, dikenal dengan gula aren dan kopi, serta menyimpan peninggalan Majapahit yang dianggap sakral.</p>
+          <p>Dusun Kletek adalah dusun yang berada di wilayah Desa Gondosuli. Secara geografis, dusun ini terletak di bagian selatan Desa Gondosuli yang menempati kawasan lereng perbukitan. Topografi yang menanjak dan menurun mempengaruhi pola permukiman warga, di mana rumah-rumah penduduk tersebar mengikuti kontur tanah. Hal ini sekaligus menciptakan keunikan tersendiri dalam kehidupan sehari-hari masyarakat yang terbiasa dengan kondisi alam sekitar. Dusun Kletek secara geografis terbagi menjadi tiga bagian utama, yaitu Kletek Bawah, Kletek Tengah, dan Kletek Atas. Kletek Bawah merupakan kawasan yang berada di dataran lebih rendah yang menjadi pusat aktivitas ekonomi dan sosial dikarenakan aksesnya terjangkau. Kletek Tengah berada di posisi menanjak yang dikelilingi oleh lahan pertanian, sedangkan Kletek Atas menempati wilayah paling tinggi di lereng, dengan pemandangan yang luas dan udara yang lebih dingin. Pembagian wilayah mencerminkan dinamika kehidupan masyarakat yang beragam sesuai dengan kondisi geografis masing-masing bagian. Dusun Kletek memiliki keunikan tersendiri yang membuatnya berbeda dari dusun lain. Contohnya, kehidupan bermasyarakatnya sangat erat dengan sektor pertanian yang menjadikan gula aren dan tembakau sebagai tanaman utama. Selain itu, produksi kopi juga menjadi sektor pendamping. Hal unik lainnya adalah keberadaan peninggalan Majapahit di Kletek Atas berupa makam dan guci yang dianggap sakral. Warga setempat percaya kawasan tersebut memiliki “penunggu”, sehingga dihormati dan dijaga dengan penuh kehati-hatian. Dengan demikian kombinasi antara kekayaan alam, sektor pertanian yang kuat, serta nilai budaya yang sakral, Dusun Kletek memiliki peluang besar untuk dikembangkan menjadi kawasan yang selaras antara ekonomi, sosial, dan budaya.</p>
           <div class="dov-tags"><span class="dov-tag">🍯 Gula Aren</span><span class="dov-tag">☕ Kopi</span><span class="dov-tag">🏺 Peninggalan Majapahit</span></div>
         </div>
         <div class="dov-footer"><span>Lihat Profil Lengkap</span><span>→</span></div>
@@ -282,7 +306,7 @@
         </div>
         <div class="dov-body">
           <h3>Dusun Pakes</h3>
-          <p>Dusun dataran tinggi dengan tembakau sebagai komoditas utama musim kemarau, dikenal karena banyak petaninya yang juga berperan sebagai tokoh agama (kyai).</p>
+          <p>Dusun Pakes merupakan dusun yang berada di Desa Gondosuli. Wilayah ini berada pada kawasan dataran tinggi dengan kondisi tanah yang cukup subur sehingga mendukung aktivitas pertanian masyarakat. Sebagian besar lahan dimanfaatkan sebagai area persawahan dan perkebunan, terutama untuk tanaman padi saat musim hujan dan tembakau ketika musim kemarau. Kondisi geografis tersebut menjadikan sektor pertanian sebagai mata pencaharian utama masyarakat Dusun Pakes. Salah satu keunikan di Dusun Pakes adalah adanya masyarakat yang berprofesi sebagai petani sekaligus memiliki peran sebagai kyai atau tokoh agama. Kondisi ini menunjukkan bahwa kehidupan masyarakat tidak hanya berfokus pada sektor pertanian, tetapi juga memiliki keterkaitan yang kuat dengan nilai-nilai keagamaan. Peran ganda tersebut membuat tokoh masyarakat memiliki pengaruh besar, baik dalam kegiatan keagamaan maupun kehidupan sosial. Sektor yang paling menonjol di Dusun Pakes adalah sektor pertanian, khususnya budidaya tembakau dan padi. Pada musim kemarau, mayoritas petani beralih menanam tembakau karena memiliki nilai ekonomi yang lebih tinggi dibandingkan komoditas lainnya. Selain itu, terdapat UMKM berupa produksi kerupuk singkong dengan skala usaha yang masih terbatas. Potensi pertanian yang kuat menunjukkan bahwa Dusun Pakes memiliki peluang besar untuk dikembangkan melalui peningkatan produktivitas, pengolahan hasil panen, serta penguatan UMKM berbasis hasil pertanian.</p>
           <div class="dov-tags"><span class="dov-tag">🚬 Tembakau</span><span class="dov-tag">🌾 Padi</span><span class="dov-tag">👳 Petani-Kyai</span></div>
         </div>
         <div class="dov-footer"><span>Lihat Profil Lengkap</span><span>→</span></div>
@@ -295,7 +319,7 @@
         </div>
         <div class="dov-body">
           <h3>Dusun Karangduwek</h3>
-          <p>Dusun di ujung barat Gondosuli dengan fondasi ekonomi kuat dari pertanian tembakau, padi, dan jagung, didukung UMKM pengrajin mebel dan minyak kelapa, serta kehidupan keagamaan yang aktif.</p>
+          <p>Dusun karangduwek merupakan dusun yang berada di ujung barat Desa Gondosuli. Secara administratif, Dusun Karangduwek berbatasan dengan Dusun Sambirampak Kidul wilayah di sebelah utara, di sebelah selatan berbatasan dengan Desa Kertonegoro di sebelah timur berbatasan dengan Dusun Krajan, sedangkan di sebelah barat berbatasan dengan Desa Kertonegoro. Batas-batas wilayah tersebut menunjukkan posisi Dusun Karangduwek yang berada di bagian ujung barat Desa Gondosuli. Ditinjau dari letak geografis, dusun ini berada di daerah dataran tinggi dengan lingkungan yang mendukung kegiatan pertanian. Dusun Karangduwek memiliki fondasi ekonomi dan sosial kuat yang bertumpu pada sinergi antara kekayaan sumber daya alam, kreativitas masyarakat, serta kegiatan keagamaan. Sektor pertanian menjadi pendorong utama ekonomi. Pertanian yang banyak dibudidayakan meliputi tembakau pada musim kemarau, sedangkan pada musim hujan mayoritas petani menanam padi dan jagung. Potensi ekonomi didukung oleh produktivitas sektor UMKM yang terus berkembang. Mulai dari produksi minyak kelapa, pengrajin mebel, hingga aneka makanan ringan seperti rengginang, kepeng, dan keripik singkong. Kehidupan sosial masyarakat berjalan harmonis dengan adanya aktivitas keagamaan seperti majelis, tahlil, sarweh, serta akses layanan kesehatan yang memadai. Contohnya praktik bidan dan kegiatan rutin posyandu. Pondok Pesantren Nurul Yaqien juga hadir sebagai pusat pendidikan bagi generasi muda yang melayani sekolah formal di pagi hari dan Madrasah Diniyah di sore hari. Salah satu hal unik yang ada pada dusun ini yaitu, pembagian wilayah yang berkembang di tengah masyarakat. Sebagian masyarakat mengatakan bahwa kawasan tersebut terbagi menjadi dua wilayah, yakni “Karangduwek” dan “Cekor”. Oleh karena itu, pembagian tersebut tidak termasuk pembagian wilayah secara administratif. Berdasarkan administratif pemerintahan Desa Gondosuli, seluruh wilayah tersebut tetap tercatat sebagai bagian dari Dusun Karangduwek, sehingga pembagian dua wilayah hanya digunakan oleh masyarakat setempat.</p>
           <div class="dov-tags"><span class="dov-tag">🪑 Mebel</span><span class="dov-tag">🥥 Minyak Kelapa</span></div>
         </div>
         <div class="dov-footer"><span>Lihat Profil Lengkap</span><span>→</span></div>
@@ -308,7 +332,7 @@
         </div>
         <div class="dov-body">
           <h3>Dusun Durin</h3>
-          <p>Dusun di kaki Gunung Rengganis yang terbagi menjadi Durin Barat dan Durin Timur, dengan mayoritas warga berprofesi sebagai petani di tanah yang subur.</p>
+          <p>Dusun Durin merupakan salah satu dusun dari enam dusun yang ada di Desa Gondosuli. Terletak di sebelah timur laut Desa Gondosuli, dusun ini berada di wilayah kaki Gunung Rengganis yang menjadi batas wilayah desa. Kondisi jalan yang ada di Dusun Durin cenderung menanjak karena berada di area kaki gunung. Secara umum masyarakat di Dusun Durin berprofesi sebagai petani. Hal ini didukung oleh kondisi geografis Dusun Durin yang strategis untuk lahan pertanian, sehingga masyarakat memanfaatkan keuntungan tersebut sebagai tempat mencari nafkah dan memenuhi kebutuhan hidup sehari-hari. Dusun Durin dipisahkan lembah yang mengapit sebuah sungai sehingga terbagi menjadi dua wilayah yaitu Durin Barat dan Durin Timur, oleh karena itu tingkat kesuburan tanah di dusun tersebut tinggi.</p>
           <div class="dov-tags"><span class="dov-tag">🌾 Pertanian</span><span class="dov-tag">⛰️ Kaki Gunung Rengganis</span></div>
         </div>
         <div class="dov-footer"><span>Lihat Profil Lengkap</span><span>→</span></div>
@@ -321,7 +345,7 @@
         </div>
         <div class="dov-body">
           <h3>Dusun Ranon</h3>
-          <p>Dusun di lereng Pegunungan Argopuro yang namanya berasal dari legenda ikan Rangon di sumber mata air sakral, dengan pertanian beragam dan kegiatan sosial-keagamaan yang aktif.</p>
+          <p>Dusun Ranon merupakan dusun yang terletak di dalam wilayah Desa Gondosuli. Berdasarkan letak geografisnya, Dusun Ranon berada di kawasan dataran tinggi, tepatnya di sebelah tenggara atau selatan wilayah lereng Pegunungan Argopuro, Kecamatan Pakuniran. Dusun Ranon memiliki karakteristik lingkungan yang asri dan berpotensi untuk dikembangkan. Kawasan geografis Dusun Ranon menciptakan potensi melalui sumber daya alam dan sumber daya manusia, mulai dari pertanian, UMKM, budaya, tradisi, keagamaan, hingga bidang pendidikan. Dusun Ranon memiliki sumber mata air yang diyakini oleh masyarakat setempat, sebagai tempat sakral yang dijaga kelestariannya oleh masyarakat. Konon, pada sumber mata air tersebut, terdapat ikan yang dikenal dengan nama ikan Rangon. Nama ikan Rangon kemudian menjadi nama Dusun yang menjadi asal usul nama Dusun Ranon. Hingga kini sumber mata air tersebut masih dimanfaatkan oleh masyarakat setempat untuk kehidupan sehari-hari. Kawasan Dusun Ranon didominasi oleh perbukitan dan lahan pertanian, sehingga menjadikan mata pencaharian utama masyarakat setempat sebagai petani. Komoditas pertanian meliputi singkong, jagung, padi, tembakau, hingga kopi, menjadi sumber perekonomian utama bagi masyarakat. Sektor perekonomian juga terbentuk melalui pengembangan usaha sampingan yang dibangun oleh masyarakat Dusun Ranon, seperti peternakan sapi dan produksi olahan keripik yang terbuat dari singkong. Selain sektor pertanian dan perekonomian, masyarakat Dusun Ranon juga memiliki kegiatan sosial dan keagamaan seperti PKK, pengajian, sholawatan, dan majelis ta'lim yang dilaksanakan secara rutin. Kondisi kawasan sumber daya alam yang potensial menjadikan sektor pertanian sebagai salah satu sektor utama yang memiliki peran penting dalam kehidupan masyarakat Dusun Ranon.</p>
           <div class="dov-tags"><span class="dov-tag">🐟 Ikan Rangon</span><span class="dov-tag">🌾 Pertanian</span></div>
         </div>
         <div class="dov-footer"><span>Lihat Profil Lengkap</span><span>→</span></div>
@@ -334,7 +358,7 @@
         </div>
         <div class="dov-body">
           <h3>Dusun Krajan</h3>
-          <p>Pusat pemerintahan desa dengan kantor desa, klinik, masjid, dan lembaga pendidikan lengkap di pertengahan Gondosuli.</p>
+          <p>Dusun Krajan merupakan dusun yang berada di pertengahan Desa Gondosuli. Dusun Krajan memiliki berbagai potensi, yaitu di bidang usaha, pertanian, kesehatan, keagamaan, dan pelayanan sosial. Adanya berbagai potensi tersebut menjadikan Dusun Krajan sebagai salah satu pusat aktivitas masyarakat. Pada bidang usaha, Dusun Krajan memiliki berbagai UMKM dalam sektor yang beragam, yaitu jasa, perdagangan, dan budidaya. Hal tersebut menjadikan Dusun Krajan memiliki potensi ekonomi lokal yang dapat mendukung aktivitas perekonomian masyarakat di Desa Gondosuli. Selain itu, pada bidang pendidikan, kesehatan, keagamaan, dan pelayanan sosial juga dapat memberikan fasilitas yang mendukung adanya peningkatan kualitas sumber daya manusia dan pemenuhan kebutuhan masyarakat setempat. Dengan adanya fasilitas tersebut, Dusun Krajan menjadi salah satu bagian yang dapat mendukung perkembangan dan kemajuan Desa Gondosuli secara keseluruhan.</p>
           <div class="dov-tags"><span class="dov-tag">🏛️ Kantor Desa</span><span class="dov-tag">🏥 Klinik</span></div>
         </div>
         <div class="dov-footer"><span>Lihat Profil Lengkap</span><span>→</span></div>
@@ -380,7 +404,7 @@
           </a>
           <a href="pages/informasi.html#lainnya" class="info-list-item">
             <span class="info-list-icon">✨</span>
-            <div><h5>Lainnya</h5><span>Kuliner khas & fasilitas pemerintahan</span></div>
+            <div><h5>Lainnya</h5><span>Asal-usul nama, tradisi & keunikan dusun</span></div>
           </a>
         </div>
       </div>
@@ -409,33 +433,17 @@
         </div>
       </div>
 
-      <!-- INFO LAINNYA -->
+      <!-- INFO LAINNYA — isinya berganti otomatis, mirip slideshow -->
       <div class="news-sidebar-widget fade-in" style="margin-bottom:0;">
-        <h4>Info Lainnya</h4>
-        <a href="pages/informasi-detail.html?id=umkm-biji-kopi-kletek" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
-          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
-            <img src="images/Produksi biji Kopi.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+        <div class="side-news-head">
+          <h4 style="margin-bottom:0;">Info Lainnya</h4>
+          <div class="side-news-ctrl">
+            <button type="button" id="side-news-prev" aria-label="Sebelumnya">‹</button>
+            <div class="side-news-dots" id="side-news-dots"></div>
+            <button type="button" id="side-news-next" aria-label="Berikutnya">›</button>
           </div>
-          <div><h5>Produksi Biji Kopi — Kletek</h5><span>UMKM & Ekonomi</span></div>
-        </a>
-        <a href="pages/informasi-detail.html?id=keagamaan-masjid-al-karomah-krajan" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
-          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
-            <img src="images/Masjid Alkaromah.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;">
-          </div>
-          <div><h5>Masjid Al-Karomah</h5><span>Keagamaan</span></div>
-        </a>
-        <a href="pages/informasi-detail.html?id=pendidikan-sdn-gondosuli-1-krajan" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
-          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
-            <img src="images/SDN Gondosuli 1.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;">
-          </div>
-          <div><h5>SDN Gondosuli 1</h5><span>Pendidikan</span></div>
-        </a>
-        <a href="pages/informasi-detail.html?id=kesehatan-klinik-annajiyah-krajan" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
-          <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">
-            <img src="images/Klinik Annajiyah.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
-          </div>
-          <div><h5>Klinik Annajiyah</h5><span>Kesehatan</span></div>
-        </a>
+        </div>
+        <div id="side-news-list"></div>
       </div>
 
     </div>
@@ -586,7 +594,7 @@
       <div class="kontak-items">
         <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📍</div><div><h4>Alamat</h4><p>Desa Gondosuli, Kecamatan Pakuniran,<br>Kabupaten Probolinggo, Jawa Timur 67292</p></div></div>
         <div class="kontak-item fade-in"><div class="kontak-icon-wrap">📞</div><div><h4>Telepon / WhatsApp</h4><p>Sekretaris Desa · 082235460657 <br></p></div></div>
-        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">✉️</div><div><h4>Email</h4><p>desa.gondosuli@probolinggokab.go.id</p></div></div>
+        <div class="kontak-item fade-in"><div class="kontak-icon-wrap">✉️</div><div><h4>Email</h4><p>desagondosuliprobolinggo@gmail.com</p></div></div>
       </div>
     </div>
   </section>
@@ -657,39 +665,45 @@
 
       // Subset ringkas — sinkron sama daftar terkurasi di informasi.html
       const ITEMS = [
-        { cat: 'pertanian', id: 'pertanian-tembakau-kletek', nama: 'Lahan Pertanian Tembakau — Kletek', dusun: 'Kletek', foto: 'images/Tembakau.jpg', ringkas: 'Salah satu lahan tembakau warga yang digarap saat musim kemarau tiba, mengikuti pola tanam khas Dusun Kletek.' },
-        { cat: 'pertanian', id: 'pertanian-gula-aren-kletek', nama: 'Perkebunan Gula Aren — Kletek', dusun: 'Kletek', foto: 'images/gula aren.jpg', ringkas: 'Kebun aren yang niranya diolah warga menjadi gula aren, salah satu produk khas Dusun Kletek.' },
-        { cat: 'pertanian', id: 'pertanian-tembakau-pakes', nama: 'Lahan Pertanian Tembakau — Pakes', dusun: 'Pakes', foto: 'images/Perkebunan Tembakau.jpg', ringkas: 'Lahan tembakau di dataran tinggi Dusun Pakes yang jadi andalan warga saat musim kemarau.' },
-        { cat: 'pertanian', id: 'pertanian-kebun-terong-karangduwek', nama: 'Kebun Terong — Karangduwek', dusun: 'Karangduwek', foto: 'images/kebun Terong.jpg', ringkas: 'Kebun sayur warga Karangduwek yang jadi selingan tanam di luar musim tembakau dan jagung.' },
-        { cat: 'pertanian', id: 'pertanian-perkebunan-jati-durin', nama: 'Perkebunan Jati — Durin', dusun: 'Durin', foto: 'images/Lahan Perkebunan Jati.jpg', ringkas: 'Kebun pohon jati di kaki Gunung Rengganis yang jadi investasi jangka panjang warga Durin.' },
+        { cat: 'pertanian', id: 'pertanian-sengon-gondosuli', nama: "Alasan Warga Desa Gondosuli Beralih dari Jati ke Sengon", dusun: 'Berbagai Dusun', foto: 'images/lahanperkebunansengon.jpg', ringkas: "Tanaman sengon menjadi salah satu komoditas perkebunan yang mulai populer sejak sekitar tahun 2005–2006." },
+        { cat: 'pertanian', id: 'pertanian-tembakau-gondosuli', nama: "Tembakau sebagai Komoditas Andalan dalam Menggerakkan Perekonomian Pertanian Desa Gondosuli", dusun: 'Krajan, Karangduwek, Ranon & Durin', foto: 'images/Tembakau2.jpg', ringkas: "Tembakau merupakan salah satu komoditas pertanian yang telah dibudidayakan secara turun-temurun oleh masyarakat Desa Gondosuli." },
+        { cat: 'pertanian', id: 'pertanian-budidaya-lele-krajan', nama: "Budidaya Lele Menjadi Komoditas Baru yang Menjanjikan di Desa Gondosuli", dusun: 'Krajan', foto: 'images/budidayalele.jpg', ringkas: "Usaha budidaya lele ini mulai dirintis pada 7 Januari 2026." },
+        { cat: 'pertanian', id: 'pertanian-gula-aren-gondosuli', nama: "Gula Aren Menjadi Andalan Usaha Berbasis Potensi Lokal Desa Gondosuli", dusun: 'Berbagai Dusun', foto: 'images/gulaaren.jpg', ringkas: "Usaha produksi gula aren menjadi salah satu mata pencaharian masyarakat Desa Gondosuli yang masih dipertahankan hingga saat ini." },
+        { cat: 'pertanian', id: 'pertanian-jamur-tiram-krajan', nama: "Budidaya Jamur Tiram Dukung Perekonomian Keluarga di Desa Gondosuli", dusun: 'Krajan', foto: 'images/budidayajamurtiram.jpg', ringkas: "Budidaya jamur tiram merupakan salah satu usaha warga Desa Gondosuli yang mulai dikembangkan pada pertengahan tahun ini, lebih tepatnya sejak 7 Juni 2026." },
+        { cat: 'pertanian', id: 'pertanian-kacang-panjang-terong-gondosuli', nama: "Perkebunan Kacang Panjang dan Terong Perkuat Penghidupan Warga Desa Gondosuli", dusun: 'Berbagai Dusun', foto: 'images/kacangterong.jpg', ringkas: "Perkebunan kacang panjang dan terong milik salah satu warga Desa Gondosuli ini menjadi salah satu usaha pertanian yang menopang perekonomian keluarga." },
 
-        { cat: 'pendidikan', id: 'pendidikan-mi-hidayatul-amin-kletek', nama: 'Lembaga Madrasah Ibtidaiyah Hidayatul Amin', dusun: 'Kletek', foto: 'images/SMP Hidayatul Amin.jpg', ringkas: 'Lembaga pendidikan berbasis madrasah yang melayani anak-anak usia sekolah dasar di Dusun Kletek.' },
-        { cat: 'pendidikan', id: 'pendidikan-madin-darussalam-pakes', nama: 'Madrasah Diniyah Darussalam', dusun: 'Pakes', foto: 'images/Madin Darussalam.jpg', ringkas: 'Madrasah diniyah sore hari tempat anak-anak Dusun Pakes belajar mengaji dan ilmu agama.' },
-        { cat: 'pendidikan', id: 'pendidikan-nurul-yaqien-karangduwek', nama: 'Madrasah Nurul Yaqien', dusun: 'Karangduwek', foto: 'images/Madrasah Nurul Yaqien.jpg', ringkas: 'Yayasan pendidikan yang menaungi TK, SD Islam, SMP, hingga Madrasah Diniyah di Dusun Karangduwek.' },
-        { cat: 'pendidikan', id: 'pendidikan-bahrul-ulum-durin', nama: 'Madrasah Yayasan Bahrul Ulum', dusun: 'Durin', foto: 'images/MI Bahrul Ulum.jpg', ringkas: 'Lembaga pendidikan berbasis pesantren di Dusun Durin yang berdampingan dengan Masjid Bahrul Ulum.' },
-        { cat: 'pendidikan', id: 'pendidikan-sdn-gondosuli-1-krajan', nama: 'SDN Gondosuli 1', dusun: 'Krajan', foto: 'images/SDN Gondosuli 1.jpeg', ringkas: 'Sekolah dasar negeri yang berlokasi di pusat pemerintahan Desa Gondosuli, Dusun Krajan.' },
+        { cat: 'pendidikan', id: 'pendidikan-bahrul-ulum-durin', nama: 'Pendidikan Formal dan Keagamaan di Bawah Naungan Yayasan Bahrul Ulum Desa Gondosuli', dusun: 'Durin', foto: 'images/MI Bahrul Ulum.jpg', ringkas: 'Yayasan Bahrul Ulum merupakan lembaga pendidikan di Dusun Durin yang menaungi pendidikan formal dan keagamaan.' },
+        { cat: 'pendidikan', id: 'pendidikan-hidayatul-ummah-karangduwek', nama: 'Pendidikan Berjenjang di Yayasan Hidayatul Ummah Desa Gondosuli', dusun: 'Karangduwek', foto: 'images/Madrasah Nurul Yaqien.jpg', ringkas: 'Pendidikan formal dan keagamaan di Dusun Karangduwek berkembang melalui keberadaan Yayasan Hidayatul Ummah yang menjadi salah satu lembaga pendidikan penting di wilayah tersebut.' },
+        { cat: 'pendidikan', id: 'pendidikan-mi-hidayatul-amin-kletek', nama: 'Madrasah Ibtidaiyah Hidayatul Amin dalam Menyelenggarakan Pendidikan Formal dan Keagamaan di Dusun Kletek', dusun: 'Kletek', foto: 'images/SMP Hidayatul Amin.jpg', ringkas: 'Pendidikan formal dan keagamaan di Dusun Kletek berkembang melalui keberadaan Madrasah Ibtidaiyah Hidayatul Amin.' },
+        { cat: 'pendidikan', id: 'pendidikan-sdn-gondosuli-4-kletek', nama: 'Perkembangan SDN Gondosuli IV dalam Mendukung Pendidikan Dasar di Kletek', dusun: 'Kletek', foto: 'images/SDN Gondosuli 4.jpg', ringkas: 'Keberadaan SDN Gondosuli IV menjadi bagian penting dalam mendukung pendidikan dasar bagi anak-anak di Dusun Kletek.' },
+        { cat: 'pendidikan', id: 'pendidikan-madin-darussalam-pakes', nama: 'Madrasah Diniyah Darussalam Sebagai Wadah Pendidikan Keagamaan di Dusun Pakes', dusun: 'Pakes', foto: 'images/Madin Darussalam.jpg', ringkas: 'Madrasah Diniyah Darussalam merupakan lembaga pendidikan keagamaan yang berperan penting dalam membentuk karakter religius anak-anak di Dusun Pakes.' },
+        { cat: 'pendidikan', id: 'pendidikan-madin-takmiliyah-mubtadiin-krajan', nama: 'Peran Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadiin di Dusun Krajan', dusun: 'Krajan', foto: 'images/Madin Takmiliyah ula.jpg', ringkas: 'Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadiin merupakan lembaga pendidikan keagamaan yang berperan penting dalam membentuk karakter anak-anak di Dusun Krajan.' },
+        { cat: 'pendidikan', id: 'pendidikan-ypi-miftahul-hasanah-krajan', nama: 'Mengembangkan Pendidikan Berbasis Keagamaan Bersama YPI Miftahul Hasanah', dusun: 'Krajan', foto: 'images/YPI Nurul Hasanah.jpeg', ringkas: 'YPI Miftahul Hasanah menjadi salah satu lembaga pendidikan berbasis keagamaan yang memiliki peran penting dalam perkembangan pendidikan di Dusun Krajan.' },
+        { cat: 'pendidikan', id: 'pendidikan-tk-pgri-krajan', nama: 'Mendukung Pendidikan Anak Usia Dini di TK PGRI Desa Gondosuli', dusun: 'Krajan', foto: 'images/TK PGRI Gondosuli.jpg', ringkas: 'Pendidikan anak usia dini di Desa Gondosuli semakin terbantu dengan adanya TK PGRI Gondosuli sebagai tempat belajar bagi anak-anak sebelum memasuki sekolah dasar.' },
+        { cat: 'pendidikan', id: 'pendidikan-sdn-gondosuli-1-krajan', nama: 'Wujudkan Harapan Anak-Anak Desa Gondosuli, SDN Gondosuli 1 Tetap Eksis Hingga Kini', dusun: 'Krajan', foto: 'images/SDN Gondosuli 1.jpeg', ringkas: 'SDN Gondosuli 1 ialah lembaga pendidikan dasar negeri yang berada di Dusun Krajan dan berdiri sejak tahun 1956.' },
 
-        { cat: 'umkm', id: 'umkm-biji-kopi-kletek', nama: 'Produksi Biji Kopi — Kletek', dusun: 'Kletek', foto: 'images/Produksi biji Kopi.jpg', ringkas: 'Usaha rumahan pengolahan biji kopi warga Dusun Kletek, dari petik hingga siap giling.' },
-        { cat: 'umkm', id: 'umkm-bengkel-ardhana-motor-pakes', nama: 'Bengkel Ardhana Motor', dusun: 'Pakes', foto: 'images/Ardhana Motor.jpg', ringkas: 'Bengkel motor yang melayani kebutuhan servis kendaraan warga Dusun Pakes dan sekitarnya.' },
-        { cat: 'umkm', id: 'umkm-pengrajin-kayu-karangduwek', nama: 'Pengrajin Kayu — Karangduwek', dusun: 'Karangduwek', foto: 'images/Pengrajin kayu.jpg', ringkas: 'Usaha kerajinan kayu yang menjadi bagian dari sentra pengrajin mebel Dusun Karangduwek.' },
-        { cat: 'umkm', id: 'umkm-toko-ilmia-cell-durin', nama: 'Toko Ilmia Cell', dusun: 'Durin', foto: 'images/Toko ilmia cell.jpg', ringkas: 'Toko pulsa dan aksesoris ponsel yang melayani kebutuhan komunikasi warga Dusun Durin.' },
-        { cat: 'umkm', id: 'umkm-hidroponik-krajan', nama: 'Pengusaha Hidroponik', dusun: 'Krajan', foto: 'images/Hidroponik Selada.jpg', ringkas: 'Usaha budi daya sayur hidroponik di Dusun Krajan sebagai alternatif pertanian modern.' },
+        { cat: 'umkm', id: 'umkm-hidroponik-krajan', nama: "Budidaya Hidroponik Berkembang dari Hobi hingga Menjadi Usaha Produktif", dusun: 'Krajan', foto: 'images/Hidroponik Selada.jpg', ringkas: "Budidaya Hidroponik merupakan usaha rumahan di bidang pertanian yang berada di Dusun Krajan dan mulai berdiri sejak tahun 2021." },
+        { cat: 'umkm', id: 'umkm-produksi-kopra-karangduwek', nama: "Industri Pengolahan Kelapa Menjadi Kopra sebagai Bahan Baku Minyak Kelapa", dusun: 'Karangduwek', foto: 'images/Kelapa 1.jpg', ringkas: "Kopra merupakan bahan baku dalam industri minyak kelapa yang berkembang di Dusun Karangduwek." },
+        { cat: 'umkm', id: 'umkm-pengepul-tembakau-karangduwek', nama: "Berawal Dari Budidaya Tembakau, Menuju Usaha Pengepulan yang Terus Berkembang", dusun: 'Karangduwek', foto: 'images/Pengepul Tembakau Pak Samsuddin.jpg', ringkas: "Pengepul tembakau merupakan usaha yang dikelola oleh salah satu warga Dusun Karangduwek, yaitu Bapak Syamsudin." },
+        { cat: 'umkm', id: 'umkm-kerupuk-pattolah-kletek', nama: "Mengolah Singkong Menjadi Usaha Kerupuk Pattolah Sebagai Peluang Ekonomi", dusun: 'Kletek', foto: 'images/Produksi patolah.jpeg', ringkas: "Kerupuk Pattolah merupakan salah satu produk olahan pangan yang diproduksi oleh masyarakat Dusun Kletek sebagai usaha sampingan." },
+        { cat: 'umkm', id: 'umkm-toko-bangunan-hindun-krajan', nama: "Jatuh Bangun Toko Bangunan Hindun Tetap Bertahan", dusun: 'Krajan', foto: 'images/Toko Bangunan Hindun.jpg', ringkas: "Toko Bangunan Hindun merupakan usaha yang menyediakan berbagai macam kebutuhan alat bangunan bagi masyarakat sekitar Dusun Krajan." },
+        { cat: 'umkm', id: 'umkm-toko-cita-mulya-krajan', nama: "Toko Cita Mulya Lengkapi Kebutuhan Pertanian dan Peternakan Masyarakat dari Berbagai Dusun", dusun: 'Krajan', foto: 'images/Cita Mulya.jpg', ringkas: "Toko Cita Mulya merupakan usaha yang menyediakan kebutuhan pertanian dan peternakan yang berdiri sejak tahun 2020 di Dusun Krajan." },
+        { cat: 'umkm', id: 'umkm-bengkel-ical-krajan', nama: "Bengkel Ical Perluas Jangkauan Pasar Melalui Pemasaran Digital", dusun: 'Krajan', foto: 'images/Bengkel Ical.jpg', ringkas: "Bengkel Ical merupakan usaha di bidang perbengkelan yang mulai berdiri sejak tahun 2018 di Dusun Krajan." },
+        { cat: 'umkm', id: 'umkm-produksi-kepeng-ranon', nama: "Mengolah Singkong Menjadi Kerupuk Kepeng Melalui Proses Produksi Tradisional", dusun: 'Ranon', foto: 'images/Produksi Kepeng (krupuk).jpg', ringkas: "Produksi kepeng merupakan usaha yang telah dijalani sejak pemilik usaha masih muda dengan lokasi produksi pembuatan Kerupuk Kepeng yang dilakukan di Dusun Ranon." },
 
-        { cat: 'keagamaan', id: 'keagamaan-masjid-al-ikhlas-kletek', nama: "Masjid Jami' Al-Ikhlas", dusun: 'Kletek', foto: 'images/Masjid Jami Al-Ikhlas (1).jpg', ringkas: 'Masjid utama Dusun Kletek, pusat kegiatan ibadah dan sosial keagamaan warga.' },
-        { cat: 'keagamaan', id: 'keagamaan-masjid-darussalam-pakes', nama: 'Masjid Darussalam', dusun: 'Pakes', foto: 'images/Masjid Darussalam.jpg', ringkas: 'Masjid Dusun Pakes yang jadi pusat kegiatan keagamaan warga yang dikenal religius.' },
-        { cat: 'keagamaan', id: 'keagamaan-masjid-al-falah-karangduwek', nama: 'Masjid Al-Falah Nurul Bukhori', dusun: 'Karangduwek', foto: 'images/Masjid.jpg', ringkas: 'Masjid utama Dusun Karangduwek, tempat berlangsungnya majelis, tahlil, dan kegiatan keagamaan rutin.' },
-        { cat: 'keagamaan', id: 'keagamaan-masjid-bahrul-ulum-durin', nama: 'Masjid Bahrul Ulum', dusun: 'Durin', foto: 'images/Masjid Bahrul ulum.jpg', ringkas: 'Masjid yang berdampingan dengan lembaga pendidikan Yayasan Bahrul Ulum di Dusun Durin.' },
-        { cat: 'keagamaan', id: 'keagamaan-masjid-al-karomah-krajan', nama: 'Masjid Al-Karomah', dusun: 'Krajan', foto: 'images/Masjid Alkaromah.jpeg', ringkas: 'Masjid di pusat Desa Gondosuli yang menjadi rujukan kegiatan keagamaan warga Krajan.' },
+        { cat: 'keagamaan', id: 'keagamaan-majelis-al-araf-riyadhul-jinan-ranon', nama: "Majelis Al A'raf Riyadhul Jinan: dari Perkumpulan Biasa Menjadi Wadah Spiritual Masyarakat Desa Gondosuli", dusun: 'Ranon', foto: 'images/Majelis Al araf Riyadhul Jinan.jpg', ringkas: "Majelis Al A'raf Riyadhul Jinan adalah sebuah wadah atau forum pengajian tempat menuntut ilmu, mendengarkan ceramah, dan mempererat tali silaturahmi yang mulai dirintis pada pertengahan Agustus 2021." },
+        { cat: 'keagamaan', id: 'keagamaan-profil-masjid-kehidupan-keagamaan-gondosuli', nama: 'Profil Masjid dan Kehidupan Keagamaan di Desa Gondosuli', dusun: 'Pakes, Krajan, Durin & Kletek', foto: 'images/Masjid Darussalam.jpg', ringkas: 'Masjid Darussalam merupakan salah satu masjid di Desa Gondosuli yang telah lama berdiri sebagai pusat kegiatan keagamaan masyarakat.' },
 
-        { cat: 'kesehatan', id: 'kesehatan-praktek-keperawatan-fatima-pakes', nama: 'Praktek Keperawatan Mandiri Sitti Fatima, S.Kep. Ners', dusun: 'Pakes', foto: 'images/Praktek Keperawatan.jpg', ringkas: 'Layanan keperawatan mandiri yang membantu warga Dusun Pakes mendapat akses kesehatan dasar.' },
-        { cat: 'kesehatan', id: 'kesehatan-klinik-annajiyah-krajan', nama: 'Klinik Annajiyah', dusun: 'Krajan', foto: 'images/Klinik Annajiyah.jpg', ringkas: 'Klinik kesehatan di Dusun Krajan yang melayani warga dari berbagai dusun di Gondosuli.' },
-        { cat: 'kesehatan', id: 'kesehatan-puskesmas-pembantu-krajan', nama: 'Puskesmas Pembantu', dusun: 'Krajan', foto: 'images/puskesmaspembantu.jpg', ringkas: 'Puskesmas pembantu yang berlokasi di Balai Desa Gondosuli, melayani kebutuhan kesehatan dasar warga.' },
+        { cat: 'kesehatan', id: 'kesehatan-praktek-keperawatan-fatima-pakes', nama: "Menjangkau Kebutuhan Kesehatan Masyarakat Lebih Dekat Melalui Praktik Keperawatan Mandiri Sitti Fatima, S.Kep", dusun: 'Pakes', foto: 'images/praktekkeperawatan.jpg', ringkas: "Praktik Keperawatan Mandiri Sitti Fatima, S. Kep mulai beroperasi sejak tahun 2021 sebagai layanan kesehatan tambahan di luar pekerjaan utama pemilik praktik sebagai perawat di Puskesmas Kotaanyar." },
+        { cat: 'kesehatan', id: 'kesehatan-klinik-annajiyah-krajan', nama: "Klinik Annajiyah Hadir Untuk Memperkuat Layanan Kesehatan di Desa Gondosuli", dusun: 'Krajan', foto: 'images/klinikannajiyah.jpg', ringkas: "Klinik Annajiyah merupakan salah satu fasilitas pelayanan kesehatan di Desa Gondosuli yang mulai beroperasi sebagai klinik pada bulan April 2024." },
+        { cat: 'kesehatan', id: 'kesehatan-puskesmas-pembantu-krajan', nama: "Puskesmas Pembantu Desa Gondosuli Perkuat Akses Pelayanan Kesehatan bagi Warga", dusun: 'Krajan', foto: 'images/pustu.jpg', ringkas: "Puskesmas Pembantu (PUSTU) Desa Gondosuli merupakan bagian dari Puskesmas dan dikategorikan sebagai fasilitas kesehatan tingkat pertama." },
 
-        { cat: 'lainnya', id: 'lainnya-mie-ayam-kenken-karangduwek', nama: 'Mie Ayam & Bakso Kenken', dusun: 'Karangduwek', foto: 'images/Mie ayam & Bakso Kenken.jpg', ringkas: 'Warung mie ayam dan bakso favorit warga Dusun Karangduwek.' },
-        { cat: 'lainnya', id: 'lainnya-ayam-geprek-gg-krajan', nama: 'Ayam Geprek "GG"', dusun: 'Krajan', foto: 'images/Geprek GG.jpg', ringkas: 'Kedai ayam geprek yang jadi salah satu jajanan populer di Dusun Krajan.' },
-        { cat: 'lainnya', id: 'lainnya-kedai-mbak-juai-krajan', nama: 'Kedai Mbak Juai', dusun: 'Krajan', foto: 'images/Kedai Mbak Juai.jpg', ringkas: 'Kedai makanan rumahan di Dusun Krajan yang menyediakan menu sehari-hari warga.' },
-        { cat: 'lainnya', id: 'lainnya-warung-bu-rohid-krajan', nama: 'Warung Bu Rohid', dusun: 'Krajan', foto: 'images/Warung Bu Rohid.jpg', ringkas: 'Warung kelontong dan makanan yang sudah lama menjadi langganan warga Dusun Krajan.' },
-        { cat: 'lainnya', id: 'lainnya-kantor-desa-krajan', nama: 'Kantor Desa Gondosuli', dusun: 'Krajan', foto: 'images/Kantor Desa Gondosuli.jpg', ringkas: 'Pusat pelayanan administrasi dan pemerintahan Desa Gondosuli, berlokasi di Dusun Krajan.' }
+        { cat: 'lainnya', id: 'lainnya-pembagian-wilayah-karangduwek', nama: "Keunikan Pembagian Wilayah Di Karangduwek", dusun: 'Karangduwek', foto: 'images/wilayahunik.jpg', ringkas: "Dusun Karangduwek merupakan salah satu dusun yang berada di bagian paling ujung barat Desa Gondosuli." },
+        { cat: 'lainnya', id: 'lainnya-peninggalan-leluhur-kletek', nama: "Kepercayaan Masyarakat Terhadap Peninggalan Leluhur di Dusun Kletek", dusun: 'Kletek', foto: 'images/leluhurunik.jpg', ringkas: "Dusun Kletek memiliki peninggalan yang diyakini oleh masyarakat berasal dari masa Kerajaan Majapahit." },
+        { cat: 'lainnya', id: 'lainnya-asal-usul-nama-ranon', nama: "Cerita Dibalik Nama Dusun Ranon", dusun: 'Ranon', foto: 'images/sumberunik.jpg', ringkas: "Dusun Ranon memiliki cerita yang menjadi latar belakang penamaannya." },
+        { cat: 'lainnya', id: 'lainnya-peran-ganda-pakes', nama: "Mengenal Lebih Dekat Peran Ganda Masyarakat Di Dusun Pakes", dusun: 'Pakes', foto: 'images/unikmajelis.jpg', ringkas: "Dusun Pakes memiliki karakteristik sosial yang menjadi ciri khas masyarakat setempat." },
+        { cat: 'lainnya', id: 'lainnya-asal-usul-nama-durin', nama: "Asal-Usul Nama Dusun Durin, Nggak Ada Hubungan Sama Buah Durian Lur!", dusun: 'Durin', foto: 'images/kayuunik.jpg', ringkas: "Nama Dusun Durin kerap menimbulkan anggapan bahwa dusun ini memiliki keterkaitan dengan buah durian." },
+        { cat: 'lainnya', id: 'lainnya-krajan-pusat-ekonomi', nama: "Dusun Krajan Menjadi Pusat Perekonomian Desa Gondosuli", dusun: 'Krajan', foto: 'images/lahanunik.jpg', ringkas: "Peran Dusun Krajan sebagai pusat perekonomian desa terlihat dari berkembangnya berbagai usaha mikro, kecil, dan menengah (UMKM) yang bergerak di berbagai sektor." },
       ];
 
       const tabsEl = document.getElementById('info-cat-tabs');
@@ -782,6 +796,64 @@
       renderTabs();
       renderSlide();
       resetTimer();
+
+      // ── Widget "Info Lainnya" — daftar berganti otomatis, 4 info per halaman ──
+      (function () {
+        const listEl = document.getElementById('side-news-list');
+        const dotsEl = document.getElementById('side-news-dots');
+        if (!listEl) return;
+
+        const PER_PAGE = 4;
+        // Diacak sekali saat halaman dibuka supaya kombinasinya tidak selalu sama
+        const pool = ITEMS.slice().sort(() => Math.random() - 0.5);
+        const pages = [];
+        for (let i = 0; i < pool.length; i += PER_PAGE) pages.push(pool.slice(i, i + PER_PAGE));
+
+        let page = 0;
+        let timer;
+
+        function renderPage() {
+          listEl.innerHTML = pages[page].map(it => {
+            const c = CATS[it.cat] || { label: it.cat, color: '#64748b', icon: '📍' };
+            const href = 'pages/informasi-detail.html?id=' + encodeURIComponent(it.id);
+            const thumb = it.foto
+              ? `<img src="${it.foto}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.textContent='${c.icon}';this.parentElement.style.background='${c.color}22';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';">`
+              : c.icon;
+            return `<a href="${href}" class="sidebar-news-item" style="text-decoration:none;color:inherit;">
+              <div class="sidebar-news-thumb" style="padding:0;overflow:hidden;">${thumb}</div>
+              <div><h5>${it.nama}</h5><span>${c.label}</span></div>
+            </a>`;
+          }).join('');
+          dotsEl.innerHTML = pages.map((_, i) =>
+            `<span class="${i === page ? 'active' : ''}" data-i="${i}"></span>`).join('');
+        }
+
+        function goPage(next) {
+          page = (next + pages.length) % pages.length;
+          listEl.classList.add('fading');
+          setTimeout(() => { renderPage(); listEl.classList.remove('fading'); }, 350);
+        }
+
+        function restart() {
+          clearInterval(timer);
+          timer = setInterval(() => goPage(page + 1), 6000);
+        }
+
+        document.getElementById('side-news-prev')?.addEventListener('click', () => { goPage(page - 1); restart(); });
+        document.getElementById('side-news-next')?.addEventListener('click', () => { goPage(page + 1); restart(); });
+        dotsEl.addEventListener('click', (e) => {
+          const d = e.target.closest('span[data-i]');
+          if (!d) return;
+          goPage(parseInt(d.dataset.i, 10));
+          restart();
+        });
+        // Berhenti berputar saat kursor di atas widget supaya tidak ganggu saat dibaca
+        listEl.addEventListener('mouseenter', () => clearInterval(timer));
+        listEl.addEventListener('mouseleave', restart);
+
+        renderPage();
+        restart();
+      })();
     })();
   </script>
   <script>
@@ -982,8 +1054,8 @@
         { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Kletek', lat: -7.79507455, lng: 113.55796846, elev: 200.009781, foto: 'images/Tembakau.jpg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
         { nama: 'Lembaga Madrasah Ibtidaiyah Hidayatul Amin', cat: 'pendidikan', dusun: 'Kletek', lat: -7.79500461, lng: 113.5574496, elev: 193.089859, foto: 'images/SMP Hidayatul Amin.jpg', deskripsi: 'Lembaga pendidikan yang memiliki berbagai jenjang, mulai dari sekolah formal, MI, Madin, hingga TPQ', telepon: '082261350932 (Pak Suhaimin)' },
         { nama: "Masjid Jami' Al-Ikhlas", cat: 'keagamaan', dusun: 'Kletek', lat: -7.80727232, lng: 113.56171127, elev: 360.076172, foto: 'images/Masjid Jami Al-Ikhlas (1).jpg', deskripsi: 'Tempat beribadah masyarakat dan kegiatan sosial', telepon: '082315659167 (Pak Ainin)' },
-        { nama: 'Perkebunan Gula aren', cat: 'pertanian', dusun: 'Kletek', lat: -7.80688146, lng: 113.56102846, elev: 370.139526, foto: 'images/gula aren.jpg', deskripsi: 'Lahan perkebunan yang ditanami oleh gula aren', telepon: '081325466379 ' },
-        { nama: 'Perkebunan Sengon', cat: 'pertanian', dusun: 'Kletek', lat: -7.80565049, lng: 113.56052716, elev: 379.309448, foto: 'images/Lahan Perkebunan Sengon.jpg', deskripsi: 'Lahan perkebunan yang ditanami oleh sengon', telepon: '089521156390' },
+        { nama: 'Perkebunan Gula aren', cat: 'pertanian', dusun: 'Kletek', lat: -7.80688146, lng: 113.56102846, elev: 370.139526, foto: 'images/gulaaren.jpg', deskripsi: 'Lahan perkebunan yang ditanami oleh gula aren', telepon: '081325466379 ' },
+        { nama: 'Perkebunan Sengon', cat: 'pertanian', dusun: 'Kletek', lat: -7.80565049, lng: 113.56052716, elev: 379.309448, foto: 'images/Sengon.jpg', deskripsi: 'Lahan perkebunan yang ditanami oleh sengon', telepon: '089521156390' },
         { nama: 'Produksi Biji Kopi', cat: 'umkm', dusun: 'Kletek', lat: -7.80207638, lng: 113.56052727, elev: 306.934174, foto: 'images/Produksi biji Kopi.jpg', deskripsi: 'Tempat pengolahan biji kopi', telepon: '' },
         { nama: 'Produksi Biji Kopi', cat: 'umkm', dusun: 'Kletek', lat: -7.80228744, lng: 113.56065913, elev: 307.920776, foto: 'images/Produksi biji Kopi.jpg', deskripsi: 'Tempat pengolahan biji kopi', telepon: '' },
         { nama: 'Produksi Patolah', cat: 'umkm', dusun: 'Kletek', lat: -7.80346394, lng: 113.5612459, elev: 310.636414, foto: 'images/Produksi patolah.jpeg', deskripsi: 'Tempat produksi kerupuk patolah', telepon: '082335283990' },
@@ -997,7 +1069,7 @@
         { nama: 'Madrasah Diniyah Darussalam', cat: 'pendidikan', dusun: 'Pakes', lat: -7.78891761, lng: 113.55994045, elev: 162.219208, foto: 'images/Madin Darussalam.jpg', deskripsi: 'Lembaga pendidikan nonformal yang berfokus pada keagamaan', telepon: '082333367660 (Pak Hasanudin)' },
         { nama: 'Makam Krajan', cat: 'keagamaan', dusun: 'Pakes', lat: -7.78917297, lng: 113.55454572, elev: 149.495499, foto: 'images/Makam Krajan.jpg', deskripsi: 'Tempat pemakaman umum', telepon: '' },
         { nama: 'Masjid Darussalam', cat: 'keagamaan', dusun: 'Pakes', lat: -7.78852659, lng: 113.5591749, elev: 159.73436, foto: 'images/Masjid Darussalam.jpg', deskripsi: 'Tempat beribadah masyarakat dan pusat kegiatan sosial', telepon: '' },
-        { nama: 'Praktek Keperawatan Mandiri Sitti Fatima S. Kep. Ners', cat: 'kesehatan', dusun: 'Pakes', lat: -7.78886571, lng: 113.55946685, elev: 162.913788, foto: 'images/Praktek Keperawatan.jpg', deskripsi: 'Praktik bidan mandiri yang memberikan pelayanan cek tekanan darah, suntik KB, dan suntik kesehatan lainnya', telepon: '' },
+        { nama: 'Praktek Keperawatan Mandiri Sitti Fatima S. Kep. Ners', cat: 'kesehatan', dusun: 'Pakes', lat: -7.78886571, lng: 113.55946685, elev: 162.913788, foto: 'images/praktekkeperawatan.jpg', deskripsi: 'Praktik bidan mandiri yang memberikan pelayanan cek tekanan darah, suntik KB, dan suntik kesehatan lainnya', telepon: '' },
         { nama: 'Toko Akmal', cat: 'umkm', dusun: 'Pakes', lat: -7.79170518, lng: 113.5638411, elev: 177.105255, foto: 'images/Akmals Shop.jpg', deskripsi: 'Toko kelontong yang menyediakan sembako, sapu, dan tampah', telepon: '' },
         { nama: 'Toko Barokah Bintang Lima Sembako', cat: 'umkm', dusun: 'Pakes', lat: -7.79195491, lng: 113.56417965, elev: 179.111252, foto: 'images/Toko Barokah Bintang Lima Sembako (1).jpg', deskripsi: 'Toko kelontong yang menyediakan kebutuhan sembako', telepon: '' },
         { nama: 'Toko Muhammad Rafa', cat: 'umkm', dusun: 'Pakes', lat: -7.78895371, lng: 113.55870688, elev: 163.777191, foto: 'images/Toko Muhammad Rafa.jpg', deskripsi: 'Toko kelontong yang menyediakan sembako dan gerabah', telepon: '' },
@@ -1058,17 +1130,17 @@
         { nama: 'Kedai Mbak Juai', cat: 'umkm', dusun: 'Krajan', lat: -7.79081409, lng: 113.5529478, elev: 144.834579, foto: 'images/Kedai Mbak Juai.jpg', deskripsi: 'Kedai yang menjual aneka makanan dan minuman, serta menerima katering', telepon: '085130356366 (Bu Juai)' },
         { nama: 'Kedai Papa X Jajanan Nampol', cat: 'umkm', dusun: 'Krajan', lat: -7.79202783, lng: 113.55279805, elev: 148.072983, foto: 'images/Kedai Papa X.jpg', deskripsi: 'Kedai yang menyediakan aneka jajanan terkini dan bakso', telepon: '' },
         { nama: 'Klinik Annajiyah', cat: 'kesehatan', dusun: 'Krajan', lat: -7.78995482, lng: 113.55235998, elev: 141.591599, foto: 'images/Klinik Annajiyah.jpg', deskripsi: 'Fasilitas kesehatan warga', telepon: ' 082322663369 (Klinik Annajiyah)' },
-        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79239776, lng: 113.55181261, elev: 146.318619, foto: 'images/Tembakau.jpeg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
-        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79274717, lng: 113.55186283, elev: 146.555252, foto: 'images/Tembakau.jpeg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
-        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79275697, lng: 113.55129638, elev: 147.466309, foto: 'images/Tembakau.jpeg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
-        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.78995336, lng: 113.55220799, elev: 142.721054, foto: 'images/Tembakau.jpeg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
+        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79239776, lng: 113.55181261, elev: 146.318619, foto: 'images/Tembakau2.jpg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
+        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79274717, lng: 113.55186283, elev: 146.555252, foto: 'images/Tembakau2.jpg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
+        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.79275697, lng: 113.55129638, elev: 147.466309, foto: 'images/Tembakau2.jpg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
+        { nama: 'Lahan Pertanian [Tembakau]', cat: 'pertanian', dusun: 'Krajan', lat: -7.78995336, lng: 113.55220799, elev: 142.721054, foto: 'images/Tembakau2.jpg', deskripsi: 'Lahan pertanian yang ditanami oleh tembakau', telepon: '' },
         { nama: "Madrasah Diniyah Takmiliyah Ula Tarbiyatul Mubtadi'in", cat: 'pendidikan', dusun: 'Krajan', lat: -7.79127665, lng: 113.5532587, elev: 147.0, foto: 'images/Madin Takmiliyah ula.jpg', deskripsi: 'Lembaga pendidikan non formal yang berfokus pada keagamaan', telepon: '082287664822 (ibu Zainan)' },
         { nama: 'Masjid Al-Karomah', cat: 'keagamaan', dusun: 'Krajan', lat: -7.79185534, lng: 113.55366207, elev: 149.104935, foto: 'images/Masjid Alkaromah.jpeg', deskripsi: 'Tempat beribadah masyarakat dan pusat kegiatan sosial', telepon: '085235511969' },
         { nama: 'Paud KB. Mihas', cat: 'pendidikan', dusun: 'Krajan', lat: -7.79176409, lng: 113.55294577, elev: 148.604782, foto: 'images/Paud KB Mihas.jpeg', deskripsi: 'Lembaga pendidikan formal bagi usia dini', telepon: '' },
         { nama: 'Pengrajin Kayu', cat: 'umkm', dusun: 'Krajan', lat: -7.78895105, lng: 113.55329902, elev: 135.419922, foto: 'images/Pengrajin Kayu (1).jpg', deskripsi: 'Usaha pengrajin kayu yang menghasilkan produk mebel', telepon: '' },
         { nama: 'Pengusaha Hidroponik', cat: 'umkm', dusun: 'Krajan', lat: -7.79263848, lng: 113.55361537, elev: 152.042999, foto: 'images/Hidroponik Selada.jpg', deskripsi: 'Budidaya sayuran hidroponik', telepon: '085232154466 (Ibu Alma)' },
-        { nama: 'Pengusaha Jamur Tiram', cat: 'umkm', dusun: 'Krajan', lat: -7.79142863, lng: 113.55364657, elev: 149.130524, foto: 'images/Budidaya Jamur Tiram.jpg', deskripsi: 'Budidaya jamur tiram', telepon: '085258022223 (Pak Syahrul)' },
-        { nama: 'Pengusaha Lele Mas Syahrul', cat: 'umkm', dusun: 'Krajan', lat: -7.79118074, lng: 113.55235161, elev: 143.931564, foto: '', deskripsi: 'Budidaya ikan lele', telepon: '(82140256724 (Pak Syahrul)' },
+        { nama: 'Pengusaha Jamur Tiram', cat: 'umkm', dusun: 'Krajan', lat: -7.79142863, lng: 113.55364657, elev: 149.130524, foto: 'images/budidayajamurtiram.jpg', deskripsi: 'Budidaya jamur tiram', telepon: '085258022223 (Pak Syahrul)' },
+        { nama: 'Pengusaha Lele Mas Syahrul', cat: 'umkm', dusun: 'Krajan', lat: -7.79118074, lng: 113.55235161, elev: 143.931564, foto: 'images/budidayalele.jpg', deskripsi: 'Budidaya ikan lele', telepon: '(82140256724 (Pak Syahrul)' },
         { nama: 'Pom Mini', cat: 'umkm', dusun: 'Krajan', lat: -7.79002465, lng: 113.55320854, elev: 142.23912, foto: 'images/Pom Mini.jpeg', deskripsi: 'Tempat jual beli bensin legal', telepon: '082330221799 (Pak Anwar)' },
         { nama: 'Puskesmas Pembantu', cat: 'kesehatan', dusun: 'Krajan', lat: -7.7898485040177, lng: 113.553671746881, elev: 146.036743, foto: 'images/puskesmaspembantu.jpg', deskripsi: 'Salah satu cabang layanan kesehatan tingkat pertama', telepon: [
           { label: 'Rizky Yuli Ambarwati', nomor: '082301293789' },
