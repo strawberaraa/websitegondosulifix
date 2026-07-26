@@ -100,12 +100,16 @@ p { text-align: justify; text-justify: inter-word; }
   gap: 4px;
   list-style: none;
 }
+}
 /* Cegah long-press di HP memunculkan blok seleksi teks, menu "Salin/Bagikan",
    atau bayangan drag yang tampak keluar frame.
    Diterapkan ke seluruh navbar — bukan cuma link — karena teks yang tersorot
    saat ditekan lama bisa berasal dari elemen pembungkusnya juga. */
 .navbar,
-.navbar * {
+.navbar *,
+.nav-links a,
+.nav-dropdown-trigger,
+.nav-dropdown-menu a {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -128,6 +132,7 @@ p { text-align: justify; text-justify: inter-word; }
 .nav-dropdown-menu a {
   white-space: normal;
   word-break: break-word;
+}
 }
 .nav-links a {
   padding: 8px 14px;
