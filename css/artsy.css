@@ -1377,4 +1377,4 @@
 .info-slide-dot.active { background: var(--green-600); width: 18px; border-radius: 4px; }
 @media (max-width: 560px) {
   .info-slide-thumb { height: 180px; }
-}
+} 
